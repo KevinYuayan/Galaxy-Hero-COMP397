@@ -29,7 +29,7 @@ module objects{
 
         // private methods
 
-        public CheckBounds():void {
+        private _checkBounds():void {
             if(this.y >= config.Constants.canvasHeight){
                 this.Reset();
             }
@@ -46,7 +46,7 @@ module objects{
         }
         public Update(): void {
             this._move();      
-            this.CheckBounds();
+            this._checkBounds();
         }
         public Reset(): void {
             this.y = -this.Height;

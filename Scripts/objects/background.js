@@ -36,7 +36,7 @@ var objects;
             return _this;
         }
         // private methods
-        Background.prototype.CheckBounds = function () {
+        Background.prototype._checkBounds = function () {
             if (this.y >= config.Constants.canvasHeight) {
                 this.Reset();
             }
@@ -50,7 +50,7 @@ var objects;
         };
         Background.prototype.Update = function () {
             this._move();
-            this.CheckBounds();
+            this._checkBounds();
         };
         Background.prototype.Reset = function () {
             this.y = -this.Height;
