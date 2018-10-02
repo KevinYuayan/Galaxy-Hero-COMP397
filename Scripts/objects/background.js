@@ -27,12 +27,6 @@ var objects;
             if (verticalSpeed === void 0) { verticalSpeed = 0; }
             var _this = _super.call(this, imageString) || this;
             _this._verticalSpeed = verticalSpeed;
-            if (_this._verticalSpeed == 0) {
-                _this._isMoving = false;
-            }
-            else {
-                _this._isMoving = true;
-            }
             return _this;
         }
         // private methods

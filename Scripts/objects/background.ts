@@ -3,7 +3,6 @@ module objects{
         
         // private instance variables
         private _verticalSpeed:number;
-        private _isMoving:boolean;
 
         // public properties
 
@@ -17,14 +16,6 @@ module objects{
         constructor(imageString:string, verticalSpeed:number = 0) {
             super(imageString);           
             this._verticalSpeed = verticalSpeed;
-            if(this._verticalSpeed == 0)
-            {
-                this._isMoving = false;
-            }
-            else
-            {
-                this._isMoving = true;
-            }
         }
 
         // private methods

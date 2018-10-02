@@ -54,7 +54,7 @@ module scenes{
             
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
-            //creates 2 backgrounds to have continuity
+            // creates 2 backgrounds to have an infinte scroller
             for(let count = 0; count < this._backgroundNum; count++) {
                 this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
             }
