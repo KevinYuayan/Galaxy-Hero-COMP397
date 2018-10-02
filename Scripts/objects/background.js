@@ -36,8 +36,8 @@ var objects;
             return _this;
         }
         // private methods
-        Background.prototype._checkBounds = function () {
-            if (this.y >= 0) {
+        Background.prototype.CheckBounds = function () {
+            if (this.y >= config.Constants.canvasHeight) {
                 this.Reset();
             }
         };
@@ -49,10 +49,8 @@ var objects;
             this.y = -this.Height + config.Constants.canvasHeight;
         };
         Background.prototype.Update = function () {
-            if (this._isMoving) {
-                this._move();
-                this._checkBounds();
-            }
+            this._move();
+            this.CheckBounds();
         };
         Background.prototype.Reset = function () {
             this.y = -this.Height;

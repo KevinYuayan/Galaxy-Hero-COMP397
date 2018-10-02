@@ -45,7 +45,6 @@ var scenes;
             this.Main();
         };
         Start.prototype.Update = function () {
-            this._background.Update();
         };
         Start.prototype.Reset = function () {
         };
