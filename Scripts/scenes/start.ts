@@ -49,7 +49,6 @@ module scenes{
         }
         public Update(): void {
 
-            this._background.Update();
         }
         public Reset(): void {
             

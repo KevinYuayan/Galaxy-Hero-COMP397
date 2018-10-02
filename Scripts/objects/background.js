@@ -27,17 +27,11 @@ var objects;
             if (verticalSpeed === void 0) { verticalSpeed = 0; }
             var _this = _super.call(this, imageString) || this;
             _this._verticalSpeed = verticalSpeed;
-            if (_this._verticalSpeed == 0) {
-                _this._isMoving = false;
-            }
-            else {
-                _this._isMoving = true;
-            }
             return _this;
         }
         // private methods
         Background.prototype._checkBounds = function () {
-            if (this.y >= 0) {
+            if (this.y >= config.Constants.canvasHeight) {
                 this.Reset();
             }
         };
@@ -49,10 +43,8 @@ var objects;
             this.y = -this.Height + config.Constants.canvasHeight;
         };
         Background.prototype.Update = function () {
-            if (this._isMoving) {
-                this._move();
-                this._checkBounds();
-            }
+            this._move();
+            this._checkBounds();
         };
         Background.prototype.Reset = function () {
             this.y = -this.Height;
