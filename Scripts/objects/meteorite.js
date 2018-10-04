@@ -23,7 +23,7 @@ var objects;
             this.y += this._verticalSpeed;
         };
         Meteorite.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
+            if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
         };
@@ -36,7 +36,7 @@ var objects;
             this._checkBounds();
         };
         Meteorite.prototype.Reset = function () {
-            this._verticalSpeed = 5;
+            this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         };

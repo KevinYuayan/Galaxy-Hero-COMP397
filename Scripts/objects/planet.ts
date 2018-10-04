@@ -18,7 +18,7 @@ module objects {
         }
 
         private _checkBounds():void {
-            if(this.y > 480 + this.Height){
+            if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
         }

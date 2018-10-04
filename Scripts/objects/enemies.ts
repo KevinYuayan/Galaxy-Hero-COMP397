@@ -18,7 +18,7 @@ module objects {
         }
 
         private _checkBounds():void {
-            if(this.y > 480 + this.Height){
+            if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
         }
@@ -35,7 +35,7 @@ module objects {
             this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
-            this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
+            this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
         }
         public Destroy(): void {
             
