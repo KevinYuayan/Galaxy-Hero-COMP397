@@ -33,13 +33,13 @@ var scenes;
             this.addChild(this._island);
             // adds player to the stage
             this.addChild(this._player);
-            // adds clouds to the scene
-            for (var count = 0; count < this._cloudNum; count++) {
-                this.addChild(this._clouds[count]);
+            // adds planets to the scene
+            for (var count = 0; count < this._planetNum; count++) {
+                this.addChild(this._planets[count]);
             }
         };
         Play.prototype.Start = function () {
-            this._cloudNum = 3;
+            this._planetNum = 1;
             this._backgroundNum = 2;
             // instantiates background array
             this._backgrounds = new Array();
@@ -53,20 +53,20 @@ var scenes;
             this._island = new objects.Island();
             this._player = new objects.Player();
             // must do this to instantiate the array
-            this._clouds = new Array();
-            // adds clouds to the array
-            for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud();
+            this._planets = new Array();
+            // adds planets to the array
+            for (var count = 0; count < this._planetNum; count++) {
+                this._planets[count] = new objects.Planet();
             }
             this.Main();
         };
         Play.prototype.Update = function () {
             this._player.Update();
             this._island.Update();
-            // updates each cloud in array
-            for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
-                var cloud = _a[_i];
-                cloud.Update();
+            // updates each planet in array
+            for (var _i = 0, _a = this._planets; _i < _a.length; _i++) {
+                var planet = _a[_i];
+                planet.Update();
             }
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {

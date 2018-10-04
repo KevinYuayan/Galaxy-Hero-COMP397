@@ -15,7 +15,7 @@
         {id: "startButton", src: "/Assets/images/startButton.png"},
         {id: "restartButton", src: "/Assets/images/restartButton.png"},
         {id: "player", src: "/Assets/images/player.png"},
-        {id: "cloud", src: "/Assets/images/cloud.png"},
+        {id: "planet", src: "/Assets/images/planet.png"},
         {id: "island", src: "/Assets/images/island.png"},
         {id: "spaceBackground", src: "/Assets/images/spaceBackground.jpg"},
         {id: "startBackground", src: "/Assets/images/startBackground.jpg"},

@@ -1,5 +1,5 @@
 module objects {
-    export class Cloud extends objects.gameObject {
+    export class Planet extends objects.gameObject {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -8,7 +8,7 @@ module objects {
         // constructors
 
         constructor() {
-            super("cloud");
+            super("planet");
         }
 
         // private methods
@@ -32,7 +32,7 @@ module objects {
             this._checkBounds();
         }
         public Reset(): void {
-            this._verticalSpeed = Math.floor((Math.random()*5)+5); // speed from 5 to 10
+            this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);

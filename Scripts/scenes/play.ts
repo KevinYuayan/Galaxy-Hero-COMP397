@@ -5,8 +5,8 @@ module scenes{
         private _player:objects.Player;
         private _island:objects.Island;
 
-        private _cloudNum:number;
-        private _clouds:objects.Cloud[];
+        private _planetNum:number;
+        private _planets:objects.Planet[];
 
         private _backgroundNum:number;  // total background objects
         private _backgrounds:objects.Background[];
@@ -41,15 +41,15 @@ module scenes{
             this.addChild(this._player);
 
 
-            // adds clouds to the scene
-            for(let count = 0; count < this._cloudNum; count++) {
-                this.addChild(this._clouds[count]);
+            // adds planets to the scene
+            for(let count = 0; count < this._planetNum; count++) {
+                this.addChild(this._planets[count]);
             }
             
         }        
         public Start(): void {
 
-            this._cloudNum = 3;
+            this._planetNum = 1;
             this._backgroundNum = 2;
             
             // instantiates background array
@@ -66,11 +66,11 @@ module scenes{
             this._player = new objects.Player();
 
             // must do this to instantiate the array
-            this._clouds = new Array<objects.Cloud>();
+            this._planets = new Array<objects.Planet>();
 
-            // adds clouds to the array
-            for(let count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud();
+            // adds planets to the array
+            for(let count = 0; count < this._planetNum; count++) {
+                this._planets[count] = new objects.Planet();
             }
             this.Main();
         }
@@ -79,9 +79,9 @@ module scenes{
             this._player.Update();
             this._island.Update();
 
-            // updates each cloud in array
-            for (const cloud of this._clouds) {
-                cloud.Update();
+            // updates each planet in array
+            for (const planet of this._planets) {
+                planet.Update();
             }
             
             // updates background 0
