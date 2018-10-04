@@ -1,15 +1,20 @@
 module objects {
-    export class Island extends objects.gameObject {
-        private _verticalSpeed:number;
+    export class Enemies extends objects.gameObject {
+        // private instance variables
 
+        private _verticalSpeed:number;
+        private _horizontalSpeed:number;
+
+        // constructors
 
         constructor() {
-            super("island");
+            super("enemies");
         }
 
         // private methods
         private _move() {
             this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;
         }
 
         private _checkBounds():void {
@@ -27,7 +32,8 @@ module objects {
             this._checkBounds();
         }
         public Reset(): void {
-            this._verticalSpeed = 5;
+            this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 5 to 10
+            this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         }

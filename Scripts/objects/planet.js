@@ -13,37 +13,40 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Island = /** @class */ (function (_super) {
-        __extends(Island, _super);
-        function Island() {
-            return _super.call(this, "island") || this;
+    var Planet = /** @class */ (function (_super) {
+        __extends(Planet, _super);
+        // constructors
+        function Planet() {
+            return _super.call(this, "planet") || this;
         }
         // private methods
-        Island.prototype._move = function () {
+        Planet.prototype._move = function () {
             this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;
         };
-        Island.prototype._checkBounds = function () {
+        Planet.prototype._checkBounds = function () {
             if (this.y > 480 + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Island.prototype.Start = function () {
+        Planet.prototype.Start = function () {
             this.Reset();
         };
-        Island.prototype.Update = function () {
+        Planet.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Island.prototype.Reset = function () {
-            this._verticalSpeed = 5;
+        Planet.prototype.Reset = function () {
+            this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 5 to 10
+            this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         };
-        Island.prototype.Destroy = function () {
+        Planet.prototype.Destroy = function () {
         };
-        return Island;
+        return Planet;
     }(objects.gameObject));
-    objects.Island = Island;
+    objects.Planet = Planet;
 })(objects || (objects = {}));
-//# sourceMappingURL=island.js.map
+//# sourceMappingURL=planet.js.map

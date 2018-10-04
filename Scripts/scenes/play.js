@@ -29,18 +29,23 @@ var scenes;
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
             }
-            // adds island to the scene
-            this.addChild(this._island);
+            // adds meteorite to the scene
+            this.addChild(this._meteorite);
             // adds player to the stage
             this.addChild(this._player);
-            // adds clouds to the scene
-            for (var count = 0; count < this._cloudNum; count++) {
-                this.addChild(this._clouds[count]);
+            // adds planets to the scene
+            for (var count = 0; count < this._planetNum; count++) {
+                this.addChild(this._planets[count]);
+            }
+            //adds enemies to the scene
+            for (var count = 0; count < this._enemiesNum; count++) {
+                this.addChild(this._enemies[count]);
             }
         };
         Play.prototype.Start = function () {
-            this._cloudNum = 3;
+            this._planetNum = 1;
             this._backgroundNum = 2;
+            this._enemiesNum = 4;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
@@ -50,23 +55,31 @@ var scenes;
             this._currentBackgroundNum = 0;
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
-            this._island = new objects.Island();
+            this._meteorite = new objects.Meteorite();
             this._player = new objects.Player();
             // must do this to instantiate the array
-            this._clouds = new Array();
-            // adds clouds to the array
-            for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud();
+            this._planets = new Array();
+            this._enemies = new Array();
+            // adds planets to the array
+            for (var count = 0; count < this._planetNum; count++) {
+                this._planets[count] = new objects.Planet();
+            }
+            for (var count = 0; count < this._enemiesNum; count++) {
+                this._enemies[count] = new objects.Enemies();
             }
             this.Main();
         };
         Play.prototype.Update = function () {
             this._player.Update();
-            this._island.Update();
-            // updates each cloud in array
-            for (var _i = 0, _a = this._clouds; _i < _a.length; _i++) {
-                var cloud = _a[_i];
-                cloud.Update();
+            this._meteorite.Update();
+            // updates each planet in array
+            for (var _i = 0, _a = this._planets; _i < _a.length; _i++) {
+                var planet = _a[_i];
+                planet.Update();
+            }
+            for (var _b = 0, _c = this._enemies; _b < _c.length; _b++) {
+                var enemies = _c[_b];
+                enemies.Update();
             }
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {

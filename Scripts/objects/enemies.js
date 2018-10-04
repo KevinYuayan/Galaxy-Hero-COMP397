@@ -13,40 +13,40 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Cloud = /** @class */ (function (_super) {
-        __extends(Cloud, _super);
+    var Enemies = /** @class */ (function (_super) {
+        __extends(Enemies, _super);
         // constructors
-        function Cloud() {
-            return _super.call(this, "cloud") || this;
+        function Enemies() {
+            return _super.call(this, "enemies") || this;
         }
         // private methods
-        Cloud.prototype._move = function () {
+        Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
         };
-        Cloud.prototype._checkBounds = function () {
+        Enemies.prototype._checkBounds = function () {
             if (this.y > 480 + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Cloud.prototype.Start = function () {
+        Enemies.prototype.Start = function () {
             this.Reset();
         };
-        Cloud.prototype.Update = function () {
+        Enemies.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Cloud.prototype.Reset = function () {
-            this._verticalSpeed = Math.floor((Math.random() * 5) + 5); // speed from 5 to 10
+        Enemies.prototype.Reset = function () {
+            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         };
-        Cloud.prototype.Destroy = function () {
+        Enemies.prototype.Destroy = function () {
         };
-        return Cloud;
+        return Enemies;
     }(objects.gameObject));
-    objects.Cloud = Cloud;
+    objects.Enemies = Enemies;
 })(objects || (objects = {}));
-//# sourceMappingURL=cloud.js.map
+//# sourceMappingURL=enemies.js.map
