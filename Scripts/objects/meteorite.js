@@ -13,37 +13,37 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Island = /** @class */ (function (_super) {
-        __extends(Island, _super);
-        function Island() {
-            return _super.call(this, "island") || this;
+    var Meteorite = /** @class */ (function (_super) {
+        __extends(Meteorite, _super);
+        function Meteorite() {
+            return _super.call(this, "meteorite") || this;
         }
         // private methods
-        Island.prototype._move = function () {
+        Meteorite.prototype._move = function () {
             this.y += this._verticalSpeed;
         };
-        Island.prototype._checkBounds = function () {
+        Meteorite.prototype._checkBounds = function () {
             if (this.y > 480 + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Island.prototype.Start = function () {
+        Meteorite.prototype.Start = function () {
             this.Reset();
         };
-        Island.prototype.Update = function () {
+        Meteorite.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Island.prototype.Reset = function () {
+        Meteorite.prototype.Reset = function () {
             this._verticalSpeed = 5;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         };
-        Island.prototype.Destroy = function () {
+        Meteorite.prototype.Destroy = function () {
         };
-        return Island;
+        return Meteorite;
     }(objects.gameObject));
-    objects.Island = Island;
+    objects.Meteorite = Meteorite;
 })(objects || (objects = {}));
-//# sourceMappingURL=island.js.map
+//# sourceMappingURL=meteorite.js.map

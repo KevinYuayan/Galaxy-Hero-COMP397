@@ -1,10 +1,10 @@
 module objects {
-    export class Island extends objects.gameObject {
+    export class Meteorite extends objects.gameObject {
         private _verticalSpeed:number;
 
 
         constructor() {
-            super("island");
+            super("meteorite");
         }
 
         // private methods

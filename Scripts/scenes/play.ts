@@ -3,7 +3,7 @@ module scenes{
         // private instance variables
         
         private _player:objects.Player;
-        private _island:objects.Island;
+        private _meteorite:objects.Meteorite;
 
         private _planetNum:number;
         private _planets:objects.Planet[];
@@ -34,8 +34,8 @@ module scenes{
                 this.addChild(this._backgrounds[count]);
             }
 
-            // adds island to the scene
-            this.addChild(this._island);
+            // adds meteorite to the scene
+            this.addChild(this._meteorite);
 
             // adds player to the stage
             this.addChild(this._player);
@@ -62,7 +62,7 @@ module scenes{
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
-            this._island = new objects.Island();
+            this._meteorite = new objects.Meteorite();
             this._player = new objects.Player();
 
             // must do this to instantiate the array
@@ -77,7 +77,7 @@ module scenes{
         public Update(): void {
             
             this._player.Update();
-            this._island.Update();
+            this._meteorite.Update();
 
             // updates each planet in array
             for (const planet of this._planets) {
