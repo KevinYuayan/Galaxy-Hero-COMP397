@@ -17,6 +17,7 @@
         {id: "player", src: "/Assets/images/player.png"},
         {id: "planet", src: "/Assets/images/planet.png"},
         {id: "meteorite", src: "/Assets/images/meteorite.png"},
+        {id: "enemies", src: "/Assets/images/enemies.png" },
         {id: "spaceBackground", src: "/Assets/images/spaceBackground.jpg"},
         {id: "startBackground", src: "/Assets/images/startBackground.jpg"},
         {id: "engineSound", src: "/Assets/audio/engine.ogg"},

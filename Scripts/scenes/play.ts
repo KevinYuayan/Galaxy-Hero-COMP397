@@ -6,8 +6,9 @@ module scenes{
         private _meteorite:objects.Meteorite;
 
         private _planetNum:number;
+        private _enemiesNum:number;
         private _planets:objects.Planet[];
-
+        private _enemies:objects.Enemies[];
         private _backgroundNum:number;  // total background objects
         private _backgrounds:objects.Background[];
         private _currentBackgroundNum:number;   // holds the array identifier for the current background object
@@ -45,12 +46,18 @@ module scenes{
             for(let count = 0; count < this._planetNum; count++) {
                 this.addChild(this._planets[count]);
             }
+
+            //adds enemies to the scene
+            for(let count = 0;count < this._enemiesNum;count++){
+                this.addChild(this._enemies[count])
+            }
             
         }        
         public Start(): void {
 
             this._planetNum = 1;
             this._backgroundNum = 2;
+            this._enemiesNum = 4;
             
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
@@ -67,10 +74,13 @@ module scenes{
 
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
-
+            this._enemies = new Array<objects.Enemies>();
             // adds planets to the array
             for(let count = 0; count < this._planetNum; count++) {
                 this._planets[count] = new objects.Planet();
+            }
+            for(let count = 0;count < this._enemiesNum; count++){
+                this._enemies[count] = new objects.Enemies();
             }
             this.Main();
         }
@@ -82,6 +92,9 @@ module scenes{
             // updates each planet in array
             for (const planet of this._planets) {
                 planet.Update();
+            }
+            for (const enemies of this._enemies){
+                enemies.Update();
             }
             
             // updates background 0
