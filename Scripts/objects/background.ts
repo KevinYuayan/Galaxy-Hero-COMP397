@@ -3,7 +3,6 @@ module objects{
         
         // private instance variables
         private _verticalSpeed:number;
-        private _isMoving:boolean;
 
         // public properties
 
@@ -17,20 +16,12 @@ module objects{
         constructor(imageString:string, verticalSpeed:number = 0) {
             super(imageString);           
             this._verticalSpeed = verticalSpeed;
-            if(this._verticalSpeed == 0)
-            {
-                this._isMoving = false;
-            }
-            else
-            {
-                this._isMoving = true;
-            }
         }
 
         // private methods
 
         private _checkBounds():void {
-            if(this.y >= 0){
+            if(this.y >= config.Constants.canvasHeight){
                 this.Reset();
             }
         }
@@ -45,10 +36,8 @@ module objects{
             this.y = -this.Height + config.Constants.canvasHeight;
         }
         public Update(): void {
-            if (this._isMoving) {
-                this._move();
-                this._checkBounds();
-            }
+            this._move();      
+            this._checkBounds();
         }
         public Reset(): void {
             this.y = -this.Height;

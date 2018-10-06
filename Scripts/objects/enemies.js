@@ -13,37 +13,40 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Island = /** @class */ (function (_super) {
-        __extends(Island, _super);
-        function Island() {
-            return _super.call(this, "island") || this;
+    var Enemies = /** @class */ (function (_super) {
+        __extends(Enemies, _super);
+        // constructors
+        function Enemies() {
+            return _super.call(this, "enemies") || this;
         }
         // private methods
-        Island.prototype._move = function () {
+        Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;
         };
-        Island.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
+        Enemies.prototype._checkBounds = function () {
+            if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Island.prototype.Start = function () {
+        Enemies.prototype.Start = function () {
             this.Reset();
         };
-        Island.prototype.Update = function () {
+        Enemies.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Island.prototype.Reset = function () {
-            this._verticalSpeed = 5;
+        Enemies.prototype.Reset = function () {
+            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
+            this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
-            this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
+            this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
         };
-        Island.prototype.Destroy = function () {
+        Enemies.prototype.Destroy = function () {
         };
-        return Island;
+        return Enemies;
     }(objects.gameObject));
-    objects.Island = Island;
+    objects.Enemies = Enemies;
 })(objects || (objects = {}));
-//# sourceMappingURL=island.js.map
+//# sourceMappingURL=enemies.js.map

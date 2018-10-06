@@ -1,10 +1,10 @@
 module objects {
-    export class Island extends objects.gameObject {
+    export class Meteorite extends objects.gameObject {
         private _verticalSpeed:number;
 
 
         constructor() {
-            super("island");
+            super("meteorite");
         }
 
         // private methods
@@ -13,7 +13,7 @@ module objects {
         }
 
         private _checkBounds():void {
-            if(this.y > 480 + this.Height){
+            if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
         }
@@ -27,7 +27,7 @@ module objects {
             this._checkBounds();
         }
         public Reset(): void {
-            this._verticalSpeed = 5;
+            this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (640 - this.Width) + this.HalfWidth);
         }

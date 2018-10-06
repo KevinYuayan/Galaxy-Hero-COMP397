@@ -4,7 +4,7 @@ var config;
     var Constants = /** @class */ (function () {
         function Constants() {
         }
-        Constants.verticalPlaySpeed = 2;
+        Constants.verticalPlaySpeed = 5;
         Constants.canvasHeight = 480;
         Constants.canvasWidth = 640;
         return Constants;
