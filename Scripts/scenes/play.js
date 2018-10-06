@@ -41,6 +41,7 @@ var scenes;
             for (var count = 0; count < this._enemiesNum; count++) {
                 this.addChild(this._enemies[count]);
             }
+            this.addChild(this._boss);
         };
         Play.prototype.Start = function () {
             this._planetNum = 1;
@@ -57,6 +58,7 @@ var scenes;
             this._backgrounds[1].Reset();
             this._meteorite = new objects.Meteorite();
             this._player = new objects.Player();
+            this._boss = new objects.Boss();
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemies = new Array();
@@ -72,6 +74,7 @@ var scenes;
         Play.prototype.Update = function () {
             this._player.Update();
             this._meteorite.Update();
+            this._boss.Update();
             // updates each planet in array
             for (var _i = 0, _a = this._planets; _i < _a.length; _i++) {
                 var planet = _a[_i];
