@@ -1,5 +1,5 @@
 module objects{
-    export class Background extends objects.gameObject{
+    export class Background extends objects.GameObject{
         
         // private instance variables
         private _verticalSpeed:number;

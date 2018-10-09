@@ -11,18 +11,22 @@
     
     // Game objects
 
+    // Utility variables
+    let imagePath:string = "./Assets/images/"
+    let audioPath:string = "./Assets/audio/"
     let assetManifest = [
-        {id: "startButton", src: "./Assets/images/startButton.png"},
-        {id: "restartButton", src: "./Assets/images/restartButton.png"},
-        {id: "player", src: "./Assets/images/player.png"},
-        {id: "planet", src: "./Assets/images/planet.png"},
-        {id: "meteorite", src: "./Assets/images/meteorite.png"},
-        {id: "enemies", src: "./Assets/images/enemies.png" },
-        {id: "spaceBackground", src: "./Assets/images/spaceBackground.jpg"},
-        {id: "startBackground", src: "./Assets/images/startBackground.jpg"},
-        {id: "engineSound", src: "./Assets/audio/engine.ogg"},
-        {id: "thunderSound", src: "./Assets/audio/thunder.ogg"},
-        {id: "yaySound", src: "./Assets/audio/yay.ogg"}
+        {id: "startButton", src: imagePath + "startButton.png"},
+        {id: "restartButton", src: imagePath + "restartButton.png"},
+        {id: "player", src: imagePath + "player.png"},
+        {id: "planet", src: imagePath + "planet.png"},
+        {id: "meteorite", src: imagePath + "meteorite.png"},
+        {id: "enemies", src: imagePath + "enemies.png" },
+        {id: "boss", src: imagePath + "boss.png" },
+        {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
+        {id: "startBackground", src: imagePath + "startBackground.jpg"},
+        {id: "engineSound", src: audioPath + "engine.ogg"},
+        {id: "thunderSound", src: audioPath + "thunder.ogg"},
+        {id: "yaySound", src: audioPath + "yay.ogg"}
     ]
 
 
