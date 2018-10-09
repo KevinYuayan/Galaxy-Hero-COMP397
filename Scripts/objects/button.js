@@ -59,7 +59,7 @@ var objects;
         Button.prototype.Destroy = function () {
         };
         return Button;
-    }(objects.gameObject));
+    }(objects.GameObject));
     objects.Button = Button;
 })(objects || (objects = {}));
 //# sourceMappingURL=button.js.map

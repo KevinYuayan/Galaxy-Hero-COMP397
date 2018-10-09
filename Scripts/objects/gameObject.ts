@@ -1,5 +1,5 @@
 module objects {
-    export abstract class gameObject extends createjs.Bitmap{
+    export abstract class GameObject extends createjs.Bitmap{
         // private instance variables
         private _width:number;
         private _height:number;

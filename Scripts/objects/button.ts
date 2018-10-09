@@ -1,5 +1,5 @@
 module objects{
-    export class Button extends gameObject {
+    export class Button extends GameObject {
         
         // private instance variables
 

@@ -29,22 +29,25 @@ var objects;
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             this.y = 435;
+            _super.prototype.Start.call(this);
         };
         Player.prototype.Update = function () {
             this.x = managers.Game.stage.mouseX;
-            if (this.x > 640 - this.HalfWidth) {
-                this.x = 640 - this.HalfWidth;
+            if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
+                this.x = config.Constants.canvasWidth - this.HalfWidth;
             }
             if (this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
             }
+            _super.prototype.Update.call(this);
         };
         Player.prototype.Reset = function () {
+            _super.prototype.Reset.call(this);
         };
         Player.prototype.Destroy = function () {
         };
         return Player;
-    }(objects.gameObject));
+    }(objects.Actor));
     objects.Player = Player;
 })(objects || (objects = {}));
 //# sourceMappingURL=player.js.map
