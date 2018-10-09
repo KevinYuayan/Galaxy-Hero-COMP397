@@ -22,7 +22,7 @@
         {id: "startBackground", src: "./Assets/images/startBackground.jpg"},
         {id: "engineSound", src: "./Assets/audio/engine.ogg"},
         {id: "thunderSound", src: "./Assets/audio/thunder.ogg"},
-        {id: "yaySound", src: "./Assets/audio/yay.ogg"}        
+        {id: "yaySound", src: "./Assets/audio/yay.ogg"}
     ]
 
 
