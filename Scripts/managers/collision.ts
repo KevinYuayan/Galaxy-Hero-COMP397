@@ -17,6 +17,7 @@ module managers {
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
                     actor2.IsColliding = true;
+                    console.log("collided with" + actor2.name);
 
                     // switch(actor2.name) {
                     //     case "island":

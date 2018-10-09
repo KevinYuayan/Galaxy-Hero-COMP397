@@ -72,18 +72,22 @@ var scenes;
             this.Main();
         };
         Play.prototype.Update = function () {
+            var _this = this;
             this._player.Update();
             this._meteorite.Update();
+            managers.Collision.Check(this._player, this._meteorite);
             this._boss.Update();
+            managers.Collision.Check(this._player, this._boss);
             // updates each planet in array
-            for (var _i = 0, _a = this._planets; _i < _a.length; _i++) {
-                var planet = _a[_i];
+            this._planets.forEach(function (planet) {
                 planet.Update();
-            }
-            for (var _b = 0, _c = this._enemies; _b < _c.length; _b++) {
-                var enemies = _c[_b];
-                enemies.Update();
-            }
+                managers.Collision.Check(_this._player, planet);
+            });
+            // updates each enemy in array
+            this._enemies.forEach(function (enemy) {
+                enemy.Update();
+                managers.Collision.Check(_this._player, enemy);
+            });
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
@@ -105,7 +109,7 @@ var scenes;
         Play.prototype.Reset = function () {
         };
         Play.prototype.Destroy = function () {
-            this.removeAllChildren();
+            _super.prototype.Destroy.call(this);
         };
         return Play;
     }(objects.Scene));
