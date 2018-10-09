@@ -25,7 +25,7 @@ var objects;
             this.x += this._horizontalSpeed;
         };
         Planet.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
+            if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
         };
