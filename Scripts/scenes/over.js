@@ -51,7 +51,7 @@ var scenes;
             throw new Error("Method not implemented.");
         };
         Over.prototype.Destroy = function () {
-            this.removeAllChildren();
+            _super.prototype.Destroy.call(this);
         };
         return Over;
     }(objects.Scene));

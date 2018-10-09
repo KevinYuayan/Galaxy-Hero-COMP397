@@ -54,7 +54,7 @@ module scenes{
             
         }
         public Destroy(): void {
-            this.removeAllChildren();
+            super.Destroy();
         }
 
 

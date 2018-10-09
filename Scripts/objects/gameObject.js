@@ -23,6 +23,7 @@ var objects;
          */
         function GameObject(imageString) {
             var _this = _super.call(this, managers.Game.assetManager.getResult(imageString)) || this;
+            _this.name = imageString;
             _this._initialize();
             return _this;
         }

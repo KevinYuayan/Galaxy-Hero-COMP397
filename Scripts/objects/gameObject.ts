@@ -43,6 +43,7 @@ module objects {
          */
         constructor(imageString:string) {
             super(managers.Game.assetManager.getResult(imageString));
+            this.name = imageString;
             this._initialize();
         }
         
