@@ -52,7 +52,7 @@ var objects;
         Background.prototype.Destroy = function () {
         };
         return Background;
-    }(objects.gameObject));
+    }(objects.GameObject));
     objects.Background = Background;
 })(objects || (objects = {}));
 //# sourceMappingURL=background.js.map

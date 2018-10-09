@@ -55,7 +55,7 @@ module scenes{
             throw new Error("Method not implemented.");
         }
         public Destroy(): void {
-            this.removeAllChildren();
+            super.Destroy();
         }
 
 

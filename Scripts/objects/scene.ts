@@ -20,7 +20,9 @@ module objects{
 
         public abstract Reset():void;
 
-        public abstract Destroy():void;
+        public Destroy():void{
+            this.removeAllChildren();
+        }
 
 
     }
