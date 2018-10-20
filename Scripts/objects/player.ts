@@ -1,5 +1,5 @@
 module objects {
-    export class Player extends Actor {
+    export class Player extends objects.GameObject {
         
         // private instance variables
 
@@ -21,11 +21,12 @@ module objects {
             this.regY = this.HalfHeight;
 
             this.y = 435;
-            super.Start();
+            // super.Start();
         }
 
         public Update():void {
             this.x = managers.Game.stage.mouseX;
+            this._updatePosition();
 
             if(this.x > config.Constants.canvasWidth - this.HalfWidth){
                 this.x = config.Constants.canvasWidth - this.HalfWidth;
@@ -34,12 +35,12 @@ module objects {
             if(this.x < this.HalfWidth){
                 this.x = this.HalfWidth;
             }
-            super.Update();
+            // super.Update();
 
         }
 
         public Reset(): void {
-            super.Reset();
+            // super.Reset();
         }
         
         public Destroy(): void {

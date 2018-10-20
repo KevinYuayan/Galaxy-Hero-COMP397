@@ -1,6 +1,6 @@
 module objects {
-    export class Meteorite extends objects.Actor {
-        private _verticalSpeed:number;
+    export class Meteorite extends objects.GameObject {
+        private _verticalSpeed:number;  
 
 
         constructor() {
@@ -20,19 +20,23 @@ module objects {
 
         // public methods
         public Start(): void {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
             this.Reset();
-            super.Start();
+
         }
         public Update(): void {
             this._move();
             this._checkBounds();
-            super.Update();
+            
         }
+
         public Reset(): void {
             this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            super.Reset();
+            this.IsColliding = false;
+
         }
         public Destroy(): void {
             

@@ -8,6 +8,7 @@
     var currentScene;
     var currentState;
     // Game objects
+    var scoreBoard;
     // Utility variables
     var imagePath = "./Assets/images/";
     var audioPath = "./Assets/audio/";
@@ -40,33 +41,57 @@
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
+        //setup global scoreboard and UI
+        // scoreBoard = new managers.ScoreBoard();
+        // managers.Game.scoreBoard = scoreBoard;
+        //Setup initial scene
         currentState = config.Scene.START;
-        managers.Game.currentState = config.Scene.START;
+        managers.Game.currentState = currentState;
         Main();
     }
     // this is the main game loop
     function Update() {
+        currentScene.Update();
         if (currentState != managers.Game.currentState) {
             currentState = managers.Game.currentState;
             Main();
         }
         stage.update();
-        currentScene.Update();
     }
+    // old Main
+    // function Main():void {
+    //     if(currentScene != null){
+    //         currentScene.Destroy();
+    //         stage.removeAllChildren();
+    //     }
+    //     switch(currentState) {
+    //         case config.Scene.START:
+    //         currentScene = new scenes.Start;
+    //         break;
+    //         case config.Scene.PLAY:
+    //         currentScene = new scenes.Play;
+    //         break;
+    //         case config.Scene.OVER:
+    //         currentScene = new scenes.Over;
+    //         break;
+    //     }
+    //     stage.addChild(currentScene);
+    // }
     function Main() {
-        if (currentScene != null) {
+        // clean up current scene
+        if (currentScene) {
             currentScene.Destroy();
             stage.removeAllChildren();
         }
         switch (currentState) {
             case config.Scene.START:
-                currentScene = new scenes.Start;
+                currentScene = new scenes.Start();
                 break;
             case config.Scene.PLAY:
-                currentScene = new scenes.Play;
+                currentScene = new scenes.Play();
                 break;
             case config.Scene.OVER:
-                currentScene = new scenes.Over;
+                currentScene = new scenes.Over();
                 break;
         }
         stage.addChild(currentScene);

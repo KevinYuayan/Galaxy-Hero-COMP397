@@ -33,8 +33,9 @@ var objects;
         };
         // public methods
         Boss.prototype.Start = function () {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
             this.Reset();
-            _super.prototype.Start.call(this);
         };
         Boss.prototype.Update = function () {
             this._move();
@@ -45,19 +46,17 @@ var objects;
             if (this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
             }
-            _super.prototype.Update.call(this);
         };
         Boss.prototype.Reset = function () {
             this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = 10;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
         };
         Boss.prototype.Destroy = function () {
         };
         return Boss;
-    }(objects.Actor));
+    }(objects.GameObject));
     objects.Boss = Boss;
 })(objects || (objects = {}));
 //# sourceMappingURL=boss.js.map

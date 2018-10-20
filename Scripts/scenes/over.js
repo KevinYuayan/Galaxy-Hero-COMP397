@@ -35,7 +35,9 @@ var scenes;
             // starts the play scene
             this._restartButton.on("click", function () {
                 managers.Game.currentState = config.Scene.PLAY;
+                managers.Game.scoreBoard.Reset();
             });
+            managers.Game.scoreBoard.AddHighScore(this);
         };
         Over.prototype.Start = function () {
             // Instantiates objects
@@ -48,10 +50,9 @@ var scenes;
             this._background.Update();
         };
         Over.prototype.Reset = function () {
-            throw new Error("Method not implemented.");
         };
         Over.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
         };
         return Over;
     }(objects.Scene));

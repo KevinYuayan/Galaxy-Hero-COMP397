@@ -1,3 +1,4 @@
+//TODO: clean up this code, avoid repetition and reduce code amount
 module scenes {
     export class Play extends objects.Scene {
         // private instance variables
@@ -54,6 +55,9 @@ module scenes {
             }
 
             this.addChild(this._boss);
+
+            //add Scoreboard UI to the Scene
+            // managers.Game.scoreBoard.AddGameUI(this);
 
         }
         public Start(): void {
@@ -132,9 +136,9 @@ module scenes {
 
         }
         public Destroy(): void {
-            super.Destroy();
+            this.removeAllChildren();
         }
-
+        
 
     }
 }

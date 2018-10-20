@@ -49,7 +49,7 @@ var scenes;
         Start.prototype.Reset = function () {
         };
         Start.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
         };
         return Start;
     }(objects.Scene));

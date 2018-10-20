@@ -29,24 +29,24 @@ var objects;
         };
         // public methods
         Meteorite.prototype.Start = function () {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
             this.Reset();
-            _super.prototype.Start.call(this);
         };
         Meteorite.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            _super.prototype.Update.call(this);
         };
         Meteorite.prototype.Reset = function () {
             this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
+            this.IsColliding = false;
         };
         Meteorite.prototype.Destroy = function () {
         };
         return Meteorite;
-    }(objects.Actor));
+    }(objects.GameObject));
     objects.Meteorite = Meteorite;
 })(objects || (objects = {}));
 //# sourceMappingURL=meteorite.js.map

@@ -11,6 +11,7 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+//TODO: clean up this code, avoid repetition and reduce code amount
 var scenes;
 (function (scenes) {
     var Play = /** @class */ (function (_super) {
@@ -42,6 +43,8 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
+            //add Scoreboard UI to the Scene
+            // managers.Game.scoreBoard.AddGameUI(this);
         };
         Play.prototype.Start = function () {
             this._planetNum = 1;
@@ -109,7 +112,7 @@ var scenes;
         Play.prototype.Reset = function () {
         };
         Play.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
         };
         return Play;
     }(objects.Scene));

@@ -37,7 +37,10 @@ module scenes{
             // starts the play scene
             this._restartButton.on("click", ()=>{
                 managers.Game.currentState = config.Scene.PLAY;
-            })
+                managers.Game.scoreBoard.Reset();
+            });
+
+            managers.Game.scoreBoard.AddHighScore(this);
         }        
         public Start(): void {
             // Instantiates objects
@@ -52,10 +55,10 @@ module scenes{
             this._background.Update();
         }
         public Reset(): void {
-            throw new Error("Method not implemented.");
+           
         }
         public Destroy(): void {
-            super.Destroy();
+            this.removeAllChildren();
         }
 
 

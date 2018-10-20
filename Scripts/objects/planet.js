@@ -17,12 +17,15 @@ var objects;
         __extends(Planet, _super);
         // constructors
         function Planet() {
-            return _super.call(this, "planet") || this;
+            var _this = _super.call(this, "planet") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Planet.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
         Planet.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
@@ -31,25 +34,25 @@ var objects;
         };
         // public methods
         Planet.prototype.Start = function () {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
             this.Reset();
-            _super.prototype.Start.call(this);
         };
         Planet.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            _super.prototype.Update.call(this);
         };
         Planet.prototype.Reset = function () {
             this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
+            this.IsColliding = false;
         };
         Planet.prototype.Destroy = function () {
         };
         return Planet;
-    }(objects.Actor));
+    }(objects.GameObject));
     objects.Planet = Planet;
 })(objects || (objects = {}));
 //# sourceMappingURL=planet.js.map
