@@ -1,0 +1,21 @@
+{
+  "name": "comp397-f2018-lesson1",
+  "version": "1.0.0",
+  "description": "COMP397 - F2018 - Lesson 1 CreateJS Demo",
+  "main": "index.js",
+  "repository": "https://github.com/CentennialCollege/COMP397-F2018-Lesson1.git",
+  "author": "Kevin Yuayan <yuayankevin@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "easeljs": "^1.0.2",
+    "preloadjs": "^1.0.1",
+    "soundjs": "^1.0.1",
+    "tweenjs": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/easeljs": "^1.0.0",
+    "@types/preloadjs": "^0.6.32",
+    "@types/soundjs": "^0.6.27",
+    "@types/tweenjs": "^1.0.0"
+  }
+}
