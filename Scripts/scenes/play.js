@@ -44,7 +44,7 @@ var scenes;
             }
             this.addChild(this._boss);
             //add Scoreboard UI to the Scene
-            // managers.Game.scoreBoard.AddGameUI(this);
+            managers.Game.scoreBoard.AddGameUI(this);
         };
         Play.prototype.Start = function () {
             this._planetNum = 1;

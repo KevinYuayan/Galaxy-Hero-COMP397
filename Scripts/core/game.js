@@ -42,8 +42,8 @@
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
         //setup global scoreboard and UI
-        // scoreBoard = new managers.ScoreBoard();
-        // managers.Game.scoreBoard = scoreBoard;
+        scoreBoard = new managers.ScoreBoard();
+        managers.Game.scoreBoard = scoreBoard;
         //Setup initial scene
         currentState = config.Scene.START;
         managers.Game.currentState = currentState;
@@ -58,25 +58,6 @@
         }
         stage.update();
     }
-    // old Main
-    // function Main():void {
-    //     if(currentScene != null){
-    //         currentScene.Destroy();
-    //         stage.removeAllChildren();
-    //     }
-    //     switch(currentState) {
-    //         case config.Scene.START:
-    //         currentScene = new scenes.Start;
-    //         break;
-    //         case config.Scene.PLAY:
-    //         currentScene = new scenes.Play;
-    //         break;
-    //         case config.Scene.OVER:
-    //         currentScene = new scenes.Over;
-    //         break;
-    //     }
-    //     stage.addChild(currentScene);
-    // }
     function Main() {
         // clean up current scene
         if (currentScene) {

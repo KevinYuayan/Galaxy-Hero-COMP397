@@ -57,7 +57,7 @@ module scenes {
             this.addChild(this._boss);
 
             //add Scoreboard UI to the Scene
-            // managers.Game.scoreBoard.AddGameUI(this);
+            managers.Game.scoreBoard.AddGameUI(this);
 
         }
         public Start(): void {
