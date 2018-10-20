@@ -42,6 +42,8 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
+            // this._scoreBoard = new managers.ScoreBoard();
+            managers.Game.scoreBoard.AddGameUI(this);
         };
         Play.prototype.Start = function () {
             this._planetNum = 1;
@@ -69,6 +71,9 @@ var scenes;
             for (var count = 0; count < this._enemiesNum; count++) {
                 this._enemies[count] = new objects.Enemies();
             }
+            this._engineSound = createjs.Sound.play("spaceship");
+            this._engineSound.volume = 0.3;
+            this._engineSound.loop = -1;
             this.Main();
         };
         Play.prototype.Update = function () {

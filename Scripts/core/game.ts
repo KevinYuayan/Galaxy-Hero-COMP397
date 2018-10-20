@@ -9,6 +9,7 @@
     let currentScene:objects.Scene;
     let currentState:config.Scene;
     
+    let scoreBoard:managers.ScoreBoard;
     // Game objects
 
     // Utility variables
@@ -26,6 +27,9 @@
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
+        {id: "explosion01", src: audioPath + "explosion14.m4a"},
+        {id: "explosion02", src: audioPath + "explosion19.m4a"},
+        {id: "spaceship", src: audioPath + "spaceship.m4a"},
         {id: "yaySound", src: audioPath + "yay.ogg"}
     ]
 
@@ -39,6 +43,7 @@
     }
 
     function Start():void {
+        // managers.Game.currentScene = this;
         console.log(`%c Game Started...`,"color: blue; font-size: 20px;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
@@ -47,14 +52,18 @@
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
 
+        scoreBoard = new managers.ScoreBoard();
+        managers.Game.scoreBoard = scoreBoard;
+
         currentState = config.Scene.START;
-        managers.Game.currentState = config.Scene.START;
+        // managers.Game.currentState = config.Scene.START;
+        managers.Game.currentState = currentState;
         Main();
     }
 
     // this is the main game loop
     function Update():void {
-        
+        currentScene.Update();
         if(currentState != managers.Game.currentState){
             currentState = managers.Game.currentState;
             Main();
@@ -82,6 +91,7 @@
             currentScene = new scenes.Over;
             break;
         }
+        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

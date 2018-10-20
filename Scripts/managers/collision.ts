@@ -17,16 +17,26 @@ module managers {
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
                     actor2.IsColliding = true;
-                    console.log("collided with" + actor2.name);
+                    console.log("collided with: " + actor2.name);
 
-                    // switch(actor2.name) {
-                    //     case "island":
-                    //         createjs.Sound.play("yaySound");
-                    //     break;
-                    //     case "cloud":
-                    //         createjs.Sound.play("thunderSound");
-                    //     break;
-                    // }
+                    switch(actor2.name) {
+                        case "meteorite":
+                            createjs.Sound.play("explosion01");
+                            console.log("explosion01 sound");
+                            managers.Game.scoreBoard.Lives -= 1;
+                            if(managers.Game.scoreBoard.Lives <= 0) {
+                                managers.Game.currentState = config.Scene.OVER;
+                                if(managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                                }
+                            }
+                            
+                        break;
+                        case "enemies":
+                            createjs.Sound.play("explosion02");
+                            managers.Game.scoreBoard.Score += 100;
+                        break;
+                    }
                 }
             }
         }

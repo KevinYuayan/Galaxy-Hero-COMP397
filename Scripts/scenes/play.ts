@@ -13,7 +13,8 @@ module scenes {
         private _backgroundNum: number;  // total background objects
         private _backgrounds: objects.Background[];
         private _currentBackgroundNum: number;   // holds the array identifier for the current background object
-
+        private _engineSound: createjs.AbstractSoundInstance;
+        private _scoreBoard:managers.ScoreBoard;
         // public properties
 
         // constructors
@@ -55,6 +56,8 @@ module scenes {
 
             this.addChild(this._boss);
 
+            // this._scoreBoard = new managers.ScoreBoard();
+            managers.Game.scoreBoard.AddGameUI(this);
         }
         public Start(): void {
 
@@ -85,8 +88,12 @@ module scenes {
             for (let count = 0; count < this._enemiesNum; count++) {
                 this._enemies[count] = new objects.Enemies();
             }
+            this._engineSound = createjs.Sound.play("spaceship");
+            this._engineSound.volume = 0.3;
+            this._engineSound.loop = -1;
             this.Main();
         }
+
         public Update(): void {
 
             this._player.Update();

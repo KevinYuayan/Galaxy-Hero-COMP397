@@ -7,6 +7,7 @@
     // State Objects
     var currentScene;
     var currentState;
+    var scoreBoard;
     // Game objects
     // Utility variables
     var imagePath = "./Assets/images/";
@@ -23,6 +24,9 @@
         { id: "startBackground", src: imagePath + "startBackground.jpg" },
         { id: "engineSound", src: audioPath + "engine.ogg" },
         { id: "thunderSound", src: audioPath + "thunder.ogg" },
+        { id: "explosion01", src: audioPath + "explosion14.m4a" },
+        { id: "explosion02", src: audioPath + "explosion19.m4a" },
+        { id: "spaceship", src: audioPath + "spaceship.m4a" },
         { id: "yaySound", src: audioPath + "yay.ogg" }
     ];
     function Init() {
@@ -33,6 +37,7 @@
         assetManager.on("complete", Start); // Calls start when assets are finished loading
     }
     function Start() {
+        // managers.Game.currentScene = this;
         console.log("%c Game Started...", "color: blue; font-size: 20px;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
@@ -40,12 +45,16 @@
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
+        scoreBoard = new managers.ScoreBoard();
+        managers.Game.scoreBoard = scoreBoard;
         currentState = config.Scene.START;
-        managers.Game.currentState = config.Scene.START;
+        // managers.Game.currentState = config.Scene.START;
+        managers.Game.currentState = currentState;
         Main();
     }
     // this is the main game loop
     function Update() {
+        currentScene.Update();
         if (currentState != managers.Game.currentState) {
             currentState = managers.Game.currentState;
             Main();
@@ -69,6 +78,7 @@
                 currentScene = new scenes.Over;
                 break;
         }
+        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
     window.addEventListener("load", Init);
