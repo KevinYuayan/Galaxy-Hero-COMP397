@@ -23,9 +23,18 @@ module managers {
                         case "meteorite":
                             createjs.Sound.play("explosion01");
                             console.log("explosion01 sound");
+                            managers.Game.scoreBoard.Lives -= 1;
+                            if(managers.Game.scoreBoard.Lives <= 0) {
+                                managers.Game.currentState = config.Scene.OVER;
+                                if(managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                                }
+                            }
+                            
                         break;
                         case "enemies":
-                            createjs.Sound.play("thunderSound");
+                            createjs.Sound.play("explosion02");
+                            managers.Game.scoreBoard.Score += 100;
                         break;
                     }
                 }
