@@ -26,6 +26,7 @@
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
+        {id: "explosion01", src: audioPath + "explosion14.m4a"},
         {id: "yaySound", src: audioPath + "yay.ogg"}
     ]
 
