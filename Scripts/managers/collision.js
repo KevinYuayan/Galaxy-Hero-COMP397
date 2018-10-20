@@ -19,6 +19,7 @@ var managers;
                     switch (actor2.name) {
                         case "meteorite":
                             createjs.Sound.play("explosion01");
+                            console.log("explosion01 sound");
                             break;
                         case "enemies":
                             createjs.Sound.play("thunderSound");
