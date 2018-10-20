@@ -56,7 +56,8 @@ module scenes {
 
             this.addChild(this._boss);
 
-            this._scoreBoard = new managers.ScoreBoard();
+            // this._scoreBoard = new managers.ScoreBoard();
+            managers.Game.scoreBoard.AddGameUI(this);
         }
         public Start(): void {
 

@@ -42,7 +42,8 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
-            this._scoreBoard = new managers.ScoreBoard();
+            // this._scoreBoard = new managers.ScoreBoard();
+            managers.Game.scoreBoard.AddGameUI(this);
         };
         Play.prototype.Start = function () {
             this._planetNum = 1;
