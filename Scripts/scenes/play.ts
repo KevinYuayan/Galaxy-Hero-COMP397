@@ -60,6 +60,7 @@ module scenes {
             managers.Game.scoreBoard.AddGameUI(this);
         }
         public Start(): void {
+            managers.Game.scoreBoard.Reset();
 
             this._planetNum = 1;
             this._backgroundNum = 2;
@@ -125,15 +126,6 @@ module scenes {
             if (this._backgrounds[0].y >= 0 || this._backgrounds[0].y <= config.Constants.canvasHeight - this._backgrounds[0].Height) {
                 this._backgrounds[1].Update();
             }
-            /* if (this._backgrounds[this._currentBackgroundNum].CheckBounds(){
-                if(this._currentBackgroundNum == 0){
-                    this._currentBackgroundNum++;
-                }
-                else{
-                    this._currentBackgroundNum--;
-                }
-                this._backgrounds[this._currentBackgroundNum].Reset();                
-            } */
         }
         public Reset(): void {
 

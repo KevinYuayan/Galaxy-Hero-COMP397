@@ -18,6 +18,8 @@ var managers;
                     console.log("collided with: " + actor2.name);
                     switch (actor2.name) {
                         case "meteorite":
+                        case "planet":
+                        case "boss":
                             createjs.Sound.play("explosion01");
                             console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
