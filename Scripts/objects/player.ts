@@ -1,5 +1,5 @@
 module objects {
-    export class Player extends Actor {
+    export class Player extends GameObject {
         
         // private instance variables
 
@@ -21,7 +21,7 @@ module objects {
             this.regY = this.HalfHeight;
 
             this.y = 435;
-            super.Start();
+            //super.Start();
         }
 
         public Update():void {
@@ -34,12 +34,12 @@ module objects {
             if(this.x < this.HalfWidth){
                 this.x = this.HalfWidth;
             }
-            super.Update();
+            //super.Update();
 
         }
 
         public Reset(): void {
-            super.Reset();
+            //super.Reset();
         }
         
         public Destroy(): void {

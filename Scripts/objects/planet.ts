@@ -1,5 +1,5 @@
 module objects {
-    export class Planet extends objects.Actor {
+    export class Planet extends objects.GameObject {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -26,19 +26,19 @@ module objects {
         // public methods
         public Start(): void {
             this.Reset();
-            super.Start();
+            //super.Start();
         }
         public Update(): void {
             this._move();
             this._checkBounds();
-            super.Update();
+            //super.Update();
         }
         public Reset(): void {
             this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            super.Reset();
+            //super.Reset();
         }
         public Destroy(): void {
             

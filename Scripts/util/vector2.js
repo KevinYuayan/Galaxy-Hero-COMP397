@@ -60,6 +60,47 @@ var util;
             var result = new util.Vector2(vec1.x - vec2.x, vec1.y - vec2.y);
             return result;
         };
+        /**
+         * This method multiplies a Vector2 object by a scalar and returns the result
+         * as a new Vector2 object
+         *
+         * @static
+         * @param {util.Vector2} vec1
+         * @param {number} scalar
+         * @returns {util.Vector2}
+         */
+        Vector2.Multiply = function (vec1, scalar) {
+            return new util.Vector2(vec1.x * scalar, vec1.y * scalar);
+        };
+        /**
+         * This method Divides a Vector2 object by a scalar and returns the result
+         * as a new Vector2 object
+         *
+         * @static
+         * @param {util.Vector2} vec1
+         * @param {number} scalar
+         * @returns {util.Vector2}
+         * @memberof Vector2
+         */
+        Vector2.Divide = function (vec1, scalar) {
+            return new util.Vector2(vec1.x / scalar, vec1.y / scalar);
+        };
+        // Convenience Methods
+        Vector2.up = function () {
+            return new util.Vector2(0, -1);
+        };
+        Vector2.down = function () {
+            return new util.Vector2(0, 1);
+        };
+        Vector2.right = function () {
+            return new util.Vector2(1, 0);
+        };
+        Vector2.left = function () {
+            return new util.Vector2(-1, 0);
+        };
+        Vector2.zero = function () {
+            return new util.Vector2(0, 0);
+        };
         return Vector2;
     }(createjs.Point));
     util.Vector2 = Vector2;

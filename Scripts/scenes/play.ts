@@ -15,6 +15,7 @@ module scenes {
         private _currentBackgroundNum: number;   // holds the array identifier for the current background object
         private _engineSound: createjs.AbstractSoundInstance;
         private _scoreBoard:managers.ScoreBoard;
+        private _bulletManager: managers.BulletMNGR;
         // public properties
 
         // constructors
@@ -56,6 +57,11 @@ module scenes {
 
             this.addChild(this._boss);
 
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(bullet => {
+                this.addChild(bullet);
+            });
+
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         }
@@ -64,7 +70,7 @@ module scenes {
 
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
@@ -92,6 +98,8 @@ module scenes {
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
             this._engineSound.loop = -1;
+            this._bulletManager = new managers.BulletMNGR();
+            managers.Game.bulletManager = this._bulletManager;
             this.Main();
         }
 
@@ -115,6 +123,11 @@ module scenes {
             this._enemies.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
+            });
+
+            this._bulletManager.Update();
+            this._bulletManager.Bullets.forEach(bullet => {
+                managers.Collision.Check(this._player, bullet);
             });
 
             // updates background 0

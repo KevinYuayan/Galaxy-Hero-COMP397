@@ -25,6 +25,7 @@ var scenes;
         // private methods
         // public methods
         Play.prototype.Main = function () {
+            var _this = this;
             // adds backgrounds to the stage
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
@@ -42,6 +43,10 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                _this.addChild(bullet);
+            });
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         };
@@ -49,7 +54,7 @@ var scenes;
             managers.Game.scoreBoard.Reset();
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
@@ -75,6 +80,8 @@ var scenes;
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
             this._engineSound.loop = -1;
+            this._bulletManager = new managers.BulletMNGR();
+            managers.Game.bulletManager = this._bulletManager;
             this.Main();
         };
         Play.prototype.Update = function () {
@@ -93,6 +100,10 @@ var scenes;
             this._enemies.forEach(function (enemy) {
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
+            });
+            this._bulletManager.Update();
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                managers.Collision.Check(_this._player, bullet);
             });
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {

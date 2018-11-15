@@ -17,12 +17,10 @@ var managers;
                     actor2.IsColliding = true;
                     console.log("collided with: " + actor2.name);
                     switch (actor2.name) {
-                        case "meteorite":
-                        case "planet":
-                        case "boss":
+                        case "bullet":
                             createjs.Sound.play("explosion01");
-                            console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
+                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
                             if (managers.Game.scoreBoard.Lives <= 0) {
                                 managers.Game.currentState = config.Scene.OVER;
                                 if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
@@ -30,9 +28,32 @@ var managers;
                                 }
                             }
                             break;
+                        case "meteorite":
+                            createjs.Sound.play("explosion01");
+                            managers.Game.scoreBoard.Lives -= 1;
+                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
+                            if (managers.Game.scoreBoard.Lives <= 0) {
+                                managers.Game.currentState = config.Scene.OVER;
+                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                                }
+                            }
+                            break;
+                        case "boss":
+                            break;
                         case "enemies":
                             createjs.Sound.play("explosion02");
-                            managers.Game.scoreBoard.Score += 100;
+                            managers.Game.scoreBoard.Lives -= 1;
+                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
+                            if (managers.Game.scoreBoard.Lives <= 0) {
+                                managers.Game.currentState = config.Scene.OVER;
+                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                                }
+                            }
+                            break;
+                        case "planet":
+                            managers.Game.scoreBoard.HighScore += 100;
                             break;
                     }
                 }

@@ -5,6 +5,8 @@ module objects {
         private _height:number;
         private _halfWidth:number;
         private _halfHeight:number;
+        private _position:util.Vector2;
+        private _isColliding:boolean;
 
         // public properties
         get Width():number {
@@ -35,6 +37,22 @@ module objects {
             this._halfHeight = newValue;
         } 
 
+        get Position():util.Vector2 {
+            return this._position;
+        }
+
+        set Position(newPosition:util.Vector2) {
+            this._position = newPosition;
+        }
+
+        get IsColliding():boolean {
+            return this._isColliding;
+        }
+
+        set IsColliding(newValue:boolean) {
+            this._isColliding = newValue;
+        }
+
         // constructor
         /**
          *Creates an instance of gameObject.
@@ -51,9 +69,15 @@ module objects {
         private _initialize():void {
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
+            this.Position = new util.Vector2(this.x, this.y);
+            this.IsColliding = false;
             this.Start();
         }
 
+        protected _updatePosition():void {
+            this.Position.x = this.x;
+            this.Position.y = this.y;
+        }
 
         // public methods
         public abstract Start():void 
