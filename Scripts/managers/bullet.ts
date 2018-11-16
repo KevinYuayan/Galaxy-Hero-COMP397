@@ -1,5 +1,5 @@
 module managers {
-    export class BulletMNGR {
+    export class Bullet {
         // private instance variables
         private _bullets: objects.Bullet[];
         private _bulletNum: number;

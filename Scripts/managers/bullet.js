@@ -1,13 +1,13 @@
 var managers;
 (function (managers) {
-    var BulletMNGR = /** @class */ (function () {
+    var Bullet = /** @class */ (function () {
         // constructor
-        function BulletMNGR(bulletNum) {
+        function Bullet(bulletNum) {
             if (bulletNum === void 0) { bulletNum = 1; }
             this.BulletNum = bulletNum;
             this.Start();
         }
-        Object.defineProperty(BulletMNGR.prototype, "Bullets", {
+        Object.defineProperty(Bullet.prototype, "Bullets", {
             // public properties
             get: function () {
                 return this._bullets;
@@ -18,7 +18,7 @@ var managers;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(BulletMNGR.prototype, "BulletNum", {
+        Object.defineProperty(Bullet.prototype, "BulletNum", {
             get: function () {
                 return this._bulletNum;
             },
@@ -28,7 +28,7 @@ var managers;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(BulletMNGR.prototype, "CurrentBullet", {
+        Object.defineProperty(Bullet.prototype, "CurrentBullet", {
             get: function () {
                 return this._currentBullet;
             },
@@ -40,7 +40,7 @@ var managers;
         });
         // private methods
         // public methods
-        BulletMNGR.prototype.Start = function () {
+        Bullet.prototype.Start = function () {
             // create the bullets container
             this.Bullets = new Array();
             // fill up bullet container
@@ -51,12 +51,12 @@ var managers;
             this._currentBulletIndex = 0;
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
         };
-        BulletMNGR.prototype.Update = function () {
+        Bullet.prototype.Update = function () {
             this.Bullets.forEach(function (bullet) {
                 bullet.Update();
             });
         };
-        BulletMNGR.prototype.FireBullet = function (spawnPoint, direction) {
+        Bullet.prototype.FireBullet = function (spawnPoint, direction) {
             this.CurrentBullet.Position = spawnPoint;
             this.CurrentBullet.x = spawnPoint.x;
             this.CurrentBullet.y = spawnPoint.y;
@@ -68,8 +68,8 @@ var managers;
             }
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
         };
-        return BulletMNGR;
+        return Bullet;
     }());
-    managers.BulletMNGR = BulletMNGR;
+    managers.Bullet = Bullet;
 })(managers || (managers = {}));
 //# sourceMappingURL=bullet.js.map

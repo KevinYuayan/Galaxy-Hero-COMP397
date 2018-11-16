@@ -15,7 +15,7 @@ module scenes {
         private _currentBackgroundNum: number;   // holds the array identifier for the current background object
         private _engineSound: createjs.AbstractSoundInstance;
         private _scoreBoard:managers.ScoreBoard;
-        private _bulletManager: managers.BulletMNGR;
+        private _bulletManager: managers.Bullet;
         // public properties
 
         // constructors
@@ -98,7 +98,7 @@ module scenes {
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
             this._engineSound.loop = -1;
-            this._bulletManager = new managers.BulletMNGR();
+            this._bulletManager = new managers.Bullet();
             managers.Game.bulletManager = this._bulletManager;
             this.Main();
         }
