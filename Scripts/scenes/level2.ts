@@ -64,6 +64,7 @@ module scenes {
         }
         public Start(): void {
             managers.Game.scoreBoard.Reset();
+            managers.Game.scoreBoard.Level += 2;
 
             this._planetNum = 1;
             this._backgroundNum = 2;

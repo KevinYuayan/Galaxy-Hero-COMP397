@@ -60,6 +60,7 @@ var scenes;
         };
         Level3.prototype.Start = function () {
             managers.Game.scoreBoard.Reset();
+            managers.Game.scoreBoard.Level += 3;
             this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
