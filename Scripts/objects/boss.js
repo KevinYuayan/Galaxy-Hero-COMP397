@@ -64,7 +64,6 @@ var objects;
         Boss.prototype.Destroy = function () {
         };
         return Boss;
-
     }(objects.Enemy));
     objects.Boss = Boss;
 })(objects || (objects = {}));

@@ -15,7 +15,6 @@ var scenes;
 (function (scenes) {
     var Play = /** @class */ (function (_super) {
         __extends(Play, _super);
-        // private instance variables
         // public properties
         // constructors
         function Play() {

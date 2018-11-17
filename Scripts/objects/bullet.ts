@@ -1,5 +1,5 @@
 module objects {
-    export class Bullet extends objects.GameObject {
+    export class Bullet extends objects.Actor {
         // private instance variable
         private _speed:number;
         private _direction:util.Vector2;

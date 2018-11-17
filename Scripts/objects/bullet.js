@@ -79,7 +79,7 @@ var objects;
         Bullet.prototype.Destroy = function () {
         };
         return Bullet;
-    }(objects.GameObject));
+    }(objects.Actor));
     objects.Bullet = Bullet;
 })(objects || (objects = {}));
 //# sourceMappingURL=bullet.js.map

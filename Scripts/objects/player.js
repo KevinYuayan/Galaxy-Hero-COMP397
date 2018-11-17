@@ -55,7 +55,7 @@ var objects;
         Player.prototype.Destroy = function () {
         };
         return Player;
-    }(objects.GameObject));
+    }(objects.Actor));
     objects.Player = Player;
 })(objects || (objects = {}));
 //# sourceMappingURL=player.js.map

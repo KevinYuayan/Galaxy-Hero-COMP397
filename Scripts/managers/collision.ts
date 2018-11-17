@@ -59,7 +59,7 @@ module managers {
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -=1;
-                            object2.Reset();
+                            actor2.Reset();
                         break;
                         case "bomb":
                             managers.Game.currentLevel.powerUp.Collected();
