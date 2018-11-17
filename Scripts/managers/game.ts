@@ -7,5 +7,6 @@ module managers {
         public static scoreBoard:managers.ScoreBoard;
         public static bulletManager: managers.Bullet;
         public static player: objects.Player;
+        public static currentLevel:objects.Level;
     }
 }

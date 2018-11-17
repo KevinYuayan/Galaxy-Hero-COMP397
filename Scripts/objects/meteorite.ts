@@ -1,5 +1,5 @@
 module objects {
-    export class Meteorite extends objects.GameObject {
+    export class Meteorite extends objects.Enemy {
         private _verticalSpeed:number;
 
 

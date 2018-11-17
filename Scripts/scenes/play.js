@@ -15,6 +15,7 @@ var scenes;
 (function (scenes) {
     var Play = /** @class */ (function (_super) {
         __extends(Play, _super);
+        // private instance variables
         // public properties
         // constructors
         function Play() {
@@ -96,6 +97,10 @@ var scenes;
             managers.Collision.Check(this._player, this._meteorite);
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
+            if (this.powerUp != null) {
+                this.powerUp.Update();
+                managers.Collision.Check(this._player, this.powerUp);
+            }
             // updates each planet in array
             this._planets.forEach(function (planet) {
                 planet.Update();
@@ -129,7 +134,7 @@ var scenes;
             this.off("mousedown", managers.Input.OnLeftMouseDown);
         };
         return Play;
-    }(objects.Scene));
+    }(objects.Level));
     scenes.Play = Play;
 })(scenes || (scenes = {}));
 //# sourceMappingURL=play.js.map

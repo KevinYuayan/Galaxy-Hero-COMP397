@@ -50,7 +50,7 @@ var objects;
         Planet.prototype.Destroy = function () {
         };
         return Planet;
-    }(objects.GameObject));
+    }(objects.Enemy));
     objects.Planet = Planet;
 })(objects || (objects = {}));
 //# sourceMappingURL=planet.js.map

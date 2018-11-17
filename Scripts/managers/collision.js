@@ -30,12 +30,21 @@ var managers;
                             managers.Game.scoreBoard.Lives -= 1;
                             break;
                         case "enemies":
-                            if (object1.name == "bullet") {
+                            if (actor1.name == "bullet") {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
-                                object2.Reset();
-                                object1.Reset();
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() < 0.1) {
+                                    // checks if powerUp is already in play
+                                    // TODO needs fine tuning
+                                    if (managers.Game.currentLevel.powerUp == null || managers.Game.currentLevel.powerUp.destroyed) {
+                                        managers.Game.currentLevel.powerUp = new objects.Bomb();
+                                        managers.Game.currentLevel.addChild(managers.Game.currentLevel.powerUp);
+                                    }
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
                             }
                             else {
                                 explosionSound = createjs.Sound.play("explosion02");
@@ -48,6 +57,11 @@ var managers;
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
                             object2.Reset();
+                            break;
+                        case "bomb":
+                            if (actor1.name == "player") {
+                                managers.Game.currentLevel.powerUp.Collected();
+                            }
                             break;
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {

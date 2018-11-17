@@ -64,7 +64,8 @@ var objects;
         Boss.prototype.Destroy = function () {
         };
         return Boss;
-    }(objects.GameObject));
+
+    }(objects.Enemy));
     objects.Boss = Boss;
 })(objects || (objects = {}));
 //# sourceMappingURL=boss.js.map

@@ -47,7 +47,7 @@ var objects;
         Meteorite.prototype.Destroy = function () {
         };
         return Meteorite;
-    }(objects.GameObject));
+    }(objects.Enemy));
     objects.Meteorite = Meteorite;
 })(objects || (objects = {}));
 //# sourceMappingURL=meteorite.js.map

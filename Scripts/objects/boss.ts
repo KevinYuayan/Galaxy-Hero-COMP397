@@ -1,5 +1,5 @@
 module objects {
-    export class Boss extends objects.GameObject {
+    export class Boss extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
