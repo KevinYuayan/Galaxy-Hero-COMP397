@@ -40,7 +40,7 @@ module objects{
             this._checkBounds();
         }
         public Reset(): void {
-            this.y = -this.Height;
+            this.y = -this.Height + config.Constants.verticalPlaySpeed ; //TODO: review this fix
         }
         public Destroy(): void {
 
