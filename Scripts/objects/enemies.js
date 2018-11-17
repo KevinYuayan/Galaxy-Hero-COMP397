@@ -39,8 +39,8 @@ var objects;
         Enemies.prototype.Start = function () {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
-            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
             _super.prototype.Start.call(this);
+            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
             this.Reset();
         };
         Enemies.prototype.Update = function () {
