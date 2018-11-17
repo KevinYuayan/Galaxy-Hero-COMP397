@@ -29,6 +29,14 @@ var managers;
                                     managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
                                 }
                             }
+                            if (managers.Game.scoreBoard.Score == 500) {
+                                managers.Game.currentState = config.Scene.LEVEL2;
+                                console.log("scene changed to level 2");
+                            }
+                            if (managers.Game.scoreBoard.Score == 1000) {
+                                managers.Game.currentState = config.Scene.LEVEL3;
+                                console.log("scene changed to level 3");
+                            }
                             break;
                         case "enemies":
                             createjs.Sound.play("explosion02");
