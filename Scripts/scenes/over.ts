@@ -36,7 +36,7 @@ module scenes{
 
             // starts the play scene
             this._restartButton.on("click", ()=>{
-                managers.Game.currentState = config.Scene.PLAY;
+                managers.Game.currentState = config.Scene.LEVEL1;
             })
         }        
         public Start(): void {

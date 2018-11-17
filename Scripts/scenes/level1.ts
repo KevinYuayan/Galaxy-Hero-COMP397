@@ -1,5 +1,5 @@
 module scenes {
-    export class Play extends objects.Level {
+    export class Level1 extends objects.Level {
         // private instance variables
         private _bulletManager: managers.Bullet;
         private _powerUpManager: managers.PowerUps;

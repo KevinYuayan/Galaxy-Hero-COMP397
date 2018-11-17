@@ -28,6 +28,14 @@ var managers;
                             explosionSound.volume = 0.1;
                             console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
+                            if (managers.Game.scoreBoard.Score == 500) {
+                                managers.Game.currentState = config.Scene.LEVEL2;
+                                console.log("scene changed to level 2");
+                            }
+                            if (managers.Game.scoreBoard.Score == 1000) {
+                                managers.Game.currentState = config.Scene.LEVEL3;
+                                console.log("scene changed to level 3");
+                            }
                             break;
                         case "enemies":
                             if (actor1.name == "bullet") {
