@@ -3,7 +3,7 @@ var managers;
     var BulletMNGR = /** @class */ (function () {
         // constructor
         function BulletMNGR(bulletNum) {
-            if (bulletNum === void 0) { bulletNum = 1; }
+            if (bulletNum === void 0) { bulletNum = 100; }
             this.BulletNum = bulletNum;
             this.Start();
         }

@@ -15,15 +15,12 @@ var objects;
 (function (objects) {
     var Scene = /** @class */ (function (_super) {
         __extends(Scene, _super);
-        // Private instance variables
-        // Public properties
-        // Constructor
+        // private instance variables
+        // public properties
+        // constructor
         function Scene() {
             return _super.call(this) || this;
         }
-        Scene.prototype.Destroy = function () {
-            this.removeAllChildren();
-        };
         return Scene;
     }(createjs.Container));
     objects.Scene = Scene;

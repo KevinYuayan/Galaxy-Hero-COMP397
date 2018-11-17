@@ -1,9 +1,16 @@
 module objects {
-    export class Player extends GameObject {
-        
+    export class Player extends objects.GameObject {
         // private instance variables
+        _bulletSpawn:util.Vector2;
 
         // public properties
+        get BulletSpawn():util.Vector2 {
+            return this._bulletSpawn;
+        }
+
+        set BulletSpawn(newSpawnPoint:util.Vector2) {
+            this._bulletSpawn = newSpawnPoint;
+        }
         
         // constructors
         constructor() {
@@ -11,7 +18,6 @@ module objects {
 
             this.Start();
         }
-
 
         // private methods
 
@@ -21,30 +27,30 @@ module objects {
             this.regY = this.HalfHeight;
 
             this.y = 435;
-            //super.Start();
         }
 
         public Update():void {
             this.x = managers.Game.stage.mouseX;
+            this._updatePosition();
+            this.BulletSpawn = new util.Vector2(this.x - 6, this.y - this.HalfHeight - 2);
 
-            if(this.x > config.Constants.canvasWidth - this.HalfWidth){
-                this.x = config.Constants.canvasWidth - this.HalfWidth;
+            // checks the right boundary
+            if(this.x > 640 - this.HalfWidth) {
+                this.x = 640 - this.HalfWidth;
             }
 
-            if(this.x < this.HalfWidth){
+            // check the left boundary
+            if(this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
             }
-            //super.Update();
+        }
+
+        public Reset():void {
 
         }
 
-        public Reset(): void {
-            //super.Reset();
+        public Destroy():void {
+            
         }
-        
-        public Destroy(): void {
-        }
-
-
     }
 }

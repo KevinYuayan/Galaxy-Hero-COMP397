@@ -17,37 +17,31 @@ var objects;
         __extends(Background, _super);
         // public properties
         // constructor
-        /**
-         *Creates an instance of Background.
-         * @param {string} imageString
-         * @param {number} [verticalSpeed=0]
-         * @memberof Background
-         */
-        function Background(imageString, verticalSpeed) {
-            if (verticalSpeed === void 0) { verticalSpeed = 0; }
-            var _this = _super.call(this, imageString) || this;
-            _this._verticalSpeed = verticalSpeed;
+        function Background() {
+            var _this = _super.call(this, "spaceBackground") || this;
+            _this.Start();
             return _this;
         }
         // private methods
         Background.prototype._checkBounds = function () {
-            if (this.y >= config.Constants.canvasHeight) {
+            if (this.y >= 0) {
                 this.Reset();
             }
         };
         Background.prototype._move = function () {
-            this.y += this._verticalSpeed;
+            this.y += this.verticalSpeed;
         };
         // public methods
+        Background.prototype.Reset = function () {
+            this.y = -config.Constants.canvasHeight;
+        };
         Background.prototype.Start = function () {
-            this.y = -this.Height + config.Constants.canvasHeight;
+            this.Reset();
+            this.verticalSpeed = 5; // 5 px per frame
         };
         Background.prototype.Update = function () {
             this._move();
             this._checkBounds();
-        };
-        Background.prototype.Reset = function () {
-            this.y = -this.Height;
         };
         Background.prototype.Destroy = function () {
         };

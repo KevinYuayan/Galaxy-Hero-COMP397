@@ -54,14 +54,16 @@ var objects;
             this.y = this.Position.y;
         };
         Bullet.prototype._checkBounds = function () {
-            if ((this.y > 480) || (this.y < 0)) {
+            if ((this.y > (480 + this.HalfHeight)) || (this.y < -this.HalfHeight)) {
                 this.IsInPlay = false;
+                this.Reset();
             }
         };
         // public methods
         Bullet.prototype.Reset = function () {
             this.x = -10000;
             this.y = -10000;
+            this._updatePosition();
             this.Direction = util.Vector2.zero();
         };
         Bullet.prototype.Start = function () {

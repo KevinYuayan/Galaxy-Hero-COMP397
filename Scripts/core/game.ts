@@ -25,7 +25,7 @@
         {id: "boss", src: imagePath + "boss.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
-        {id: "bullet", src: imagePath + "bullet_01.png" },
+        {id: "bullet", src: imagePath + "bullet_03.png" },
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
         {id: "explosion01", src: audioPath + "explosion14.m4a"},
@@ -37,63 +37,66 @@
 
     function Init():void {
         assetManager = new createjs.LoadQueue();
-        managers.Game.assetManager = assetManager;// creates a reference to the global assetManager
-        assetManager.installPlugin(createjs.Sound) // enable sound preloading
-        assetManager.loadManifest(assetManifest); // preloads all assets in the assetManifest
-        assetManager.on("complete", Start); // Calls start when assets are finished loading
+        managers.Game.assetManager = assetManager; // creates a reference to the global assetManager
+        assetManager.installPlugin(createjs.Sound); // enable sound preloading
+        assetManager.loadManifest(assetManifest); // preloads all assets listed in the manifest
+        assetManager.on("complete", Start); // call Start when assets are finished loading
     }
 
     function Start():void {
-        // managers.Game.currentScene = this;
         console.log(`%c Game Started...`,"color: blue; font-size: 20px;");
         canvas = document.getElementsByTagName("canvas")[0];
         stage = new createjs.Stage(canvas);
-        managers.Game.stage = stage;
+        managers.Game.stage = stage; // passing a reference to the stage globally
         stage.enableMouseOver(20);
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
 
+        // setup global scoreboard and UI
         scoreBoard = new managers.ScoreBoard();
         managers.Game.scoreBoard = scoreBoard;
 
+        // setup initial scene
         currentState = config.Scene.START;
-        // managers.Game.currentState = config.Scene.START;
         managers.Game.currentState = currentState;
         Main();
     }
 
     // this is the main game loop
     function Update():void {
+
         currentScene.Update();
-        if(currentState != managers.Game.currentState){
+
+        if(currentState != managers.Game.currentState) {
             currentState = managers.Game.currentState;
             Main();
         }
 
         stage.update();
-        currentScene.Update();
-
     }
 
     function Main():void {
-        if(currentScene != null){
+
+        // clean up current scene
+        if(currentScene) {
             currentScene.Destroy();
             stage.removeAllChildren();
         }
-
+            
         switch(currentState) {
             case config.Scene.START:
-            currentScene = new scenes.Start;
+            currentScene = new scenes.Start();
             break;
             case config.Scene.PLAY:
-            currentScene = new scenes.Play;
+            currentScene = new scenes.Play();
             break;
             case config.Scene.OVER:
-            currentScene = new scenes.Over;
+             currentScene = new scenes.Over();
             break;
         }
-        // managers.Game.currentScene = currentScene;
+
         stage.addChild(currentScene);
+
     }
 
     window.addEventListener("load", Init);

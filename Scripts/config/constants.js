@@ -5,7 +5,7 @@ var config;
         function Constants() {
         }
         Constants.verticalPlaySpeed = 3;
-        Constants.canvasHeight = 480;
+        Constants.canvasHeight = 1280;
         Constants.canvasWidth = 640;
         return Constants;
     }());

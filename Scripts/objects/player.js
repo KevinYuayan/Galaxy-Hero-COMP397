@@ -15,34 +15,44 @@ var objects;
 (function (objects) {
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
-        // private instance variables
-        // public properties
         // constructors
         function Player() {
             var _this = _super.call(this, "player") || this;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Player.prototype, "BulletSpawn", {
+            // public properties
+            get: function () {
+                return this._bulletSpawn;
+            },
+            set: function (newSpawnPoint) {
+                this._bulletSpawn = newSpawnPoint;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         // public methods
         Player.prototype.Start = function () {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             this.y = 435;
-            //super.Start();
         };
         Player.prototype.Update = function () {
             this.x = managers.Game.stage.mouseX;
-            if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
-                this.x = config.Constants.canvasWidth - this.HalfWidth;
+            this._updatePosition();
+            this.BulletSpawn = new util.Vector2(this.x - 6, this.y - this.HalfHeight - 2);
+            // checks the right boundary
+            if (this.x > 640 - this.HalfWidth) {
+                this.x = 640 - this.HalfWidth;
             }
+            // check the left boundary
             if (this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
             }
-            //super.Update();
         };
         Player.prototype.Reset = function () {
-            //super.Reset();
         };
         Player.prototype.Destroy = function () {
         };

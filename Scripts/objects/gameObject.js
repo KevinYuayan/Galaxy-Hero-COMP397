@@ -15,12 +15,7 @@ var objects;
 (function (objects) {
     var GameObject = /** @class */ (function (_super) {
         __extends(GameObject, _super);
-        // constructor
-        /**
-         *Creates an instance of gameObject.
-         * @param {string} imageString
-         * @memberof gameObject
-         */
+        // constructors
         function GameObject(imageString) {
             var _this = _super.call(this, managers.Game.assetManager.getResult(imageString)) || this;
             _this.name = imageString;
@@ -50,22 +45,22 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameObject.prototype, "HalfWidth", {
-            get: function () {
-                return this._halfWidth;
-            },
-            set: function (newValue) {
-                this._halfWidth = newValue;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(GameObject.prototype, "HalfHeight", {
             get: function () {
                 return this._halfHeight;
             },
             set: function (newValue) {
                 this._halfHeight = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(GameObject.prototype, "HalfWidth", {
+            get: function () {
+                return this._halfWidth;
+            },
+            set: function (newValue) {
+                this._halfWidth = newValue;
             },
             enumerable: true,
             configurable: true
@@ -96,7 +91,6 @@ var objects;
             this.Height = this.getBounds().height;
             this.Position = new util.Vector2(this.x, this.y);
             this.IsColliding = false;
-            this.Start();
         };
         GameObject.prototype._updatePosition = function () {
             this.Position.x = this.x;

@@ -1,5 +1,5 @@
 module objects {
-    export class Background extends objects.GameObject {
+    export class StartBackground extends objects.GameObject {
         // private instance variables
         private verticalSpeed:number;
 
@@ -7,7 +7,7 @@ module objects {
 
         // constructor
         constructor() {
-            super("spaceBackground");
+            super("startBackground");
 
             this.Start();
         }
@@ -20,18 +20,17 @@ module objects {
         }
 
         private _move():void {
-            this.y += this.verticalSpeed;
+            
         }
 
         // public methods
 
         public Reset(): void {
-            this.y = -config.Constants.canvasHeight;
+            
         }        
         
         public Start(): void {
             this.Reset();
-            this.verticalSpeed = 5; // 5 px per frame
         }
 
         public Update(): void {

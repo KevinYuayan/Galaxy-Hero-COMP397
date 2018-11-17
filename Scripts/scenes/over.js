@@ -16,7 +16,7 @@ var scenes;
     var Over = /** @class */ (function (_super) {
         __extends(Over, _super);
         // public properties
-        // constructors
+        // constructor
         function Over() {
             var _this = _super.call(this) || this;
             _this.Start();
@@ -24,34 +24,29 @@ var scenes;
         }
         // private methods
         // public methods
-        Over.prototype.Main = function () {
-            // adds background to the stage
-            this.addChild(this._background);
-            // adds restartButton to the stage
-            this.addChild(this._restartButton);
-            // adds player to the stage
-            this.addChild(this._gameOverLabel);
-            // event listeners
-            // starts the play scene
-            this._restartButton.on("click", function () {
-                managers.Game.currentState = config.Scene.PLAY;
-            });
-        };
         Over.prototype.Start = function () {
-            // Instantiates objects
-            this._restartButton = new objects.Button("restartButton", 320, 360, true);
-            this._background = new objects.Background("spaceBackground", 0);
+            this._ocean = new objects.Background();
             this._gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FFFF00", 320, 240, true);
+            this._restartButton = new objects.Button("restartButton", 320, 360, true);
             this.Main();
         };
         Over.prototype.Update = function () {
-            this._background.Update();
-        };
-        Over.prototype.Reset = function () {
-            throw new Error("Method not implemented.");
+            this._ocean.Update();
         };
         Over.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
+        };
+        Over.prototype.Reset = function () { };
+        Over.prototype.Main = function () {
+            // adds ocean to the stage
+            this.addChild(this._ocean);
+            this.addChild(this._gameOverLabel);
+            this.addChild(this._restartButton);
+            this._restartButton.on("click", function () {
+                managers.Game.currentState = config.Scene.PLAY;
+                managers.Game.scoreBoard.Reset();
+            });
+            managers.Game.scoreBoard.AddHighScore(this);
         };
         return Over;
     }(objects.Scene));

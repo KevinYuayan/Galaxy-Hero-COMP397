@@ -1,29 +1,26 @@
-module objects{
-    export abstract class Scene extends createjs.Container{
-        // Private instance variables
+module objects {
+    export abstract class Scene extends createjs.Container {
+        // private instance variables
 
-        // Public properties
+        // public properties
 
-        // Constructor
-
+        // constructor
         constructor() {
             super();
         }
-        // Private methods
 
-        // Public methods
-        public abstract Main():void;
+        // private methods
+
+        // public methods
 
         public abstract Start():void;
 
         public abstract Update():void;
 
+        public abstract Destroy():void;
+
         public abstract Reset():void;
 
-        public Destroy():void{
-            this.removeAllChildren();
-        }
-
-
+        public abstract Main():void;
     }
 }

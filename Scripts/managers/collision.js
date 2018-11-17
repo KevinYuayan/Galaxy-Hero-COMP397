@@ -8,53 +8,51 @@ var managers;
         // constructor
         // private methods
         // public methods
-        Collision.Check = function (actor1, actor2) {
-            if (!actor2.IsColliding) {
-                var distance = util.Vector2.Distance(actor1.Position, actor2.Position);
-                var totalHeight = actor1.HalfHeight + actor2.HalfHeight;
+        Collision.Check = function (object1, object2) {
+            if (!object2.IsColliding) {
+                var distance = util.Vector2.Distance(object1.Position, object2.Position);
+                var totalHeight = object1.HalfHeight + object2.HalfHeight;
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
-                    actor2.IsColliding = true;
-                    console.log("collided with: " + actor2.name);
-                    switch (actor2.name) {
-                        case "bullet":
-                            createjs.Sound.play("explosion01");
-                            managers.Game.scoreBoard.Lives -= 1;
-                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
-                            if (managers.Game.scoreBoard.Lives <= 0) {
-                                managers.Game.currentState = config.Scene.OVER;
-                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
-                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                }
-                            }
-                            break;
+                    object2.IsColliding = true;
+                    switch (object2.name) {
                         case "meteorite":
-                            createjs.Sound.play("explosion01");
+                            var thunderSound = createjs.Sound.play("explosion01");
+                            thunderSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
-                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
-                            if (managers.Game.scoreBoard.Lives <= 0) {
-                                managers.Game.currentState = config.Scene.OVER;
-                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
-                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                }
-                            }
-                            break;
-                        case "boss":
-                            break;
-                        case "enemies":
-                            createjs.Sound.play("explosion02");
-                            managers.Game.scoreBoard.Lives -= 1;
-                            console.log("lives after collision: " + managers.Game.scoreBoard.Lives);
-                            if (managers.Game.scoreBoard.Lives <= 0) {
-                                managers.Game.currentState = config.Scene.OVER;
-                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
-                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                }
-                            }
                             break;
                         case "planet":
-                            managers.Game.scoreBoard.HighScore += 100;
+                            var planetSound = createjs.Sound.play("explosion01");
+                            planetSound.volume = 0.1;
+                            managers.Game.scoreBoard.Score += 100;
                             break;
+                        case "enemies":
+                            if (object1.name == "bullet") {
+                                var explosionSound_1 = createjs.Sound.play("explosion01");
+                                explosionSound_1.volume = 0.1;
+                                managers.Game.scoreBoard.Score += 100;
+                                object2.Reset();
+                                object1.Reset();
+                                console.log("enemy hit by bullet");
+                            }
+                            else {
+                                var explosionSound_2 = createjs.Sound.play("explosion02");
+                                explosionSound_2.volume = 0.1;
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            break;
+                        case "bullet":
+                            var explosionSound = createjs.Sound.play("explosion02");
+                            explosionSound.volume = 0.1;
+                            managers.Game.scoreBoard.Lives -= 1;
+                            object2.Reset();
+                            break;
+                    }
+                    if (managers.Game.scoreBoard.Lives <= 0) {
+                        managers.Game.currentState = config.Scene.OVER;
+                        if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                            managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                        }
                     }
                 }
             }

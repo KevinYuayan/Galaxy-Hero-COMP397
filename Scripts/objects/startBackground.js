@@ -13,45 +13,37 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Planet = /** @class */ (function (_super) {
-        __extends(Planet, _super);
+    var StartBackground = /** @class */ (function (_super) {
+        __extends(StartBackground, _super);
         // public properties
         // constructor
-        function Planet() {
-            var _this = _super.call(this, "planet") || this;
+        function StartBackground() {
+            var _this = _super.call(this, "startBackground") || this;
             _this.Start();
             return _this;
         }
         // private methods
-        Planet.prototype._move = function () {
-            this.y += this._verticalSpeed;
-            this._updatePosition();
-        };
-        Planet.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
+        StartBackground.prototype._checkBounds = function () {
+            if (this.y >= 0) {
                 this.Reset();
             }
         };
-        // public methods
-        Planet.prototype.Reset = function () {
-            this._verticalSpeed = 5;
-            this.y = -this.Height;
-            this.x = Math.floor((Math.random() * (640 - this.Width)) + this.HalfWidth);
-            this.IsColliding = false;
+        StartBackground.prototype._move = function () {
         };
-        Planet.prototype.Start = function () {
-            this.regX = this.HalfWidth;
-            this.regY = this.HalfHeight;
+        // public methods
+        StartBackground.prototype.Reset = function () {
+        };
+        StartBackground.prototype.Start = function () {
             this.Reset();
         };
-        Planet.prototype.Update = function () {
+        StartBackground.prototype.Update = function () {
             this._move();
             this._checkBounds();
         };
-        Planet.prototype.Destroy = function () {
+        StartBackground.prototype.Destroy = function () {
         };
-        return Planet;
+        return StartBackground;
     }(objects.GameObject));
-    objects.Planet = Planet;
+    objects.StartBackground = StartBackground;
 })(objects || (objects = {}));
-//# sourceMappingURL=planet.js.map
+//# sourceMappingURL=startBackground.js.map

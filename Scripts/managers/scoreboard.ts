@@ -1,4 +1,3 @@
-
 module managers {
     export class ScoreBoard {
         // private instance variables

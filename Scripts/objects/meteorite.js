@@ -15,33 +15,40 @@ var objects;
 (function (objects) {
     var Meteorite = /** @class */ (function (_super) {
         __extends(Meteorite, _super);
+        // public properties
+        // constructor
         function Meteorite() {
-            return _super.call(this, "meteorite") || this;
+            var _this = _super.call(this, "meteorite") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Meteorite.prototype._move = function () {
             this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
         Meteorite.prototype._checkBounds = function () {
-            if (this.y > config.Constants.canvasHeight + this.Height) {
+            if (this.y > 480 + this.Height) {
                 this.Reset();
             }
         };
         // public methods
+        Meteorite.prototype.Reset = function () {
+            this._verticalSpeed = Math.floor((Math.random() * 5) + 5);
+            this._horizontalSpeed = Math.floor((Math.random() * 4) - 2);
+            this.y = -this.Height;
+            this.x = Math.floor((Math.random() * (640 - this.Width)) + this.HalfWidth);
+            this.IsColliding = false;
+        };
         Meteorite.prototype.Start = function () {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
             this.Reset();
-            //super.Start();
         };
         Meteorite.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            //super.Update();
-        };
-        Meteorite.prototype.Reset = function () {
-            this._verticalSpeed = config.Constants.verticalPlaySpeed;
-            this.y = -this.Height;
-            this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            //super.Reset();
         };
         Meteorite.prototype.Destroy = function () {
         };
