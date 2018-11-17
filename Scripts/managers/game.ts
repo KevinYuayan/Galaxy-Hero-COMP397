@@ -6,5 +6,6 @@ module managers {
         public static currentState:config.Scene;
         // public static currentScene:objects.Scene;
         public static scoreBoard:managers.ScoreBoard;
+        public static currentLevel:objects.Level;
     }
 }

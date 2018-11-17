@@ -91,7 +91,6 @@
             currentScene = new scenes.Over;
             break;
         }
-        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

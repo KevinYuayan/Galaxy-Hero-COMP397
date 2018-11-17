@@ -57,7 +57,7 @@ var objects;
         Boss.prototype.Destroy = function () {
         };
         return Boss;
-    }(objects.Actor));
+    }(objects.Enemy));
     objects.Boss = Boss;
 })(objects || (objects = {}));
 //# sourceMappingURL=boss.js.map

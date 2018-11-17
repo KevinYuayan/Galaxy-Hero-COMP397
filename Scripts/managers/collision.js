@@ -32,7 +32,26 @@ var managers;
                             break;
                         case "enemies":
                             createjs.Sound.play("explosion02");
-                            managers.Game.scoreBoard.Score += 100;
+                            if (actor1.name == "player") {
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            // else is when actor1 is a player bullet
+                            else {
+                                managers.Game.scoreBoard.Score += 100;
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() < 0.1) {
+                                    // checks if powerUp is already in play
+                                    // TODO needs fine tuning
+                                    if (managers.Game.currentLevel.powerUp == null || managers.Game.currentLevel.powerUp.destroyed) {
+                                        managers.Game.currentLevel.powerUp = new objects.Bomb();
+                                        managers.Game.currentLevel.addChild(managers.Game.currentLevel.powerUp);
+                                    }
+                                }
+                            }
+                            actor2.Destroy();
+                            break;
+                        case "bomb":
+                            managers.Game.currentLevel.powerUp.Collected();
                             break;
                     }
                 }

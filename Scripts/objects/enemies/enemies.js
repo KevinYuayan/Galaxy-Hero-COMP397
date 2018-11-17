@@ -13,40 +13,43 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Meteorite = /** @class */ (function (_super) {
-        __extends(Meteorite, _super);
-        function Meteorite() {
-            return _super.call(this, "meteorite") || this;
+    var Enemies = /** @class */ (function (_super) {
+        __extends(Enemies, _super);
+        // constructors
+        function Enemies() {
+            return _super.call(this, "enemies") || this;
         }
         // private methods
-        Meteorite.prototype._move = function () {
+        Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;
         };
-        Meteorite.prototype._checkBounds = function () {
+        Enemies.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Meteorite.prototype.Start = function () {
+        Enemies.prototype.Start = function () {
             this.Reset();
             _super.prototype.Start.call(this);
         };
-        Meteorite.prototype.Update = function () {
+        Enemies.prototype.Update = function () {
             this._move();
             this._checkBounds();
             _super.prototype.Update.call(this);
         };
-        Meteorite.prototype.Reset = function () {
-            this._verticalSpeed = config.Constants.verticalPlaySpeed;
+        Enemies.prototype.Reset = function () {
+            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
+            this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             _super.prototype.Reset.call(this);
         };
-        Meteorite.prototype.Destroy = function () {
+        Enemies.prototype.Destroy = function () {
         };
-        return Meteorite;
-    }(objects.Actor));
-    objects.Meteorite = Meteorite;
+        return Enemies;
+    }(objects.Enemy));
+    objects.Enemies = Enemies;
 })(objects || (objects = {}));
-//# sourceMappingURL=meteorite.js.map
+//# sourceMappingURL=enemies.js.map

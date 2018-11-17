@@ -1,5 +1,5 @@
 module objects {
-    export class Planet extends objects.Actor {
+    export class Planet extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;

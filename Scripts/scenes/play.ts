@@ -1,20 +1,8 @@
 module scenes {
-    export class Play extends objects.Scene {
+    export class Play extends objects.Level {
         // private instance variables
 
-        private _player: objects.Player;
-        private _meteorite: objects.Meteorite;
 
-        private _planetNum: number;
-        private _enemiesNum: number;
-        private _planets: objects.Planet[];
-        private _enemies: objects.Enemies[];
-        private _boss: objects.Boss;
-        private _backgroundNum: number;  // total background objects
-        private _backgrounds: objects.Background[];
-        private _currentBackgroundNum: number;   // holds the array identifier for the current background object
-        private _engineSound: createjs.AbstractSoundInstance;
-        private _scoreBoard:managers.ScoreBoard;
         // public properties
 
         // constructors
@@ -105,6 +93,10 @@ module scenes {
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
 
+            if(this.powerUp != null ) {
+                this.powerUp.Update();
+                managers.Collision.Check(this._player, this.powerUp);
+            }
 
             // updates each planet in array
             this._planets.forEach(planet => {
