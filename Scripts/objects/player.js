@@ -38,10 +38,11 @@ var objects;
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             this.y = 435;
+            _super.prototype.Start.call(this);
         };
         Player.prototype.Update = function () {
             this.x = managers.Game.stage.mouseX;
-            this._updatePosition();
+            _super.prototype.Update.call(this);
             this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 2);
             if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
                 this.x = config.Constants.canvasWidth - this.HalfWidth;
@@ -51,11 +52,12 @@ var objects;
             }
         };
         Player.prototype.Reset = function () {
+            _super.prototype.Reset.call(this);
         };
         Player.prototype.Destroy = function () {
         };
         return Player;
-    }(objects.GameObject));
+    }(objects.Actor));
     objects.Player = Player;
 })(objects || (objects = {}));
 //# sourceMappingURL=player.js.map

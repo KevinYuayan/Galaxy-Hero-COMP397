@@ -8,5 +8,12 @@ module managers {
                 managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
               }
         }
+        
+
+        public static KeyPressed(event) {
+            if(event.keyCode == 66) {
+                objects.Bomb.UseBomb();
+            }
+        }
     }
 }

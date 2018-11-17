@@ -1,5 +1,5 @@
 module objects {
-    export class Player extends GameObject {
+    export class Player extends objects.Actor {
         
         // private instance variables
         _bulletSpawn:util.Vector2;
@@ -28,11 +28,12 @@ module objects {
             this.regY = this.HalfHeight;
 
             this.y = 435;
+            super.Start();
         }
 
         public Update():void {
             this.x = managers.Game.stage.mouseX;
-            this._updatePosition();
+            super.Update();
             this.BulletSpawn = new util.Vector2(this.x -12, this.y - this.HalfHeight - 2);
 
             if(this.x > config.Constants.canvasWidth - this.HalfWidth){
@@ -46,6 +47,7 @@ module objects {
         }
 
         public Reset(): void {
+            super.Reset();
         }
         
         public Destroy(): void {

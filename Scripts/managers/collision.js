@@ -8,15 +8,15 @@ var managers;
         // constructor
         // private methods
         // public methods
-        Collision.Check = function (object1, object2) {
-            if (!object2.IsColliding) {
-                var distance = util.Vector2.Distance(object1.Position, object2.Position);
-                var totalHeight = object1.HalfHeight + object2.HalfHeight;
+        Collision.Check = function (actor1, actor2) {
+            if (!actor2.IsColliding) {
+                var distance = util.Vector2.Distance(actor1.Position, actor2.Position);
+                var totalHeight = actor1.HalfHeight + actor2.HalfHeight;
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
-                    object2.IsColliding = true;
-                    console.log(object1.name + " collided with: " + object2.name);
-                    switch (object2.name) {
+                    actor2.IsColliding = true;
+                    console.log(actor1.name + " collided with: " + actor2.name);
+                    switch (actor2.name) {
                         case "meteorite":
                             var yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.1;
@@ -30,12 +30,16 @@ var managers;
                             managers.Game.scoreBoard.Lives -= 1;
                             break;
                         case "enemies":
-                            if (object1.name == "bullet") {
+                            if (actor1.name == "bullet") {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
-                                object2.Reset();
-                                object1.Reset();
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
                             }
                             else {
                                 explosionSound = createjs.Sound.play("explosion02");
@@ -47,7 +51,11 @@ var managers;
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
-                            object2.Reset();
+                            actor2.Reset();
+                            break;
+                        case "bomb":
+                            var aBomb = actor2;
+                            aBomb.Collected();
                             break;
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {

@@ -1,5 +1,5 @@
 module objects {
-    export class Enemies extends objects.GameObject {
+    export class Enemies extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -34,14 +34,17 @@ module objects {
         public Start(): void {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
+            super.Start();
             this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
             this.Reset();
         }
         public Update(): void {
             this._move();
+            super.Update();
             this._checkBounds();
         }
         public Reset(): void {
+            super.Reset();
             this._verticalSpeed = Math.floor((Math.random()*2)+4); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;

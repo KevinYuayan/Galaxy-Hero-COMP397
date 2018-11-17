@@ -9,17 +9,16 @@ module managers {
         // private methods
 
         // public methods
-        public static Check(object1: objects.GameObject, object2: objects.GameObject): void {
+        public static Check(actor1: objects.Actor, actor2: objects.Actor): void {
 
-            if (!object2.IsColliding) {
-                let distance = util.Vector2.Distance(object1.Position, object2.Position);
-                let totalHeight = object1.HalfHeight + object2.HalfHeight;
+            if (!actor2.IsColliding) {
+                let distance = util.Vector2.Distance(actor1.Position, actor2.Position);
+                let totalHeight = actor1.HalfHeight + actor2.HalfHeight;
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
-                    object2.IsColliding = true;
-                    console.log(object1.name + " collided with: " + object2.name);
-
-                    switch(object2.name) {
+                    actor2.IsColliding = true;
+                    console.log(actor1.name + " collided with: " + actor2.name);
+                    switch (actor2.name) {
                         case "meteorite":
                         let yaySound = createjs.Sound.play("yaySound");
                         yaySound.volume = 0.1;
@@ -33,12 +32,16 @@ module managers {
                             managers.Game.scoreBoard.Lives -= 1;
                         break;
                         case "enemies":
-                            if(object1.name == "bullet"){
+                            if(actor1.name == "bullet") {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
-                                object2.Reset();
-                                object1.Reset(); 
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset(); 
                             }
                             else{
                             explosionSound = createjs.Sound.play("explosion02");
@@ -51,8 +54,12 @@ module managers {
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -=1;
-                            object2.Reset();
+                            actor2.Reset();
                         break;
+                        case "bomb":
+                            let aBomb = <objects.Bomb>actor2;
+                            aBomb.Collected();
+                            break;
                     }
                     if(managers.Game.scoreBoard.Lives <= 0) {
                         managers.Game.currentState = config.Scene.OVER;

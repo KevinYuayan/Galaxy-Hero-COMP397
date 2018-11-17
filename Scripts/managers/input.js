@@ -8,6 +8,11 @@ var managers;
                 managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
             }
         };
+        Input.KeyPressed = function (event) {
+            if (event.keyCode == 66) {
+                objects.Bomb.UseBomb();
+            }
+        };
         Input.LeftButtonDown = false;
         return Input;
     }());

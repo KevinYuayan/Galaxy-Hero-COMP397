@@ -46,6 +46,7 @@ var objects;
         };
         // public methods
         Boss.prototype.Start = function () {
+            _super.prototype.Start.call(this);
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             this.y = this.HalfHeight;
@@ -54,9 +55,11 @@ var objects;
         };
         Boss.prototype.Update = function () {
             this._move();
+            _super.prototype.Update.call(this);
             this._checkBounds();
         };
         Boss.prototype.Reset = function () {
+            _super.prototype.Reset.call(this);
             this._verticalSpeed = Math.floor((Math.random() * 4) + 6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.IsColliding = false;
@@ -64,7 +67,7 @@ var objects;
         Boss.prototype.Destroy = function () {
         };
         return Boss;
-    }(objects.GameObject));
+    }(objects.Enemy));
     objects.Boss = Boss;
 })(objects || (objects = {}));
 //# sourceMappingURL=boss.js.map

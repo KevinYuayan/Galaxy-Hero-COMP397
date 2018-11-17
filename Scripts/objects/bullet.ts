@@ -1,5 +1,5 @@
 module objects {
-    export class Bullet extends objects.GameObject {
+    export class Bullet extends objects.Actor {
         // private instance variable
         private _speed:number;
         private _direction:util.Vector2;
@@ -51,14 +51,16 @@ module objects {
         
         // public methods
         public Reset(): void {
-            this.x = -10000;
-            this.y = -10000;
+            super.Reset();
+            this.x = -1000;
+            this.y = -1000;
             this._updatePosition();
-           this.Direction = util.Vector2.zero();
+            this.Direction = util.Vector2.zero();
 
         } 
 
         public Start(): void {
+            super.Start();
             this._speed = 15;
             this.IsInPlay = false;
         }
@@ -66,13 +68,12 @@ module objects {
         public Update(): void {
             if(this.IsInPlay) {
                 this._move();
+                super.Update();
                 this._checkBounds();
             }
         }
-        
 
         public Destroy(): void {
-            
         }
 
     }

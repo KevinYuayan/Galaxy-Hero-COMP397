@@ -20,6 +20,7 @@
         {id: "restartButton", src: imagePath + "restartButton.png"},
         {id: "player", src: imagePath + "player.png"},
         {id: "planet", src: imagePath + "planet.png"},
+        {id: "bomb", src: imagePath + "bomb.png"},
         {id: "meteorite", src: imagePath + "meteorite.png"},
         {id: "enemies", src: imagePath + "enemies.png" },
         {id: "boss", src: imagePath + "boss.png" },
@@ -92,7 +93,6 @@
             currentScene = new scenes.Over;
             break;
         }
-        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 
