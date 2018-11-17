@@ -17,39 +17,49 @@ var objects;
         __extends(Enemies, _super);
         // constructors
         function Enemies() {
-            return _super.call(this, "enemies") || this;
+            var _this = _super.call(this, "enemies") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
         Enemies.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
+            if ((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
+                managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+            }
         };
         // public methods
         Enemies.prototype.Start = function () {
-            this.Reset();
+            this.regX = this.HalfHeight;
+            this.regY = this.HalfWidth;
             _super.prototype.Start.call(this);
+            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
+            this.Reset();
         };
         Enemies.prototype.Update = function () {
             this._move();
-            this._checkBounds();
             _super.prototype.Update.call(this);
+            this._checkBounds();
         };
         Enemies.prototype.Reset = function () {
-            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
+            _super.prototype.Reset.call(this);
+            this._verticalSpeed = Math.floor((Math.random() * 2) + 4); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
+            this.IsColliding = false;
         };
         Enemies.prototype.Destroy = function () {
         };
         return Enemies;
-    }(objects.Actor));
+    }(objects.Enemy));
     objects.Enemies = Enemies;
 })(objects || (objects = {}));
 //# sourceMappingURL=enemies.js.map

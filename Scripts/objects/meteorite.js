@@ -16,11 +16,14 @@ var objects;
     var Meteorite = /** @class */ (function (_super) {
         __extends(Meteorite, _super);
         function Meteorite() {
-            return _super.call(this, "meteorite") || this;
+            var _this = _super.call(this, "meteorite") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Meteorite.prototype._move = function () {
             this.y += this._verticalSpeed;
+            this._updatePosition();
         };
         Meteorite.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
@@ -29,24 +32,25 @@ var objects;
         };
         // public methods
         Meteorite.prototype.Start = function () {
-            this.Reset();
             _super.prototype.Start.call(this);
+            this.Reset();
         };
         Meteorite.prototype.Update = function () {
             this._move();
-            this._checkBounds();
             _super.prototype.Update.call(this);
+            this._checkBounds();
         };
         Meteorite.prototype.Reset = function () {
             this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
+            this.IsColliding = false;
             _super.prototype.Reset.call(this);
         };
         Meteorite.prototype.Destroy = function () {
         };
         return Meteorite;
-    }(objects.Actor));
+    }(objects.Enemy));
     objects.Meteorite = Meteorite;
 })(objects || (objects = {}));
 //# sourceMappingURL=meteorite.js.map

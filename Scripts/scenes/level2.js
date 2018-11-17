@@ -109,7 +109,7 @@ var scenes;
             _super.prototype.Destroy.call(this);
         };
         return Level2;
-    }(objects.Scene));
+    }(objects.Level));
     scenes.Level2 = Level2;
 })(scenes || (scenes = {}));
 //# sourceMappingURL=level2.js.map

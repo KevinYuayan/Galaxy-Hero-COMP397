@@ -20,17 +20,20 @@
         {id: "restartButton", src: imagePath + "restartButton.png"},
         {id: "player", src: imagePath + "player.png"},
         {id: "planet", src: imagePath + "planet.png"},
+        {id: "bomb", src: imagePath + "bomb.png"},
         {id: "meteorite", src: imagePath + "meteorite.png"},
         {id: "enemies", src: imagePath + "enemies.png" },
         {id: "boss", src: imagePath + "boss.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
+        {id: "bullet", src: imagePath + "bullet_01.png" },
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
         {id: "explosion01", src: audioPath + "explosion14.m4a"},
         {id: "explosion02", src: audioPath + "explosion19.m4a"},
         {id: "spaceship", src: audioPath + "spaceship.m4a"},
-        {id: "yaySound", src: audioPath + "yay.ogg"}
+        {id: "yaySound", src: audioPath + "yay.ogg"},
+        {id: "bullet", src: imagePath + "bullet_01.png"}
     ]
 
 
@@ -56,7 +59,6 @@
         managers.Game.scoreBoard = scoreBoard;
 
         currentState = config.Scene.START;
-        // managers.Game.currentState = config.Scene.START;
         managers.Game.currentState = currentState;
         Main();
     }
@@ -100,7 +102,6 @@
             currentScene = new scenes.Over;
             break;
         }
-        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

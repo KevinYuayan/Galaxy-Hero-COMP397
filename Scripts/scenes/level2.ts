@@ -1,20 +1,10 @@
 module scenes {
-    export class Level2 extends objects.Scene {
+    export class Level2 extends objects.Level {
         // private instance variables
 
-        private _player: objects.Player;
-        private _meteorite: objects.Meteorite;
+        private _bulletManager: managers.Bullet;
+        private _powerUpManager: managers.PowerUps;
 
-        private _planetNum: number;
-        private _enemiesNum: number;
-        private _planets: objects.Planet[];
-        private _enemies: objects.Enemies[];
-        private _boss: objects.Boss;
-        private _backgroundNum: number;  // total background objects
-        private _backgrounds: objects.Background[];
-        private _currentBackgroundNum: number;   // holds the array identifier for the current background object
-        private _engineSound: createjs.AbstractSoundInstance;
-        private _scoreBoard:managers.ScoreBoard;
         // public properties
 
         // constructors
