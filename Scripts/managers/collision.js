@@ -18,24 +18,12 @@ var managers;
                     console.log(actor1.name + " collided with: " + actor2.name);
                     switch (actor2.name) {
                         case "meteorite":
-                            var yaySound = createjs.Sound.play("yaySound");
-                            yaySound.volume = 0.1;
-                            managers.Game.scoreBoard.Score += 100;
-                            break;
                         // case "planet":
                         case "boss":
                             var explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
                             console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
-                            if (managers.Game.scoreBoard.Score == 500) {
-                                managers.Game.currentState = config.Scene.LEVEL2;
-                                console.log("scene changed to level 2");
-                            }
-                            if (managers.Game.scoreBoard.Score == 1000) {
-                                managers.Game.currentState = config.Scene.LEVEL3;
-                                console.log("scene changed to level 3");
-                            }
                             break;
                         case "enemies":
                             if (actor1.name == "bullet") {
@@ -65,6 +53,14 @@ var managers;
                             var aBomb = actor2;
                             aBomb.Collected();
                             break;
+                    }
+                    if (managers.Game.scoreBoard.Score == 500) {
+                        managers.Game.currentState = config.Scene.LEVEL2;
+                        console.log("scene changed to level 2");
+                    }
+                    if (managers.Game.scoreBoard.Score == 1000) {
+                        managers.Game.currentState = config.Scene.LEVEL3;
+                        console.log("scene changed to level 3");
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {
                         managers.Game.currentState = config.Scene.OVER;
