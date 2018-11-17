@@ -34,13 +34,16 @@ var objects;
         };
         // public methods
         Enemies.prototype.Start = function () {
+            _super.prototype.Start.call(this);
             this.Reset();
         };
         Enemies.prototype.Update = function () {
             this._move();
+            _super.prototype.Update.call(this);
             this._checkBounds();
         };
         Enemies.prototype.Reset = function () {
+            _super.prototype.Reset.call(this);
             this._verticalSpeed = Math.floor((Math.random() * 2) + 4); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;

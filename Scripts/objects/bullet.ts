@@ -52,14 +52,16 @@ module objects {
         
         // public methods
         public Reset(): void {
-            this.x = -10000;
-            this.y = -10000;
+            super.Reset();
+            this.x = -1000;
+            this.y = -1000;
             this._updatePosition();
-           this.Direction = util.Vector2.zero();
+            this.Direction = util.Vector2.zero();
 
         } 
 
         public Start(): void {
+            super.Start();
             this._speed = 15;
             this.IsInPlay = false;
 
@@ -68,6 +70,7 @@ module objects {
         public Update(): void {
             if(this.IsInPlay) {
                 this._move();
+                super.Update();
                 this._checkBounds();
             }
         }

@@ -28,13 +28,16 @@ module objects {
 
         // public methods
         public Start(): void {
+            super.Start();
             this.Reset();
         }
         public Update(): void {
             this._move();
+            super.Update();
             this._checkBounds();
         }
         public Reset(): void {
+            super.Reset();
             this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;

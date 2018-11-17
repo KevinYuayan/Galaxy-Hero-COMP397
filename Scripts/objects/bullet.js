@@ -61,18 +61,21 @@ var objects;
         };
         // public methods
         Bullet.prototype.Reset = function () {
-            this.x = -10000;
-            this.y = -10000;
+            _super.prototype.Reset.call(this);
+            this.x = -1000;
+            this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
         };
         Bullet.prototype.Start = function () {
+            _super.prototype.Start.call(this);
             this._speed = 15;
             this.IsInPlay = false;
         };
         Bullet.prototype.Update = function () {
             if (this.IsInPlay) {
                 this._move();
+                _super.prototype.Update.call(this);
                 this._checkBounds();
             }
         };

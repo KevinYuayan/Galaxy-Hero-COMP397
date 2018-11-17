@@ -28,6 +28,7 @@ module objects {
         // constructor
         constructor(imageString:string) {
             super(imageString);
+            this.Start();
         }
         // private methods
 

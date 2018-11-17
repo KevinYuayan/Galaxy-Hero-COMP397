@@ -23,10 +23,12 @@ module objects {
 
         // public methods
         public Start(): void {
+            super.Start();
             this.Reset();
         }
         public Update(): void {
             this._move();
+            super.Update();
             this._checkBounds();
         }
         public Reset(): void {
@@ -34,6 +36,7 @@ module objects {
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
+            super.Reset();
         }
         public Destroy(): void {
             

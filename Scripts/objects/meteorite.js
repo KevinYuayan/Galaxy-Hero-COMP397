@@ -32,10 +32,12 @@ var objects;
         };
         // public methods
         Meteorite.prototype.Start = function () {
+            _super.prototype.Start.call(this);
             this.Reset();
         };
         Meteorite.prototype.Update = function () {
             this._move();
+            _super.prototype.Update.call(this);
             this._checkBounds();
         };
         Meteorite.prototype.Reset = function () {
@@ -43,6 +45,7 @@ var objects;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
+            _super.prototype.Reset.call(this);
         };
         Meteorite.prototype.Destroy = function () {
         };
