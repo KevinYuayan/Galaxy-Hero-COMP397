@@ -11,7 +11,7 @@ var managers;
             if (scoreNum === void 0) { scoreNum = 0; }
             if (highScoreNum === void 0) { highScoreNum = 0; }
             if (bombsNum === void 0) { bombsNum = 1; }
-            if (level === void 0) { level = 0; }
+            if (level === void 0) { level = 1; }
             this.Start();
             this.Lives = livesNum;
             this.Score = scoreNum;
@@ -98,7 +98,7 @@ var managers;
             if (livesNum === void 0) { livesNum = 5; }
             if (scoreNum === void 0) { scoreNum = 0; }
             if (bombsNum === void 0) { bombsNum = 1; }
-            if (level === void 0) { level = 0; }
+            if (level === void 0) { level = 1; }
             this.Lives = livesNum;
             this.Score = scoreNum;
             this.Bombs = bombsNum;

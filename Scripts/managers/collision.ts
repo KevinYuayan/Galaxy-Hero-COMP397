@@ -22,6 +22,7 @@ module managers {
                         case "meteorite":
                             let yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.1;
+                            managers.Game.scoreBoard.Score += 100;
                             managers.Game.scoreBoard.Lives += 1;
                         break;
                         // case "planet":
