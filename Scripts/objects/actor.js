@@ -17,7 +17,9 @@ var objects;
         __extends(Actor, _super);
         // constructor
         function Actor(imageString) {
-            return _super.call(this, imageString) || this;
+            var _this = _super.call(this, imageString) || this;
+            _this.Start();
+            return _this;
         }
         Object.defineProperty(Actor.prototype, "Position", {
             // public properties

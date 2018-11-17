@@ -34,7 +34,7 @@ var scenes;
             // event listeners
             // starts the play scene
             this._startButton.on("click", function () {
-                managers.Game.currentState = config.Scene.PLAY;
+                managers.Game.currentState = config.Scene.LEVEL1;
             });
         };
         Start.prototype.Start = function () {
@@ -49,7 +49,7 @@ var scenes;
         Start.prototype.Reset = function () {
         };
         Start.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
         };
         return Start;
     }(objects.Scene));

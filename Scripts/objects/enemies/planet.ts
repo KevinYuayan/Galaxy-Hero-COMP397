@@ -1,5 +1,5 @@
 module objects {
-    export class Enemies extends objects.Actor {
+    export class Planet extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -8,13 +8,16 @@ module objects {
         // constructors
 
         constructor() {
-            super("enemies");
+            super("planet");
+
+            this.Start();
         }
 
         // private methods
         private _move() {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         }
 
         private _checkBounds():void {
@@ -25,20 +28,21 @@ module objects {
 
         // public methods
         public Start(): void {
-            this.Reset();
             super.Start();
+            this.Reset();
         }
         public Update(): void {
             this._move();
-            this._checkBounds();
             super.Update();
+            this._checkBounds();
         }
         public Reset(): void {
-            this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 5 to 10
+            super.Reset();
+            this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            super.Reset();
+            this.IsColliding = false;
         }
         public Destroy(): void {
             

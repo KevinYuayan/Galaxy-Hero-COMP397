@@ -17,17 +17,20 @@
         { id: "restartButton", src: imagePath + "restartButton.png" },
         { id: "player", src: imagePath + "player.png" },
         { id: "planet", src: imagePath + "planet.png" },
+        { id: "bomb", src: imagePath + "bomb.png" },
         { id: "meteorite", src: imagePath + "meteorite.png" },
         { id: "enemies", src: imagePath + "enemies.png" },
         { id: "boss", src: imagePath + "boss.png" },
         { id: "spaceBackground", src: imagePath + "spaceBackground.jpg" },
         { id: "startBackground", src: imagePath + "startBackground.jpg" },
+        { id: "bullet", src: imagePath + "bullet_01.png" },
         { id: "engineSound", src: audioPath + "engine.ogg" },
         { id: "thunderSound", src: audioPath + "thunder.ogg" },
         { id: "explosion01", src: audioPath + "explosion14.m4a" },
         { id: "explosion02", src: audioPath + "explosion19.m4a" },
         { id: "spaceship", src: audioPath + "spaceship.m4a" },
-        { id: "yaySound", src: audioPath + "yay.ogg" }
+        { id: "yaySound", src: audioPath + "yay.ogg" },
+        { id: "bullet", src: imagePath + "bullet_01.png" }
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();
@@ -48,7 +51,6 @@
         scoreBoard = new managers.ScoreBoard();
         managers.Game.scoreBoard = scoreBoard;
         currentState = config.Scene.START;
-        // managers.Game.currentState = config.Scene.START;
         managers.Game.currentState = currentState;
         Main();
     }
@@ -71,14 +73,22 @@
             case config.Scene.START:
                 currentScene = new scenes.Start;
                 break;
-            case config.Scene.PLAY:
-                currentScene = new scenes.Play;
+            case config.Scene.INSTRUCTIONS:
+                //currentScene = new scenes.Instructions;
+                break;
+            case config.Scene.LEVEL1:
+                currentScene = new scenes.Level1;
+                break;
+            case config.Scene.LEVEL2:
+                currentScene = new scenes.Level2;
+                break;
+            case config.Scene.LEVEL3:
+                currentScene = new scenes.Level3;
                 break;
             case config.Scene.OVER:
                 currentScene = new scenes.Over;
                 break;
         }
-        // managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
     window.addEventListener("load", Init);

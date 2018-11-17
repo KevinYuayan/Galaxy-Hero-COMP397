@@ -13,43 +13,47 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Enemies = /** @class */ (function (_super) {
-        __extends(Enemies, _super);
+    var Planet = /** @class */ (function (_super) {
+        __extends(Planet, _super);
         // constructors
-        function Enemies() {
-            return _super.call(this, "enemies") || this;
+        function Planet() {
+            var _this = _super.call(this, "planet") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
-        Enemies.prototype._move = function () {
+        Planet.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
-        Enemies.prototype._checkBounds = function () {
+        Planet.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
         };
         // public methods
-        Enemies.prototype.Start = function () {
-            this.Reset();
+        Planet.prototype.Start = function () {
             _super.prototype.Start.call(this);
+            this.Reset();
         };
-        Enemies.prototype.Update = function () {
+        Planet.prototype.Update = function () {
             this._move();
-            this._checkBounds();
             _super.prototype.Update.call(this);
+            this._checkBounds();
         };
-        Enemies.prototype.Reset = function () {
-            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
+        Planet.prototype.Reset = function () {
+            _super.prototype.Reset.call(this);
+            this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
+            this.IsColliding = false;
         };
-        Enemies.prototype.Destroy = function () {
+        Planet.prototype.Destroy = function () {
         };
-        return Enemies;
-    }(objects.Actor));
-    objects.Enemies = Enemies;
+        return Planet;
+    }(objects.Enemy));
+    objects.Planet = Planet;
 })(objects || (objects = {}));
-//# sourceMappingURL=enemies.js.map
+//# sourceMappingURL=planet.js.map
