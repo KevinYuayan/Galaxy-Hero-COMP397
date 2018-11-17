@@ -38,7 +38,7 @@ module objects {
                 this.x = this.HalfWidth;
                 this.Reset();
             }
-            if (managers.Game.scoreBoard.Lives == 3)
+            if (managers.Game.scoreBoard.Level == 3)
             {
                 if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
@@ -52,7 +52,7 @@ module objects {
             super.Start();
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
+            this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.y = this.HalfHeight;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.Reset();

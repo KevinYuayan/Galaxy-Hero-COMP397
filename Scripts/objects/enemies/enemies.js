@@ -42,7 +42,7 @@ var objects;
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
             _super.prototype.Start.call(this);
-            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
+            this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         };
         Enemies.prototype.Update = function () {

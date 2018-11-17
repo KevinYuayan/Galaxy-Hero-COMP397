@@ -37,7 +37,7 @@ module objects {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
             super.Start();
-            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
+            this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         }
         public Update(): void {
