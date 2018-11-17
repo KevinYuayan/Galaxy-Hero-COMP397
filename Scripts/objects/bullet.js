@@ -17,9 +17,7 @@ var objects;
         __extends(Bullet, _super);
         // Constructors
         function Bullet() {
-            var _this = _super.call(this, "bullet") || this;
-            _this.Start();
-            return _this;
+            return _super.call(this, "bullet") || this;
         }
         Object.defineProperty(Bullet.prototype, "Direction", {
             // public properties

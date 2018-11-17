@@ -31,7 +31,6 @@ module objects {
         
         constructor() {
             super("bullet");
-            this.Start();
         }
 
         // private methods
