@@ -8,8 +8,8 @@ var managers;
                 managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
             }
         };
-        Input.OnKeyDown = function (event) {
-            if (event.nativeEvent.button == "b") {
+        Input.KeyPressed = function (event) {
+            if (event.keyCode == 66) {
                 objects.Bomb.UseBomb();
             }
         };

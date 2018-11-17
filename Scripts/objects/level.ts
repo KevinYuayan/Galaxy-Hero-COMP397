@@ -22,7 +22,6 @@ module objects {
         constructor() {
             super();
             // May cause issues with powerups
-            managers.Game.currentLevel = this;
         }
         // private methods
 

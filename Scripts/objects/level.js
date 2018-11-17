@@ -17,10 +17,8 @@ var objects;
         __extends(Level, _super);
         // constructor
         function Level() {
-            var _this = _super.call(this) || this;
+            return _super.call(this) || this;
             // May cause issues with powerups
-            managers.Game.currentLevel = _this;
-            return _this;
         }
         Level.prototype.Destroy = function () {
             this.removeAllChildren();

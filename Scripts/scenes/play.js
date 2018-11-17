@@ -95,7 +95,8 @@ var scenes;
         };
         Play.prototype.SetupInput = function () {
             this.on("mousedown", managers.Input.OnLeftMouseDown);
-            this.on("keydown", managers.Input.OnKeyDown);
+            this.addEventListener("keydown", managers.Input.KeyPressed);
+            //this.on("keydown", managers.Input.KeyPressed);
         };
         Play.prototype.Update = function () {
             var _this = this;
@@ -139,7 +140,7 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
-            this.on("keydown", managers.Input.OnKeyDown);
+            this.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Play;
     }(objects.Level));
