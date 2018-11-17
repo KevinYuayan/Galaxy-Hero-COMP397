@@ -25,8 +25,10 @@ module objects {
             if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
-            if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
-                managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+            if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3){
+                if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
+                    managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+                }
             }
         }
 
