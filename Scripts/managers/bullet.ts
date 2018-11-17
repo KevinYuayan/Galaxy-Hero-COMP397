@@ -1,12 +1,12 @@
-module managers {
-    export class Bullet {
-        // private instance variables
+module managers{
+    export class Bullet{
+        //private instance variables
         private _bullets: objects.Bullet[];
         private _bulletNum: number;
         private _currentBullet: objects.Bullet;
         private _currentBulletIndex: number;
 
-        // public properties
+        //public properties
         get Bullets():objects.Bullet[] {
             return this._bullets;
         }
@@ -32,16 +32,16 @@ module managers {
         }
 
         // constructor
-        constructor(bulletNum:number = 1) {
+        constructor(bulletNum:number = 100) {
 
             this.BulletNum = bulletNum;
 
             this.Start();
         }
 
-        // private methods
+        //private methods
 
-        // public methods
+        //public methods
         public Start():void {
             // create the bullets container
             this.Bullets = new Array<objects.Bullet>();

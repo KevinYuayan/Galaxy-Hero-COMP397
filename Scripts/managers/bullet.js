@@ -3,12 +3,12 @@ var managers;
     var Bullet = /** @class */ (function () {
         // constructor
         function Bullet(bulletNum) {
-            if (bulletNum === void 0) { bulletNum = 1; }
+            if (bulletNum === void 0) { bulletNum = 100; }
             this.BulletNum = bulletNum;
             this.Start();
         }
         Object.defineProperty(Bullet.prototype, "Bullets", {
-            // public properties
+            //public properties
             get: function () {
                 return this._bullets;
             },
@@ -38,8 +38,8 @@ var managers;
             enumerable: true,
             configurable: true
         });
-        // private methods
-        // public methods
+        //private methods
+        //public methods
         Bullet.prototype.Start = function () {
             // create the bullets container
             this.Bullets = new Array();

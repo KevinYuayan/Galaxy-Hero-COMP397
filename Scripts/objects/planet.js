@@ -17,12 +17,15 @@ var objects;
         __extends(Planet, _super);
         // constructors
         function Planet() {
-            return _super.call(this, "planet") || this;
+            var _this = _super.call(this, "planet") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Planet.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
         Planet.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
@@ -32,19 +35,17 @@ var objects;
         // public methods
         Planet.prototype.Start = function () {
             this.Reset();
-            //super.Start();
         };
         Planet.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            //super.Update();
         };
         Planet.prototype.Reset = function () {
             this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            //super.Reset();
+            this.IsColliding = false;
         };
         Planet.prototype.Destroy = function () {
         };

@@ -24,7 +24,7 @@ module objects {
             if(!this._isInPlay) {
                 this.Reset();
             }
-            this._velocity =  util.Vector2.Multiply(this.Direction, this._speed);
+            this._velocity =  util.Vector2.Mulitply(this.Direction, this._speed);
         }
 
         // Constructors
@@ -43,8 +43,9 @@ module objects {
         }
 
         private _checkBounds(): any {
-            if((this.y > 480) || (this.y < 0)) {
+            if((this.y > (480 + this.HalfHeight)) || (this.y < -this.HalfHeight)) {
                 this.IsInPlay = false;
+                this.Reset();
             }
         }
         
@@ -52,7 +53,9 @@ module objects {
         public Reset(): void {
             this.x = -10000;
             this.y = -10000;
+            this._updatePosition();
            this.Direction = util.Vector2.zero();
+
         } 
 
         public Start(): void {
@@ -71,10 +74,6 @@ module objects {
         public Destroy(): void {
             
         }
-
-
-
-
 
     }
 }

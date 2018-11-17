@@ -9,6 +9,8 @@ module objects {
 
         constructor() {
             super("boss");
+
+            this.Start();
         }
 
         // private methods
@@ -18,6 +20,7 @@ module objects {
             if(this._horizontalSpeed == 0){
                 this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             }
+            this._updatePosition();
         }
 
         private _checkBounds():void {
@@ -45,7 +48,6 @@ module objects {
             this.y = this.HalfHeight;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.Reset();
-            //super.Start();
         }
         public Update(): void {
             this._move();
@@ -54,7 +56,7 @@ module objects {
         public Reset(): void {
             this._verticalSpeed = Math.floor((Math.random()*4)+6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
-
+            this.IsColliding = false;
         }
         public Destroy(): void {
             

@@ -17,7 +17,9 @@ var objects;
         __extends(Boss, _super);
         // constructors
         function Boss() {
-            return _super.call(this, "boss") || this;
+            var _this = _super.call(this, "boss") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Boss.prototype._move = function () {
@@ -25,6 +27,7 @@ var objects;
             if (this._horizontalSpeed == 0) {
                 this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             }
+            this._updatePosition();
         };
         Boss.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.HalfHeight || this.y < -this.HalfHeight) {
@@ -48,7 +51,6 @@ var objects;
             this.y = this.HalfHeight;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.Reset();
-            //super.Start();
         };
         Boss.prototype.Update = function () {
             this._move();
@@ -57,6 +59,7 @@ var objects;
         Boss.prototype.Reset = function () {
             this._verticalSpeed = Math.floor((Math.random() * 4) + 6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
+            this.IsColliding = false;
         };
         Boss.prototype.Destroy = function () {
         };

@@ -62,7 +62,7 @@ module util {
          * @param {number} scalar
          * @returns {util.Vector2}
          */
-        public static Multiply(vec1:util.Vector2, scalar:number):util.Vector2 {
+        public static Mulitply(vec1:util.Vector2, scalar:number):util.Vector2 {
             return new util.Vector2(vec1.x * scalar, vec1.y * scalar);
         }
 

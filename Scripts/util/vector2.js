@@ -69,7 +69,7 @@ var util;
          * @param {number} scalar
          * @returns {util.Vector2}
          */
-        Vector2.Multiply = function (vec1, scalar) {
+        Vector2.Mulitply = function (vec1, scalar) {
             return new util.Vector2(vec1.x * scalar, vec1.y * scalar);
         };
         /**
