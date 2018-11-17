@@ -54,6 +54,11 @@ module scenes {
 
             this.addChild(this._boss);
 
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(bullet => {
+                this.addChild(bullet);
+            });
+
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         }
@@ -62,7 +67,7 @@ module scenes {
 
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();

@@ -4,6 +4,7 @@ module objects {
 
         private _verticalSpeed:number;
         private _horizontalSpeed:number;
+        private _bulletSpawn: util.Vector2;
 
         // constructors
 
@@ -24,11 +25,17 @@ module objects {
             if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
+            if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
+                managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+            }
         }
 
         // public methods
         public Start(): void {
+            this.regX = this.HalfHeight;
+            this.regY = this.HalfWidth;
             super.Start();
+            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
             this.Reset();
         }
         public Update(): void {

@@ -54,7 +54,6 @@ module objects {
             this._move();
             super.Update();
             this._checkBounds();
-
         }
         public Reset(): void {
             super.Reset();

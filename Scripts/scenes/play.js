@@ -51,6 +51,10 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                _this.addChild(bullet);
+            });
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         };
@@ -58,7 +62,7 @@ var scenes;
             managers.Game.scoreBoard.Reset();
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller

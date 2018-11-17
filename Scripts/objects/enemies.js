@@ -31,9 +31,15 @@ var objects;
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
+            if ((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
+                managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+            }
         };
         // public methods
         Enemies.prototype.Start = function () {
+            this.regX = this.HalfHeight;
+            this.regY = this.HalfWidth;
+            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
             _super.prototype.Start.call(this);
             this.Reset();
         };
