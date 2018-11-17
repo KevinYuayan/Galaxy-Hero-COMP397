@@ -17,31 +17,24 @@ module managers {
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
                     actor2.IsColliding = true;
-                    console.log("collided with: " + actor2.name);
-
+                    console.log(actor1.name + " collided with: " + actor2.name);
                     switch (actor2.name) {
                         case "meteorite":
-                        case "planet":
+                        let yaySound = createjs.Sound.play("yaySound");
+                        yaySound.volume = 0.1;
+                        managers.Game.scoreBoard.Score += 100;
+                        break;
+                        // case "planet":
                         case "boss":
-                            createjs.Sound.play("explosion01");
+                            let explosionSound = createjs.Sound.play("explosion01");
+                            explosionSound.volume = 0.1;
                             console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
-                            if (managers.Game.scoreBoard.Lives <= 0) {
-                                managers.Game.currentState = config.Scene.OVER;
-                                if (managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
-                                    managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                }
-                            }
-
-                            break;
+                        break;
                         case "enemies":
-
-                            createjs.Sound.play("explosion02");
-                            if (actor1.name == "player") {
-                                managers.Game.scoreBoard.Lives -= 1;
-                            }
-                            // else is when actor1 is a player bullet
-                            else {
+                            if(actor1.name == "bullet") {
+                                explosionSound = createjs.Sound.play("explosion01");
+                                explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
                                 // 10% chance for Bomb to spawn when enemy dies
                                 if (Math.random() < 0.1) {
@@ -52,15 +45,34 @@ module managers {
                                         managers.Game.currentLevel.addChild(managers.Game.currentLevel.powerUp);
                                     }
                                 }
-
+                                actor2.Reset();
+                                actor1.Reset(); 
                             }
-                            actor2.Destroy();
-                            break;
+                            else{
+                            explosionSound = createjs.Sound.play("explosion02");
+                            explosionSound.volume = 0.1;
+                            managers.Game.scoreBoard.Lives -=1;
+                            }
+                        break;
+
+                        case "bullet":
+                            explosionSound = createjs.Sound.play("explosion02");
+                            explosionSound.volume = 0.1;
+                            managers.Game.scoreBoard.Lives -=1;
+                            object2.Reset();
+                        break;
                         case "bomb":
                             managers.Game.currentLevel.powerUp.Collected();
                             break;
-
                     }
+                    if(managers.Game.scoreBoard.Lives <= 0) {
+                        managers.Game.currentState = config.Scene.OVER;
+                        if(managers.Game.scoreBoard.HighScore <= managers.Game.scoreBoard.Score) {
+                            managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                        }
+                    }
+                    
+
                 }
             }
         }

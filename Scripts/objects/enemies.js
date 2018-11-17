@@ -17,12 +17,15 @@ var objects;
         __extends(Enemies, _super);
         // constructors
         function Enemies() {
-            return _super.call(this, "enemies") || this;
+            var _this = _super.call(this, "enemies") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
+            this._updatePosition();
         };
         Enemies.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
@@ -32,19 +35,17 @@ var objects;
         // public methods
         Enemies.prototype.Start = function () {
             this.Reset();
-            _super.prototype.Start.call(this);
         };
         Enemies.prototype.Update = function () {
             this._move();
             this._checkBounds();
-            _super.prototype.Update.call(this);
         };
         Enemies.prototype.Reset = function () {
-            this._verticalSpeed = Math.floor((Math.random() * 6) + 6); // speed from 5 to 10
+            this._verticalSpeed = Math.floor((Math.random() * 2) + 4); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            _super.prototype.Reset.call(this);
+            this.IsColliding = false;
         };
         Enemies.prototype.Destroy = function () {
         };

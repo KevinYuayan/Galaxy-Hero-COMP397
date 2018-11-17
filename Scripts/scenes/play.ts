@@ -1,7 +1,7 @@
 module scenes {
     export class Play extends objects.Level {
         // private instance variables
-
+        private _bulletManager: managers.Bullet;
 
         // public properties
 
@@ -31,6 +31,10 @@ module scenes {
             // adds player to the stage
             this.addChild(this._player);
 
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(bullet => {
+                this.addChild(bullet);
+            });
 
             // adds planets to the scene
             for (let count = 0; count < this._planetNum; count++) {
@@ -60,13 +64,16 @@ module scenes {
             for (let count = 0; count < this._backgroundNum; count++) {
                 this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
             }
-            this._currentBackgroundNum = 0;
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
             this._meteorite = new objects.Meteorite();
-            this._player = new objects.Player();
             this._boss = new objects.Boss();
+
+            this._player = new objects.Player();
+            managers.Game.player = this._player;
+
+
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
             this._enemies = new Array<objects.Enemies>();
@@ -80,8 +87,19 @@ module scenes {
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
             this._engineSound.loop = -1;
+
+               // instantiates a new bullet manager
+            this._bulletManager = new managers.Bullet();
+            managers.Game.bulletManager = this._bulletManager;
+
+            this.SetupInput();
+
             this.Main();
         }
+
+        public SetupInput(): void {
+            this.on("mousedown", managers.Input.OnLeftMouseDown);
+          }
 
         public Update(): void {
 
@@ -109,6 +127,14 @@ module scenes {
                 managers.Collision.Check(this._player, enemy);
             });
 
+            this._bulletManager.Update();
+            this._bulletManager.Bullets.forEach(bullet => {
+              managers.Collision.Check(this._player, bullet);
+                this._enemies.forEach(enemy => {
+                    managers.Collision.Check(bullet, enemy);
+                });
+            });
+
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
@@ -119,11 +145,12 @@ module scenes {
                 this._backgrounds[1].Update();
             }
         }
-        public Reset(): void {
+        public Reset(): void {}
 
-        }
         public Destroy(): void {
-            super.Destroy();
+            this.removeAllChildren();
+            this._engineSound.stop();
+            this.off("mousedown",managers.Input.OnLeftMouseDown);
         }
 
 
