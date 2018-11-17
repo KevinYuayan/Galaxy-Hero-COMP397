@@ -2,6 +2,7 @@ module scenes {
     export class Play extends objects.Level {
         // private instance variables
         private _bulletManager: managers.Bullet;
+        private _powerUpManager: managers.PowerUps;
 
         // public properties
 
@@ -34,6 +35,11 @@ module scenes {
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
                 this.addChild(bullet);
+            });
+
+            // adds powerUps to the scene
+            this._powerUpManager.PowerUps.forEach(powerUp => {
+                this.addChild(powerUp);
             });
 
             // adds planets to the scene
@@ -92,6 +98,10 @@ module scenes {
             this._bulletManager = new managers.Bullet();
             managers.Game.bulletManager = this._bulletManager;
 
+            // instantiates a new powerUp manager
+            this._powerUpManager = new managers.PowerUps();
+            managers.Game.powerUpManager = this._powerUpManager;
+
             this.SetupInput();
 
             this.Main();
@@ -99,7 +109,8 @@ module scenes {
 
         public SetupInput(): void {
             this.on("mousedown", managers.Input.OnLeftMouseDown);
-          }
+            this.on("keydown", managers.Input.OnKeyDown);
+        }
 
         public Update(): void {
 
@@ -110,11 +121,6 @@ module scenes {
 
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
-
-            if(this.powerUp != null ) {
-                this.powerUp.Update();
-                managers.Collision.Check(this._player, this.powerUp);
-            }
 
             // updates each planet in array
             this._planets.forEach(planet => {
@@ -135,6 +141,11 @@ module scenes {
                 });
             });
 
+            this._powerUpManager.Update();
+            this._powerUpManager.PowerUps.forEach(powerUp => {
+                managers.Collision.Check(this._player, powerUp);
+            });
+
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
@@ -151,6 +162,7 @@ module scenes {
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown",managers.Input.OnLeftMouseDown);
+            this.on("keydown", managers.Input.OnKeyDown);
         }
 
 

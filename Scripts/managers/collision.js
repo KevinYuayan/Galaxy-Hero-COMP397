@@ -35,13 +35,8 @@ var managers;
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
                                 // 10% chance for Bomb to spawn when enemy dies
-                                if (Math.random() < 0.1) {
-                                    // checks if powerUp is already in play
-                                    // TODO needs fine tuning
-                                    if (managers.Game.currentLevel.powerUp == null || managers.Game.currentLevel.powerUp.destroyed) {
-                                        managers.Game.currentLevel.powerUp = new objects.Bomb();
-                                        managers.Game.currentLevel.addChild(managers.Game.currentLevel.powerUp);
-                                    }
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
                                 }
                                 actor2.Reset();
                                 actor1.Reset();
@@ -59,7 +54,8 @@ var managers;
                             actor2.Reset();
                             break;
                         case "bomb":
-                            managers.Game.currentLevel.powerUp.Collected();
+                            var aBomb = actor2;
+                            aBomb.Collected();
                             break;
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {

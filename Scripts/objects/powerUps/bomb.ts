@@ -3,22 +3,13 @@ module objects {
         
         // private variables
         private _verticalSpeed:number;
-        private _collided: boolean;
 
         // public variables
-
-        get Collided():boolean {
-            return this._collided;
-        }
-
-        set Collided(newValue:boolean) {
-            this._collided = newValue;
-        }
-
+        
         // constructors
 
         constructor() {
-            super("bomb"); //TODO add bomb to imgs
+            super("bomb");
         }
 
         // private methods
@@ -28,19 +19,27 @@ module objects {
 
         private _checkBounds():void {
             if(this.y > config.Constants.canvasHeight + this.Height){
-                this.Destroy();
+                this.Reset();
             }
         }
 
         // public methods
 
+        public static UseBomb():void {
+            if(managers.Game.scoreBoard.Bombs > 0) {
+                managers.Game.scoreBoard.Bombs -= 1;
+                managers.Game.bulletManager.Bullets.forEach(bullet => {
+                    bullet.Reset();
+                })
+            }
+        }
+
         // Adds a bomb to player when picked up. Max 3 bombs
-        public Collected(): boolean {
-            if(managers.Game.scoreBoard.Bombs < 4) {
+        public Collected(): void {
+            if(managers.Game.scoreBoard.Bombs < 3) {
                 managers.Game.scoreBoard.Bombs += 1;
             }
-            this.Collided = true;
-            return this.Collided;
+            this.IsInPlay = false;
         }
         
 
@@ -54,12 +53,12 @@ module objects {
             super.Update();
         }
         public Reset(): void {
+            this.x = -10000;
+            this.y = -10000;
             this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 2 to 4
-            this.destroyed = false;
             super.Reset();
         }
         public Destroy(): void {
-            this.destroyed = true;
         }
     }
 }

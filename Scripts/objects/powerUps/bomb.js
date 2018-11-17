@@ -15,38 +15,35 @@ var objects;
 (function (objects) {
     var Bomb = /** @class */ (function (_super) {
         __extends(Bomb, _super);
+        // public variables
         // constructors
         function Bomb() {
             return _super.call(this, "bomb") || this;
         }
-        Object.defineProperty(Bomb.prototype, "Collided", {
-            // public variables
-            get: function () {
-                return this._collided;
-            },
-            set: function (newValue) {
-                this._collided = newValue;
-            },
-            enumerable: true,
-            configurable: true
-        });
         // private methods
         Bomb.prototype._move = function () {
             this.y += this._verticalSpeed;
         };
         Bomb.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
-                this.Destroy();
+                this.Reset();
             }
         };
         // public methods
+        Bomb.UseBomb = function () {
+            if (managers.Game.scoreBoard.Bombs > 0) {
+                managers.Game.scoreBoard.Bombs -= 1;
+                managers.Game.bulletManager.Bullets.forEach(function (bullet) {
+                    bullet.Reset();
+                });
+            }
+        };
         // Adds a bomb to player when picked up. Max 3 bombs
         Bomb.prototype.Collected = function () {
-            if (managers.Game.scoreBoard.Bombs < 4) {
+            if (managers.Game.scoreBoard.Bombs < 3) {
                 managers.Game.scoreBoard.Bombs += 1;
             }
-            this.Collided = true;
-            return this.Collided;
+            this.IsInPlay = false;
         };
         Bomb.prototype.Start = function () {
             this.Reset();
@@ -58,12 +55,12 @@ var objects;
             _super.prototype.Update.call(this);
         };
         Bomb.prototype.Reset = function () {
+            this.x = -10000;
+            this.y = -10000;
             this._verticalSpeed = Math.floor((Math.random() * 2) + 2); // speed from 2 to 4
-            this.destroyed = false;
             _super.prototype.Reset.call(this);
         };
         Bomb.prototype.Destroy = function () {
-            this.destroyed = true;
         };
         return Bomb;
     }(objects.PowerUp));

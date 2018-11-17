@@ -31,7 +31,6 @@ module objects {
         
         constructor() {
             super("bullet");
-
             this.Start();
         }
 
@@ -64,7 +63,6 @@ module objects {
             super.Start();
             this._speed = 15;
             this.IsInPlay = false;
-
         }
 
         public Update(): void {
@@ -74,10 +72,8 @@ module objects {
                 this._checkBounds();
             }
         }
-        
 
         public Destroy(): void {
-            
         }
 
     }

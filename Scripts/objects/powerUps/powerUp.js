@@ -18,6 +18,19 @@ var objects;
         function PowerUp() {
             return _super !== null && _super.apply(this, arguments) || this;
         }
+        Object.defineProperty(PowerUp.prototype, "IsInPlay", {
+            get: function () {
+                return this._isInPlay;
+            },
+            set: function (newState) {
+                this._isInPlay = newState;
+                if (!this._isInPlay) {
+                    this.Reset();
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
         return PowerUp;
     }(objects.Actor));
     objects.PowerUp = PowerUp;

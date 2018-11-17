@@ -38,6 +38,10 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
             });
+            // adds powerUps to the scene
+            this._powerUpManager.PowerUps.forEach(function (powerUp) {
+                _this.addChild(powerUp);
+            });
             // adds planets to the scene
             for (var count = 0; count < this._planetNum; count++) {
                 this.addChild(this._planets[count]);
@@ -83,11 +87,15 @@ var scenes;
             // instantiates a new bullet manager
             this._bulletManager = new managers.Bullet();
             managers.Game.bulletManager = this._bulletManager;
+            // instantiates a new powerUp manager
+            this._powerUpManager = new managers.PowerUps();
+            managers.Game.powerUpManager = this._powerUpManager;
             this.SetupInput();
             this.Main();
         };
         Play.prototype.SetupInput = function () {
             this.on("mousedown", managers.Input.OnLeftMouseDown);
+            this.on("keydown", managers.Input.OnKeyDown);
         };
         Play.prototype.Update = function () {
             var _this = this;
@@ -96,10 +104,6 @@ var scenes;
             managers.Collision.Check(this._player, this._meteorite);
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
-            if (this.powerUp != null) {
-                this.powerUp.Update();
-                managers.Collision.Check(this._player, this.powerUp);
-            }
             // updates each planet in array
             this._planets.forEach(function (planet) {
                 planet.Update();
@@ -117,6 +121,10 @@ var scenes;
                     managers.Collision.Check(bullet, enemy);
                 });
             });
+            this._powerUpManager.Update();
+            this._powerUpManager.PowerUps.forEach(function (powerUp) {
+                managers.Collision.Check(_this._player, powerUp);
+            });
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
@@ -131,6 +139,7 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
+            this.on("keydown", managers.Input.OnKeyDown);
         };
         return Play;
     }(objects.Level));
