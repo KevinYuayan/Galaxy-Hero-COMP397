@@ -25,6 +25,7 @@ var scenes;
         // private methods
         // public methods
         Level2.prototype.Main = function () {
+            var _this = this;
             // adds backgrounds to the stage
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
@@ -33,6 +34,14 @@ var scenes;
             this.addChild(this._meteorite);
             // adds player to the stage
             this.addChild(this._player);
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                _this.addChild(bullet);
+            });
+            // adds powerUps to the scene
+            this._powerUpManager.PowerUps.forEach(function (powerUp) {
+                _this.addChild(powerUp);
+            });
             // adds planets to the scene
             for (var count = 0; count < this._planetNum; count++) {
                 this.addChild(this._planets[count]);
@@ -42,6 +51,10 @@ var scenes;
                 this.addChild(this._enemies[count]);
             }
             this.addChild(this._boss);
+            // adds bullets to the scene
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                _this.addChild(bullet);
+            });
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         };
@@ -49,19 +62,19 @@ var scenes;
             managers.Game.scoreBoard.Reset();
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
             for (var count = 0; count < this._backgroundNum; count++) {
                 this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
             }
-            this._currentBackgroundNum = 0;
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
             this._meteorite = new objects.Meteorite();
-            this._player = new objects.Player();
             this._boss = new objects.Boss();
+            this._player = new objects.Player();
+            managers.Game.player = this._player;
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemies = new Array();
@@ -75,7 +88,19 @@ var scenes;
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
             this._engineSound.loop = -1;
+            // instantiates a new bullet manager
+            this._bulletManager = new managers.Bullet();
+            managers.Game.bulletManager = this._bulletManager;
+            // instantiates a new powerUp manager
+            this._powerUpManager = new managers.PowerUps();
+            managers.Game.powerUpManager = this._powerUpManager;
+            this.SetupInput();
             this.Main();
+        };
+        Level2.prototype.SetupInput = function () {
+            this.on("mousedown", managers.Input.OnLeftMouseDown);
+            this.addEventListener("keydown", managers.Input.KeyPressed);
+            //this.on("keydown", managers.Input.KeyPressed);
         };
         Level2.prototype.Update = function () {
             var _this = this;
@@ -94,6 +119,17 @@ var scenes;
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
             });
+            this._bulletManager.Update();
+            this._bulletManager.Bullets.forEach(function (bullet) {
+                managers.Collision.Check(_this._player, bullet);
+                _this._enemies.forEach(function (enemy) {
+                    managers.Collision.Check(bullet, enemy);
+                });
+            });
+            this._powerUpManager.Update();
+            this._powerUpManager.PowerUps.forEach(function (powerUp) {
+                managers.Collision.Check(_this._player, powerUp);
+            });
             // updates background 0
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
@@ -103,10 +139,12 @@ var scenes;
                 this._backgrounds[1].Update();
             }
         };
-        Level2.prototype.Reset = function () {
-        };
+        Level2.prototype.Reset = function () { };
         Level2.prototype.Destroy = function () {
-            _super.prototype.Destroy.call(this);
+            this.removeAllChildren();
+            this._engineSound.stop();
+            this.off("mousedown", managers.Input.OnLeftMouseDown);
+            this.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Level2;
     }(objects.Level));
