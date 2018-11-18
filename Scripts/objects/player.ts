@@ -52,7 +52,5 @@ module objects {
         
         public Destroy(): void {
         }
-
-
     }
 }

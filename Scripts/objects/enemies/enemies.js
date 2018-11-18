@@ -17,15 +17,12 @@ var objects;
         __extends(Enemies, _super);
         // constructors
         function Enemies() {
-            var _this = _super.call(this, "enemies") || this;
-            _this.Start();
-            return _this;
+            return _super.call(this, "enemies") || this;
         }
         // private methods
         Enemies.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
-            this._updatePosition();
         };
         Enemies.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
@@ -33,6 +30,8 @@ var objects;
             }
             if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3) {
                 if ((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
+                    //if((Math.random() < 0.17) && (this.y > 0)) {
+                    console.log(this + "fired a bullet");
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }

@@ -17,9 +17,7 @@ var objects;
         __extends(Planet, _super);
         // constructors
         function Planet() {
-            var _this = _super.call(this, "planet") || this;
-            _this.Start();
-            return _this;
+            return _super.call(this, "planet") || this;
         }
         // private methods
         Planet.prototype._move = function () {

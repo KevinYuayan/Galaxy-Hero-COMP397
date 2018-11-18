@@ -17,9 +17,7 @@ var objects;
         __extends(Boss, _super);
         // constructors
         function Boss() {
-            var _this = _super.call(this, "boss") || this;
-            _this.Start();
-            return _this;
+            return _super.call(this, "boss") || this;
         }
         // private methods
         Boss.prototype._move = function () {
