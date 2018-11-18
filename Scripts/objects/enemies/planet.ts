@@ -9,8 +9,6 @@ module objects {
 
         constructor() {
             super("planet");
-
-            this.Start();
         }
 
         // private methods
