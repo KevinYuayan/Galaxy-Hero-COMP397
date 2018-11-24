@@ -50,6 +50,8 @@ var managers;
             // set the current bullet to the first bullet object
             this._currentBulletIndex = 0;
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
+            this._divergeLeft = new util.Vector2(-1, 0);
+            this._divergeRight = new util.Vector2(1, 0);
         };
         Bullet.prototype.Update = function () {
             this.Bullets.forEach(function (bullet) {
@@ -67,6 +69,11 @@ var managers;
                 this._currentBulletIndex = 0;
             }
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
+        };
+        Bullet.prototype.TripleShot = function (spawnPoint, direction) {
+            this.FireBullet(spawnPoint, direction);
+            this.FireBullet(spawnPoint, util.Vector2.Add(direction, this._divergeLeft));
+            this.FireBullet(spawnPoint, util.Vector2.Add(direction, this._divergeRight));
         };
         return Bullet;
     }());

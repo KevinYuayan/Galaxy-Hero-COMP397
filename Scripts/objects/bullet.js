@@ -67,13 +67,13 @@ var objects;
         };
         Bullet.prototype.Start = function () {
             _super.prototype.Start.call(this);
-            this._speed = 15;
+            this._speed = 5;
             this.IsInPlay = false;
         };
         Bullet.prototype.Update = function () {
+            _super.prototype.Update.call(this);
             if (this.IsInPlay) {
                 this._move();
-                _super.prototype.Update.call(this);
                 this._checkBounds();
             }
         };

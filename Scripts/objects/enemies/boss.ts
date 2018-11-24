@@ -23,6 +23,7 @@ module objects {
         }
 
         private _checkBounds():void {
+
             if(this.y > config.Constants.canvasHeight + this.HalfHeight || this.y < -this.HalfHeight){
                 this.Reset();
             }
@@ -38,9 +39,10 @@ module objects {
             }
             if (managers.Game.scoreBoard.Level == 3)
             {
-                //if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
-                if((Math.random() < 0.17) && (this.y > 0)) {
-                    managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+                if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
+                // if((Math.random() < 0.17) && (this.y > 0)) {
+                    // managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position,this._bulletSpawn), util.Vector2.down());
+                    managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position,this._bulletSpawn), util.Vector2.down());  
                 }
             }
         }
@@ -57,8 +59,8 @@ module objects {
             this.Reset();
         }
         public Update(): void {
-            this._move();
             super.Update();
+            this._move();
             this._checkBounds();
         }
         public Reset(): void {

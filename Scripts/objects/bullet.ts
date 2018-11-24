@@ -55,19 +55,18 @@ module objects {
             this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
-
         } 
 
         public Start(): void {
             super.Start();
-            this._speed = 15;
+            this._speed = 5;
             this.IsInPlay = false;
         }
 
         public Update(): void {
+            super.Update();          
             if(this.IsInPlay) {
                 this._move();
-                super.Update();
                 this._checkBounds();
             }
         }
