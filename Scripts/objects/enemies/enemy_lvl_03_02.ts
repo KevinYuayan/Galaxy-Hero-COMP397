@@ -45,10 +45,10 @@ module objects {
             super.Update();
             this._checkBounds();
         }
-        
+
         public Reset(): void {
             super.Reset();
-            this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 1 to 5
+            this._verticalSpeed = Math.floor((Math.random()*3)+3); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);

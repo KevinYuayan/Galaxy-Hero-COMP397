@@ -47,8 +47,11 @@ var scenes;
                 this.addChild(this._planets[count]);
             }
             //adds enemies to the scene
-            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+            for (var count = 0; count < this._enemiesNum_03_01; count++) {
                 this.addChild(this._enemy_03_01[count]);
+            }
+            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+                this.addChild(this._enemy_03_02[count]);
             }
             this.addChild(this._boss);
             // adds bullets to the scene
@@ -62,7 +65,8 @@ var scenes;
             // managers.Game.scoreBoard.Reset();
             managers.Game.scoreBoard.Level += 1;
             this._backgroundNum = 2;
-            this._enemiesNum_03_02 = 3;
+            this._enemiesNum_03_01 = 3;
+            this._enemiesNum_03_02 = 1;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
@@ -78,8 +82,12 @@ var scenes;
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemy_03_01 = new Array();
-            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+            for (var count = 0; count < this._enemiesNum_03_01; count++) {
                 this._enemy_03_01[count] = new objects.EnemyLvl03_01();
+            }
+            this._enemy_03_02 = new Array();
+            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+                this._enemy_03_02[count] = new objects.EnemyLvl03_02();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -110,10 +118,17 @@ var scenes;
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
             });
+            this._enemy_03_02.forEach(function (enemy) {
+                enemy.Update();
+                managers.Collision.Check(_this._player, enemy);
+            });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(function (bullet) {
                 managers.Collision.Check(_this._player, bullet);
                 _this._enemy_03_01.forEach(function (enemy) {
+                    managers.Collision.Check(bullet, enemy);
+                });
+                _this._enemy_03_02.forEach(function (enemy) {
                     managers.Collision.Check(bullet, enemy);
                 });
             });
