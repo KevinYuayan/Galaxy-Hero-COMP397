@@ -5,8 +5,6 @@ module objects {
 
         constructor() {
             super("meteorite");
-
-            this.Start();
         }
 
         // private methods

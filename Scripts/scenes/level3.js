@@ -59,7 +59,8 @@ var scenes;
             managers.Game.scoreBoard.AddGameUI(this);
         };
         Level3.prototype.Start = function () {
-            managers.Game.scoreBoard.Reset();
+            // managers.Game.scoreBoard.Reset();
+            managers.Game.scoreBoard.Level += 1;
             this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
@@ -99,7 +100,7 @@ var scenes;
         };
         Level3.prototype.SetupInput = function () {
             this.on("mousedown", managers.Input.OnLeftMouseDown);
-            this.addEventListener("keydown", managers.Input.KeyPressed);
+            document.addEventListener("keydown", managers.Input.KeyPressed);
             //this.on("keydown", managers.Input.KeyPressed);
         };
         Level3.prototype.Update = function () {
@@ -144,7 +145,7 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
-            this.removeEventListener("keydown", managers.Input.KeyPressed);
+            document.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Level3;
     }(objects.Level));

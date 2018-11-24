@@ -4,13 +4,12 @@ module objects {
 
         private _verticalSpeed:number;
         private _horizontalSpeed:number;
+        private _bulletSpawn: util.Vector2;
 
         // constructors
 
         constructor() {
             super("boss");
-
-            this.Start();
         }
 
         // private methods
@@ -37,6 +36,13 @@ module objects {
                 this.x = this.HalfWidth;
                 this.Reset();
             }
+            if (managers.Game.scoreBoard.Level == 3)
+            {
+                //if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
+                if((Math.random() < 0.17) && (this.y > 0)) {
+                    managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+                }
+            }
         }
 
 
@@ -45,7 +51,7 @@ module objects {
             super.Start();
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-
+            this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.y = this.HalfHeight;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.Reset();

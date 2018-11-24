@@ -10,23 +10,24 @@ module objects {
 
         constructor() {
             super("enemies");
-
-            this.Start();
         }
 
         // private methods
         private _move() {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
-            this._updatePosition();
         }
 
         private _checkBounds():void {
             if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
-            if((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
-                managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+            if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3){
+                //if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
+                if((Math.random() < 0.17) && (this.y > 0)) {
+                    console.log(this + "fired a bullet");
+                    managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+                }
             }
         }
 
@@ -35,7 +36,7 @@ module objects {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
             super.Start();
-            this._bulletSpawn = new util.Vector2(0, 5 + this.HalfHeight);
+            this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         }
         public Update(): void {

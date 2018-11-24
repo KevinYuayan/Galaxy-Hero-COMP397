@@ -16,9 +16,7 @@ var objects;
     var Meteorite = /** @class */ (function (_super) {
         __extends(Meteorite, _super);
         function Meteorite() {
-            var _this = _super.call(this, "meteorite") || this;
-            _this.Start();
-            return _this;
+            return _super.call(this, "meteorite") || this;
         }
         // private methods
         Meteorite.prototype._move = function () {
