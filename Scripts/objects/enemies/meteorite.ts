@@ -1,20 +1,16 @@
 module objects {
-    export class Enemies extends objects.Actor {
-        // private instance variables
-
+    export class Meteorite extends objects.Enemy {
         private _verticalSpeed:number;
-        private _horizontalSpeed:number;
 
-        // constructors
 
         constructor() {
-            super("enemies");
+            super("meteorite");
         }
 
         // private methods
         private _move() {
             this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
+            this._updatePosition();
         }
 
         private _checkBounds():void {
@@ -25,19 +21,19 @@ module objects {
 
         // public methods
         public Start(): void {
-            this.Reset();
             super.Start();
+            this.Reset();
         }
         public Update(): void {
             this._move();
-            this._checkBounds();
             super.Update();
+            this._checkBounds();
         }
         public Reset(): void {
-            this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 5 to 10
-            this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
+            this._verticalSpeed = config.Constants.verticalPlaySpeed;
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
+            this.IsColliding = false;
             super.Reset();
         }
         public Destroy(): void {

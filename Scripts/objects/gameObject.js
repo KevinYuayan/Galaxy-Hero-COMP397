@@ -15,12 +15,7 @@ var objects;
 (function (objects) {
     var GameObject = /** @class */ (function (_super) {
         __extends(GameObject, _super);
-        // constructor
-        /**
-         *Creates an instance of gameObject.
-         * @param {string} imageString
-         * @memberof gameObject
-         */
+        // constructors
         function GameObject(imageString) {
             var _this = _super.call(this, managers.Game.assetManager.getResult(imageString)) || this;
             _this.name = imageString;
@@ -50,16 +45,6 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameObject.prototype, "HalfWidth", {
-            get: function () {
-                return this._halfWidth;
-            },
-            set: function (newValue) {
-                this._halfWidth = newValue;
-            },
-            enumerable: true,
-            configurable: true
-        });
         Object.defineProperty(GameObject.prototype, "HalfHeight", {
             get: function () {
                 return this._halfHeight;
@@ -70,11 +55,20 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(GameObject.prototype, "HalfWidth", {
+            get: function () {
+                return this._halfWidth;
+            },
+            set: function (newValue) {
+                this._halfWidth = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         GameObject.prototype._initialize = function () {
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
-            this.Start();
         };
         return GameObject;
     }(createjs.Bitmap));

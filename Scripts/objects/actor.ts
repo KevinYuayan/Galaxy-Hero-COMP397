@@ -6,7 +6,7 @@ module objects {
 
         private _isColliding:boolean;
         private _position:util.Vector2;
-
+        
         // public properties
 
         get Position():util.Vector2 {
@@ -28,6 +28,7 @@ module objects {
         // constructor
         constructor(imageString:string) {
             super(imageString);
+            this.Start();
         }
         // private methods
 

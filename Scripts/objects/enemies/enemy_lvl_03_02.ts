@@ -39,11 +39,13 @@ module objects {
             this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         }
+
         public Update(): void {
             this._move();
             super.Update();
             this._checkBounds();
         }
+        
         public Reset(): void {
             super.Reset();
             this._verticalSpeed = Math.floor((Math.random()*6)+6); // speed from 1 to 5

@@ -13,9 +13,13 @@ module objects {
         }
 
         // private methods
-        private _move() {
-            this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
+        private _move() {            
+            if(this.y > (config.Constants.canvasHeight * 0.5)){
+                this.y == 0;
+            } else {
+                this.y += this._verticalSpeed;
+                this.x += this._horizontalSpeed;
+            }
         }
 
         private _checkBounds():void {

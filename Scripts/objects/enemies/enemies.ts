@@ -52,6 +52,7 @@ module objects {
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
         }
+        
         public Destroy(): void {
             
         }

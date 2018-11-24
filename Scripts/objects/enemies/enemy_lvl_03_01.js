@@ -21,8 +21,13 @@ var objects;
         }
         // private methods
         EnemyLvl03_01.prototype._move = function () {
-            this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
+            if (this.y > (config.Constants.canvasHeight * 0.5)) {
+                this.y == 0;
+            }
+            else {
+                this.y += this._verticalSpeed;
+                this.x += this._horizontalSpeed;
+            }
         };
         EnemyLvl03_01.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {

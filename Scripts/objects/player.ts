@@ -1,9 +1,16 @@
 module objects {
-    export class Player extends Actor {
+    export class Player extends objects.Actor {
         
         // private instance variables
+        _bulletSpawn:util.Vector2;
 
         // public properties
+        get BulletSpawn():util.Vector2{
+            return this._bulletSpawn;   
+        }
+        set BulletSpawn(newSpawnPoint:util.Vector2){
+            this._bulletSpawn = newSpawnPoint;
+        }
         
         // constructors
         constructor() {
@@ -26,6 +33,8 @@ module objects {
 
         public Update():void {
             this.x = managers.Game.stage.mouseX;
+            super.Update();
+            this.BulletSpawn = new util.Vector2(this.x -12, this.y - this.HalfHeight - 2);
 
             if(this.x > config.Constants.canvasWidth - this.HalfWidth){
                 this.x = config.Constants.canvasWidth - this.HalfWidth;
@@ -34,7 +43,6 @@ module objects {
             if(this.x < this.HalfWidth){
                 this.x = this.HalfWidth;
             }
-            super.Update();
 
         }
 
@@ -44,7 +52,5 @@ module objects {
         
         public Destroy(): void {
         }
-
-
     }
 }
