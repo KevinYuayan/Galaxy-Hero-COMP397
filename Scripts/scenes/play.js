@@ -39,7 +39,10 @@ var scenes;
             }
             //adds enemies to the scene
             for (var count = 0; count < this._enemiesNum; count++) {
-                this.addChild(this._enemies[count]);
+                this.addChild(this._enemiesLvl3_01[count]);
+            }
+            for (var count = 0; count < this._enemiesNum; count++) {
+                this.addChild(this._enemiesLvl3_02[count]);
             }
             this.addChild(this._boss);
             // this._scoreBoard = new managers.ScoreBoard();
@@ -47,14 +50,14 @@ var scenes;
         };
         Play.prototype.Start = function () {
             managers.Game.scoreBoard.Reset();
-            this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 4;
+            this._enemiesNum = 2;
+            this._enemy02Num = 1;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
             for (var count = 0; count < this._backgroundNum; count++) {
-                this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
+                this._backgrounds[count] = new objects.Background("alienBackground", config.Constants.verticalPlaySpeed);
             }
             this._currentBackgroundNum = 0;
             // Places the second background in the Reset position instead of the Start position
@@ -64,13 +67,17 @@ var scenes;
             this._boss = new objects.Boss();
             // must do this to instantiate the array
             this._planets = new Array();
-            this._enemies = new Array();
+            this._enemiesLvl3_01 = new Array();
+            this._enemiesLvl3_02 = new Array();
             // adds planets to the array
             for (var count = 0; count < this._planetNum; count++) {
                 this._planets[count] = new objects.Planet();
             }
             for (var count = 0; count < this._enemiesNum; count++) {
-                this._enemies[count] = new objects.Enemies();
+                this._enemiesLvl3_01[count] = new objects.EnemyLvl03_01();
+            }
+            for (var count = 0; count < this._enemy02Num; count++) {
+                this._enemiesLvl3_02[count] = new objects.EnemyLvl03_02();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -90,11 +97,14 @@ var scenes;
                 managers.Collision.Check(_this._player, planet);
             });
             // updates each enemy in array
-            this._enemies.forEach(function (enemy) {
+            this._enemiesLvl3_01.forEach(function (enemy) {
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
             });
-            // updates background 0
+            this._enemiesLvl3_02.forEach(function (enemy) {
+                enemy.Update();
+                managers.Collision.Check(_this._player, enemy);
+            });
             if (this._backgrounds[1].y >= 0 || this._backgrounds[1].y <= config.Constants.canvasHeight - this._backgrounds[1].Height) {
                 this._backgrounds[0].Update();
             }
