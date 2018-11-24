@@ -1,5 +1,5 @@
 module objects {
-    export class Enemies extends objects.Enemy {
+    export class EnemyLvl03_01 extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -9,13 +9,17 @@ module objects {
         // constructors
 
         constructor() {
-            super("enemies");
+            super("enemyLvl03_01");
         }
 
         // private methods
-        private _move() {
-            this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
+        private _move() {            
+            if(this.y > (config.Constants.canvasHeight * 0.5)){
+                this.y == 0;
+            } else {
+                this.y += this._verticalSpeed;
+                this.x += this._horizontalSpeed;
+            }
         }
 
         private _checkBounds():void {
@@ -44,7 +48,6 @@ module objects {
             super.Update();
             this._checkBounds();
         }
-        
         public Reset(): void {
             super.Reset();
             this._verticalSpeed = Math.floor((Math.random()*2)+4); // speed from 1 to 5
@@ -53,7 +56,6 @@ module objects {
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
         }
-        
         public Destroy(): void {
             
         }

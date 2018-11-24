@@ -48,6 +48,42 @@ var managers;
                                 managers.Game.scoreBoard.Lives -= 1;
                             }
                             break;
+                        case "enemyLvl03_01":
+                            if (actor1.name == "bullet") {
+                                explosionSound = createjs.Sound.play("explosion01");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Score += 100;
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
+                            }
+                            else {
+                                explosionSound = createjs.Sound.play("explosion02");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            break;
+                        case "enemyLvl03_02":
+                            if (actor1.name == "bullet") {
+                                explosionSound = createjs.Sound.play("explosion01");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Score += 100;
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
+                            }
+                            else {
+                                explosionSound = createjs.Sound.play("explosion02");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            break;
                         case "bullet":
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
