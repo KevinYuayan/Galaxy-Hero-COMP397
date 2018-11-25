@@ -1,5 +1,5 @@
 module objects {
-    export class Enemies extends objects.Enemy {
+    export class EnemyLvl03_02 extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -9,7 +9,7 @@ module objects {
         // constructors
 
         constructor() {
-            super("enemies");
+            super("enemyLvl03_02");
         }
 
         // private methods
@@ -39,22 +39,21 @@ module objects {
             this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         }
-        
+
         public Update(): void {
             this._move();
             super.Update();
             this._checkBounds();
         }
-        
+
         public Reset(): void {
             super.Reset();
-            this._verticalSpeed = Math.floor((Math.random()*2)+4); // speed from 1 to 5
+            this._verticalSpeed = Math.floor((Math.random()*3)+3); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
         }
-        
         public Destroy(): void {
             
         }
