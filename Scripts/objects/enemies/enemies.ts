@@ -43,6 +43,7 @@ module objects {
             super.Update();
             this._checkBounds();
         }
+        
         public Reset(): void {
             super.Reset();
             this._verticalSpeed = Math.floor((Math.random()*2)+4); // speed from 1 to 5
