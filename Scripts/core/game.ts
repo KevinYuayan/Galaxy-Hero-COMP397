@@ -26,6 +26,7 @@
         {id: "enemyLvl03_01", src: imagePath + "enemy_lvl_03_01.png" },
         {id: "enemyLvl03_02", src: imagePath + "enemy_lvl_03_02.png" },
         {id: "boss", src: imagePath + "boss.png" },
+        {id: "boss1", src: imagePath + "boss_1.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
         {id: "alienBackground", src: imagePath + "alien_bg_test_01.jpg"},
@@ -36,7 +37,12 @@
         {id: "explosion02", src: audioPath + "explosion19.m4a"},
         {id: "spaceship", src: audioPath + "spaceship.m4a"},
         {id: "yaySound", src: audioPath + "yay.ogg"},
-        {id: "bullet", src: imagePath + "bullet_01.png"}
+        {id: "bullet", src: imagePath + "bullet_01.png"},
+        {id: "earthBackground", src: imagePath + "earthbackground.png"},
+        {id: "enemyLvl01_01", src: imagePath + "enemy_lvl_01_01.png" },
+        //{id: "water", src: imagePath + "lvl1_score_01.png"},
+        {id: "water", src: imagePath + "lvl1_score_02.png"},
+        //{id: "water", src: imagePath + "lvl1_score_03.gif"}
     ]
 
 

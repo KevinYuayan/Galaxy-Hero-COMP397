@@ -3,6 +3,7 @@ module scenes {
         // private instance variables
         private _bulletManager: managers.Bullet;
         private _powerUpManager: managers.PowerUps;
+        private _enemy_01_01: objects.EnemyLvl01_01[];
 
         // public properties
 
@@ -26,8 +27,8 @@ module scenes {
                 this.addChild(this._backgrounds[count]);
             }
 
-            // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            // adds water to the scene
+            this.addChild(this._score1);
 
             // adds player to the stage
             this.addChild(this._player);
@@ -49,10 +50,10 @@ module scenes {
 
             //adds enemies to the scene
             for (let count = 0; count < this._enemiesNum; count++) {
-                this.addChild(this._enemies[count])
+                this.addChild(this._enemy_01_01[count])
             }
 
-            this.addChild(this._boss);
+            this.addChild(this._boss1);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -74,13 +75,13 @@ module scenes {
             this._backgrounds = new Array<objects.Background>();
             // creates 2 backgrounds to have an infinte scroller
             for (let count = 0; count < this._backgroundNum; count++) {
-                this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
+                this._backgrounds[count] = new objects.Background("earthBackground", config.Constants.verticalPlaySpeed);
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
-            this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
+            this._score1 = new objects.Water();
+            this._boss1 = new objects.Boss1();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
@@ -88,13 +89,13 @@ module scenes {
 
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
-            this._enemies = new Array<objects.Enemies>();
+            this._enemy_01_01 = new Array<objects.EnemyLvl01_01>();
             // adds planets to the array
             for (let count = 0; count < this._planetNum; count++) {
                 this._planets[count] = new objects.Planet();
             }
             for (let count = 0; count < this._enemiesNum; count++) {
-                this._enemies[count] = new objects.Enemies();
+                this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -123,11 +124,11 @@ module scenes {
 
             this._player.Update();
 
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._score1.Update();
+            managers.Collision.Check(this._player, this._score1);
 
-            this._boss.Update();
-            managers.Collision.Check(this._player, this._boss);
+            this._boss1.Update();
+            managers.Collision.Check(this._player, this._boss1);
 
             // updates each planet in array
             this._planets.forEach(planet => {
@@ -135,7 +136,7 @@ module scenes {
                 managers.Collision.Check(this._player, planet);
             });
             // updates each enemy in array
-            this._enemies.forEach(enemy => {
+            this._enemy_01_01.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
             });
@@ -143,7 +144,7 @@ module scenes {
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
               managers.Collision.Check(this._player, bullet);
-                this._enemies.forEach(enemy => {
+                this._enemy_01_01.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);
                 });
             });
