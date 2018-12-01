@@ -104,12 +104,12 @@ module managers {
                             aBomb.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 500) {
+                    if (managers.Game.scoreBoard.Score >= 500 && managers.Game.scoreBoard.Score < 1000) {
                         managers.Game.currentState = config.Scene.LEVEL2;
                         console.log("scene changed to level 2");
                     }
 
-                    if (managers.Game.scoreBoard.Score == 1000) {
+                    if (managers.Game.scoreBoard.Score >= 1000) {
                         managers.Game.currentState = config.Scene.LEVEL3;
                         console.log("scene changed to level 3");
                     }
