@@ -87,10 +87,16 @@ module managers {
                             }
                             break;    
                         case "bullet":
+                            if (actor1.name == "shockwave") {
+                                console.log("bullet hit shockwave");
+                                actor2.Reset();
+                            }
+                            else {                                
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
                             actor2.Reset();
+                            }
                             break;
                         case "bomb":
                             let aBomb = <objects.Bomb>actor2;

@@ -23,6 +23,7 @@
         { id: "enemyLvl03_01", src: imagePath + "enemy_lvl_03_01.png" },
         { id: "enemyLvl03_02", src: imagePath + "enemy_lvl_03_02.png" },
         { id: "boss", src: imagePath + "boss.png" },
+        { id: "shockwave", src: imagePath + "empty.png" },
         { id: "spaceBackground", src: imagePath + "spaceBackground.jpg" },
         { id: "startBackground", src: imagePath + "startBackground.jpg" },
         { id: "alienBackground", src: imagePath + "alien_bg_test_02.jpg" },
@@ -92,6 +93,7 @@
                 currentScene = new scenes.Over;
                 break;
         }
+        managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
     window.addEventListener("load", Init);
