@@ -7,6 +7,7 @@ module scenes {
         private _enemy_03_02: objects.EnemyLvl03_02[];
         private _enemiesNum_03_01: number;
         private _enemiesNum_03_02: number;
+        private _bossInstance: number;
 
         // public properties
 
@@ -58,7 +59,6 @@ module scenes {
             for (let count = 0; count < this._enemiesNum_03_02; count++) {
                 this.addChild(this._enemy_03_02[count])
             }
-            this.addChild(this._boss);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -75,6 +75,7 @@ module scenes {
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;
             this._enemiesNum_03_02 = 1;
+            this._bossInstance = 1;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
@@ -86,7 +87,6 @@ module scenes {
             this._backgrounds[1].Reset();
 
             this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
@@ -131,9 +131,15 @@ module scenes {
 
             this._meteorite.Update();
             managers.Collision.Check(this._player, this._meteorite);
-
-            this._boss.Update();
-            managers.Collision.Check(this._player, this._boss);
+            
+            if(managers.Game.scoreBoard.Score == 1000 && this._bossInstance == 1){
+                this._bossInstance++;
+                this._boss = new objects.Boss();    
+                this.addChild(this._boss);
+            } else if (managers.Game.scoreBoard.Score > 1000) {
+                this._boss.Update();
+                managers.Collision.Check(this._player, this._boss);
+            }
 
             // updates each enemy in array
             this._enemy_03_01.forEach(enemy => {

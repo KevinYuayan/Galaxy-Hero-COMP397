@@ -28,7 +28,7 @@
         {id: "boss", src: imagePath + "boss.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
-        {id: "alienBackground", src: imagePath + "alien_bg_test_01.jpg"},
+        {id: "alienBackground", src: imagePath + "alien_bg_test_02.jpg"},
         {id: "bullet", src: imagePath + "bullet_01.png" },
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
