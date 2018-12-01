@@ -5,7 +5,8 @@ module managers {
 
         public static OnLeftMouseDown(event) {
             if(event.nativeEvent.button == 0) {
-                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+                // managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+                managers.Game.player.Fire();
               }
         }
     }

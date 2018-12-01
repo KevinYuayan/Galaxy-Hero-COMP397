@@ -33,17 +33,21 @@ var objects;
             configurable: true
         });
         // private methods
+        Player.prototype.Fire = function () {
+            managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up(), this);
+        };
         // public methods
         Player.prototype.Start = function () {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
+            this.IsEnemy = false;
             this.y = 435;
             _super.prototype.Start.call(this);
         };
         Player.prototype.Update = function () {
             this.x = managers.Game.stage.mouseX;
             _super.prototype.Update.call(this);
-            this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 2);
+            this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 19);
             if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
                 this.x = config.Constants.canvasWidth - this.HalfWidth;
             }

@@ -44,6 +44,16 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(Bullet.prototype, "IsEnemyFired", {
+            get: function () {
+                return this._isEnemyFired;
+            },
+            set: function (newState) {
+                this._isEnemyFired = newState;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         Bullet.prototype._move = function () {
             this._updatePosition();
@@ -64,6 +74,7 @@ var objects;
             this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
+            this.IsEnemyFired = false;
         };
         Bullet.prototype.Start = function () {
             _super.prototype.Start.call(this);

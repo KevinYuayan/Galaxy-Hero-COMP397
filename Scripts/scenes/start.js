@@ -34,7 +34,7 @@ var scenes;
             // event listeners
             // starts the play scene
             this._startButton.on("click", function () {
-                managers.Game.currentState = config.Scene.LEVEL1;
+                managers.Game.currentState = config.Scene.LEVEL3;
             });
         };
         Start.prototype.Start = function () {

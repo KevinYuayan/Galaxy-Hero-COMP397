@@ -10,6 +10,8 @@ module objects {
 
         constructor() {
             super("bomb");
+
+            this.Start();
         }
 
         // private methods

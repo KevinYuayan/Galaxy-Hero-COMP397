@@ -67,13 +67,21 @@ module managers{
             });
         }
 
-        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2):void {
+        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2, actor?:objects.Actor):void {
             this.CurrentBullet.Position = spawnPoint;
             this.CurrentBullet.x = spawnPoint.x;
             this.CurrentBullet.y = spawnPoint.y;
             this.CurrentBullet.Direction = direction;
             this.CurrentBullet.IsInPlay = true;
-            
+
+            if(actor.IsEnemy == true)
+            {
+                this.CurrentBullet.IsEnemyFired = true;
+            }
+            else {
+                this.CurrentBullet.IsEnemyFired = false;
+            }
+
             this._currentBulletIndex++;
             if(this._currentBulletIndex >= this.Bullets.length) {
                 this._currentBulletIndex = 0;
@@ -81,10 +89,10 @@ module managers{
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
         }
 
-        public TripleShot(spawnPoint:util.Vector2,direction:util.Vector2):void{
-            this.FireBullet(spawnPoint,direction);
-            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft));
-            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight));
+        public TripleShot(spawnPoint:util.Vector2,direction:util.Vector2,actor:objects.Actor):void{
+            this.FireBullet(spawnPoint,direction,actor);
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft),actor);
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight),actor);
         }
     }
 }

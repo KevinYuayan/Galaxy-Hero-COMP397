@@ -30,7 +30,7 @@ var managers;
                             managers.Game.scoreBoard.Lives -= 1;
                             break;
                         case "enemies":
-                            if (actor1.name == "bullet") {
+                            if (actor1.name == "bullet" && actor1.IsEnemy == false) {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
@@ -48,7 +48,7 @@ var managers;
                             }
                             break;
                         case "enemyLvl03_01":
-                            if (actor1.name == "bullet") {
+                            if (actor1.name == "bullet" && actor1.IsEnemy == false) {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;
@@ -66,7 +66,7 @@ var managers;
                             }
                             break;
                         case "enemyLvl03_02":
-                            if (actor1.name == "bullet") {
+                            if (actor1.name == "bullet" && actor1.IsEnemy == false) {
                                 explosionSound = createjs.Sound.play("explosion01");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Score += 100;

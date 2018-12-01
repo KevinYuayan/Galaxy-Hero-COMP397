@@ -42,6 +42,16 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(Actor.prototype, "IsEnemy", {
+            get: function () {
+                return this._isEnemy;
+            },
+            set: function (newState) {
+                this._isEnemy = newState;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         Actor.prototype._updatePosition = function () {
             this.Position.x = this.x;

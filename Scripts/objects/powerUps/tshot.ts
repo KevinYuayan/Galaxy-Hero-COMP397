@@ -1,22 +1,22 @@
 module objects {
-    export class Planet extends objects.Enemy {
-        // private instance variables
-
+    export class TShot extends objects.PowerUp{
+        
+        // private variables
         private _verticalSpeed:number;
-        private _horizontalSpeed:number;
 
+        // public variables
+        
         // constructors
 
         constructor() {
-            super("planet");
+            super("tshot");
 
+            this.Start();
         }
 
         // private methods
         private _move() {
             this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
-            this._updatePosition();
         }
 
         private _checkBounds():void {
@@ -26,27 +26,30 @@ module objects {
         }
 
         // public methods
+
+
+        // Adds a bomb to player when picked up. Max 3 bombs
+        public Collected(): void {
+            this.IsInPlay = false;
+        }
+        
+
         public Start(): void {
-            super.Start();
             this.Reset();
+            super.Start();
         }
         public Update(): void {
             this._move();
-            super.Update();
             this._checkBounds();
+            super.Update();
         }
         public Reset(): void {
+            this.x = -10000;
+            this.y = -10000;
+            this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 2 to 4
             super.Reset();
-            this._verticalSpeed = Math.floor((Math.random()*2)+2); // speed from 5 to 10
-            this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
-            this.y = -this.Height;
-            this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
-            this.IsColliding = false;
         }
         public Destroy(): void {
-            
         }
-
-
     }
 }

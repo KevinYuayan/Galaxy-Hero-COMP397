@@ -41,12 +41,14 @@ var objects;
                 this.x = this.HalfWidth;
                 this.Reset();
             }
-            if (managers.Game.scoreBoard.Level == 3) {
-                if ((createjs.Ticker.getTicks() % 20 == 0) && (this.y > 0)) {
-                    // if((Math.random() < 0.17) && (this.y > 0)) {
-                    // managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position,this._bulletSpawn), util.Vector2.down());
-                    managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
-                }
+        };
+        Boss.prototype._fireBullet = function () {
+            if (createjs.Ticker.getTicks() % 20 == 0) {
+                // if((Math.random() < 0.17) && (this.y > 0)) {
+                // managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down(),this);
+                managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down(), this);
+                // managers.Game.bulletManager.CircleShot(util.Vector2.Add(this.Position,this._bulletSpawn),util.Vector2.down());
+                // console.log(this.name + " Instantiated" + createjs.Ticker.getTicks());   
             }
         };
         // public methods
@@ -61,8 +63,11 @@ var objects;
         };
         Boss.prototype.Update = function () {
             _super.prototype.Update.call(this);
-            this._move();
+            // this._move();
             this._checkBounds();
+            if ((managers.Game.scoreBoard.Level == 3) && (this.y > 0)) {
+                this._fireBullet();
+            }
         };
         Boss.prototype.Reset = function () {
             _super.prototype.Reset.call(this);
