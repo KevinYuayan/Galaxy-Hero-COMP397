@@ -132,11 +132,11 @@ module scenes {
             this._meteorite.Update();
             managers.Collision.Check(this._player, this._meteorite);
             
-            if(managers.Game.scoreBoard.Score == 1000 && this._bossInstance == 1){
+            if(this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1){
                 this._bossInstance++;
                 this._boss = new objects.Boss();    
                 this.addChild(this._boss);
-            } else if (managers.Game.scoreBoard.Score > 1000) {
+            } else if (this._boss != null && managers.Game.scoreBoard.Score > 1000) {
                 this._boss.Update();
                 managers.Collision.Check(this._player, this._boss);
             }
