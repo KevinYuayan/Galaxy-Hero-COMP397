@@ -83,9 +83,8 @@ module managers{
 
         public TripleShot(spawnPoint:util.Vector2,direction:util.Vector2):void{
             this.FireBullet(spawnPoint,direction);
-            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft))
-            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight))
-
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft));
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight));
         }
     }
 }

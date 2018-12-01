@@ -8,6 +8,7 @@ module managers {
 
         // private methods
 
+        
         // public methods
         public static Check(actor1: objects.Actor, actor2: objects.Actor): void {
 
@@ -29,7 +30,6 @@ module managers {
                         case "boss":
                             let explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
-                            console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
                             break;
                         case "enemies":
@@ -50,6 +50,42 @@ module managers {
                                 managers.Game.scoreBoard.Lives -= 1;
                             }
                             break;
+                            case "enemyLvl03_01":
+                            if (actor1.name == "bullet") {
+                                explosionSound = createjs.Sound.play("explosion01");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Score += 100;
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
+                            }
+                            else {
+                                explosionSound = createjs.Sound.play("explosion02");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            break;
+                            case "enemyLvl03_02":
+                            if (actor1.name == "bullet") {
+                                explosionSound = createjs.Sound.play("explosion01");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Score += 100;
+                                // 10% chance for Bomb to spawn when enemy dies
+                                if (Math.random() <= 0.1) {
+                                    managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+                                }
+                                actor2.Reset();
+                                actor1.Reset();
+                            }
+                            else {
+                                explosionSound = createjs.Sound.play("explosion02");
+                                explosionSound.volume = 0.1;
+                                managers.Game.scoreBoard.Lives -= 1;
+                            }
+                            break;    
                         case "bullet":
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
@@ -63,11 +99,9 @@ module managers {
                     }
                     if (managers.Game.scoreBoard.Score >= 500) {
                         managers.Game.currentState = config.Scene.LEVEL2;
-                        console.log("scene changed to level 2");
                     }
                     if (managers.Game.scoreBoard.Score >= 1000) {
                         managers.Game.currentState = config.Scene.LEVEL3;
-                        console.log("scene changed to level 3");
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {
                         managers.Game.currentState = config.Scene.OVER;

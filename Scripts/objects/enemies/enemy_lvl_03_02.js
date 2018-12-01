@@ -13,53 +13,54 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var Enemies = /** @class */ (function (_super) {
-        __extends(Enemies, _super);
+    var EnemyLvl03_02 = /** @class */ (function (_super) {
+        __extends(EnemyLvl03_02, _super);
         // constructors
-        function Enemies() {
-            return _super.call(this, "enemies") || this;
+        function EnemyLvl03_02() {
+            return _super.call(this, "enemyLvl03_02") || this;
         }
         // private methods
-        Enemies.prototype._move = function () {
+        EnemyLvl03_02.prototype._move = function () {
             this.y += this._verticalSpeed;
             this.x += this._horizontalSpeed;
         };
-        Enemies.prototype._checkBounds = function () {
+        EnemyLvl03_02.prototype._checkBounds = function () {
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
             if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3) {
                 if ((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
                     // if((Math.random() < 0.17) && (this.y > 0)) {
+                    console.log(this + "fired a bullet");
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }
         };
         // public methods
-        Enemies.prototype.Start = function () {
+        EnemyLvl03_02.prototype.Start = function () {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
             _super.prototype.Start.call(this);
             this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         };
-        Enemies.prototype.Update = function () {
+        EnemyLvl03_02.prototype.Update = function () {
             this._move();
             _super.prototype.Update.call(this);
             this._checkBounds();
         };
-        Enemies.prototype.Reset = function () {
+        EnemyLvl03_02.prototype.Reset = function () {
             _super.prototype.Reset.call(this);
-            this._verticalSpeed = Math.floor((Math.random() * 2) + 4); // speed from 1 to 5
+            this._verticalSpeed = Math.floor((Math.random() * 3) + 3); // speed from 1 to 5
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.y = -this.Height;
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
         };
-        Enemies.prototype.Destroy = function () {
+        EnemyLvl03_02.prototype.Destroy = function () {
         };
-        return Enemies;
+        return EnemyLvl03_02;
     }(objects.Enemy));
-    objects.Enemies = Enemies;
+    objects.EnemyLvl03_02 = EnemyLvl03_02;
 })(objects || (objects = {}));
-//# sourceMappingURL=enemies.js.map
+//# sourceMappingURL=enemy_lvl_03_02.js.map
