@@ -15,7 +15,6 @@ var scenes;
 (function (scenes) {
     var Level3 = /** @class */ (function (_super) {
         __extends(Level3, _super);
-        // private instance variables
         // public properties
         // constructors
         function Level3() {
@@ -49,8 +48,11 @@ var scenes;
                 this.addChild(this._planets[count]);
             }
             //adds enemies to the scene
-            for (var count = 0; count < this._enemiesNum; count++) {
-                this.addChild(this._enemies[count]);
+            for (var count = 0; count < this._enemiesNum_03_01; count++) {
+                this.addChild(this._enemy_03_01[count]);
+            }
+            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+                this.addChild(this._enemy_03_02[count]);
             }
             this.addChild(this._boss);
             // adds bullets to the scene
@@ -63,14 +65,14 @@ var scenes;
         Level3.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
             managers.Game.scoreBoard.Level += 1;
-            this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum_03_01 = 3;
+            this._enemiesNum_03_02 = 1;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
             for (var count = 0; count < this._backgroundNum; count++) {
-                this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
+                this._backgrounds[count] = new objects.Background("alienBackground", config.Constants.verticalPlaySpeed);
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
@@ -82,13 +84,13 @@ var scenes;
             managers.Game.shockwave = this._shockwave;
             // must do this to instantiate the array
             this._planets = new Array();
-            this._enemies = new Array();
-            // adds planets to the array
-            for (var count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
+            this._enemy_03_01 = new Array();
+            for (var count = 0; count < this._enemiesNum_03_01; count++) {
+                this._enemy_03_01[count] = new objects.EnemyLvl03_01();
             }
-            for (var count = 0; count < this._enemiesNum; count++) {
-                this._enemies[count] = new objects.Enemies();
+            this._enemy_03_02 = new Array();
+            for (var count = 0; count < this._enemiesNum_03_02; count++) {
+                this._enemy_03_02[count] = new objects.EnemyLvl03_02();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -115,13 +117,12 @@ var scenes;
             managers.Collision.Check(this._player, this._meteorite);
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
-            // updates each planet in array
-            this._planets.forEach(function (planet) {
-                planet.Update();
-                managers.Collision.Check(_this._player, planet);
-            });
             // updates each enemy in array
-            this._enemies.forEach(function (enemy) {
+            this._enemy_03_01.forEach(function (enemy) {
+                enemy.Update();
+                managers.Collision.Check(_this._player, enemy);
+            });
+            this._enemy_03_02.forEach(function (enemy) {
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
             });
@@ -129,7 +130,10 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
-                _this._enemies.forEach(function (enemy) {
+                _this._enemy_03_01.forEach(function (enemy) {
+                    managers.Collision.Check(bullet, enemy);
+                });
+                _this._enemy_03_02.forEach(function (enemy) {
                     managers.Collision.Check(bullet, enemy);
                 });
             });

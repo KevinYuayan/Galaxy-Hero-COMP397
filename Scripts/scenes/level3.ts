@@ -1,6 +1,10 @@
 module scenes {
     export class Level3 extends objects.Level {
         // private instance variables
+        private _enemy_03_01: objects.EnemyLvl03_01[];
+        private _enemy_03_02: objects.EnemyLvl03_02[];
+        private _enemiesNum_03_01: number;
+        private _enemiesNum_03_02: number;
 
         // public properties
 
@@ -48,10 +52,12 @@ module scenes {
             }
 
             //adds enemies to the scene
-            for (let count = 0; count < this._enemiesNum; count++) {
-                this.addChild(this._enemies[count])
+            for (let count = 0; count < this._enemiesNum_03_01; count++) {
+                this.addChild(this._enemy_03_01[count])
             }
-
+            for (let count = 0; count < this._enemiesNum_03_02; count++) {
+                this.addChild(this._enemy_03_02[count])
+            }
             this.addChild(this._boss);
 
             // adds bullets to the scene
@@ -66,15 +72,15 @@ module scenes {
             // managers.Game.scoreBoard.Reset();
             managers.Game.scoreBoard.Level += 1;
 
-            this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum_03_01 = 3;
+            this._enemiesNum_03_02 = 1;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
             // creates 2 backgrounds to have an infinte scroller
             for (let count = 0; count < this._backgroundNum; count++) {
-                this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
+                this._backgrounds[count] = new objects.Background("alienBackground", config.Constants.verticalPlaySpeed);
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
@@ -90,13 +96,13 @@ module scenes {
 
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
-            this._enemies = new Array<objects.Enemies>();
-            // adds planets to the array
-            for (let count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
+            this._enemy_03_01 = new Array<objects.EnemyLvl03_01>();
+            for (let count = 0; count < this._enemiesNum_03_01; count++) {
+                this._enemy_03_01[count] = new objects.EnemyLvl03_01();
             }
-            for (let count = 0; count < this._enemiesNum; count++) {
-                this._enemies[count] = new objects.Enemies();
+            this._enemy_03_02 = new Array<objects.EnemyLvl03_02>();
+            for (let count = 0; count < this._enemiesNum_03_02; count++) {
+                this._enemy_03_02[count] = new objects.EnemyLvl03_02();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -133,22 +139,23 @@ module scenes {
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
 
-            // updates each planet in array
-            this._planets.forEach(planet => {
-                planet.Update();
-                managers.Collision.Check(this._player, planet);
-            });
             // updates each enemy in array
-            this._enemies.forEach(enemy => {
+            this._enemy_03_01.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
             });
-
+            this._enemy_03_02.forEach(enemy => {
+                enemy.Update();
+                managers.Collision.Check(this._player, enemy);
+            });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
-                this._enemies.forEach(enemy => {
+                this._enemy_03_01.forEach(enemy => {
+                    managers.Collision.Check(bullet, enemy);
+                });
+                this._enemy_03_02.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);
                 });
             });

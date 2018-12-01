@@ -1,5 +1,5 @@
 module objects {
-    export class Enemies extends objects.Enemy {
+    export class EnemyLvl03_01 extends objects.Enemy {
         // private instance variables
 
         private _verticalSpeed:number;
@@ -9,13 +9,17 @@ module objects {
         // constructors
 
         constructor() {
-            super("enemies");
+            super("enemyLvl03_01");
         }
 
         // private methods
-        private _move() {
-            this.y += this._verticalSpeed;
-            this.x += this._horizontalSpeed;
+        private _move() {            
+            if(this.y > (config.Constants.canvasHeight * 0.5)){
+                this.y == 0;
+            } else {
+                this.y += this._verticalSpeed;
+                this.x += this._horizontalSpeed;
+            }
         }
 
         private _checkBounds():void {
@@ -23,8 +27,9 @@ module objects {
                 this.Reset();
             }
             if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3){
-                if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
-                //if((Math.random() < 0.17) && (this.y > 0)) {
+                //if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
+                if((Math.random() < 0.17) && (this.y > 0)) {
+                    console.log(this + "fired a bullet");
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }
@@ -51,7 +56,6 @@ module objects {
             this.x = Math.floor(Math.random() * (config.Constants.canvasWidth - this.Width) + this.HalfWidth);
             this.IsColliding = false;
         }
-        
         public Destroy(): void {
             
         }
