@@ -1,8 +1,6 @@
 module scenes {
     export class Level3 extends objects.Level {
         // private instance variables
-        private _bulletManager: managers.Bullet;
-        private _powerUpManager: managers.PowerUps;
 
         // public properties
 
@@ -31,6 +29,8 @@ module scenes {
 
             // adds player to the stage
             this.addChild(this._player);
+            
+            this.addChild(this._shockwave.shockwaveShape);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -85,6 +85,8 @@ module scenes {
             this._player = new objects.Player();
             managers.Game.player = this._player;
 
+            this._shockwave = new objects.Shockwave();
+            managers.Game.shockwave = this._shockwave;
 
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
@@ -123,6 +125,8 @@ module scenes {
 
             this._player.Update();
 
+            this._shockwave.Update();
+
             this._meteorite.Update();
             managers.Collision.Check(this._player, this._meteorite);
 
@@ -142,6 +146,7 @@ module scenes {
 
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
+                managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
                 this._enemies.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);

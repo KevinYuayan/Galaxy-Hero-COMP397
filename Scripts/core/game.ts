@@ -24,6 +24,7 @@
         {id: "meteorite", src: imagePath + "meteorite.png"},
         {id: "enemies", src: imagePath + "enemies.png" },
         {id: "boss", src: imagePath + "boss.png" },
+        {id: "shockwave", src: imagePath + "empty.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
         {id: "bullet", src: imagePath + "bullet_01.png" },
@@ -102,6 +103,7 @@
             currentScene = new scenes.Over;
             break;
         }
+        managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

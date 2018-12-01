@@ -15,6 +15,7 @@ var scenes;
 (function (scenes) {
     var Level3 = /** @class */ (function (_super) {
         __extends(Level3, _super);
+        // private instance variables
         // public properties
         // constructors
         function Level3() {
@@ -34,6 +35,7 @@ var scenes;
             this.addChild(this._meteorite);
             // adds player to the stage
             this.addChild(this._player);
+            this.addChild(this._shockwave.shockwaveShape);
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
@@ -76,6 +78,8 @@ var scenes;
             this._boss = new objects.Boss();
             this._player = new objects.Player();
             managers.Game.player = this._player;
+            this._shockwave = new objects.Shockwave();
+            managers.Game.shockwave = this._shockwave;
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemies = new Array();
@@ -106,6 +110,7 @@ var scenes;
         Level3.prototype.Update = function () {
             var _this = this;
             this._player.Update();
+            this._shockwave.Update();
             this._meteorite.Update();
             managers.Collision.Check(this._player, this._meteorite);
             this._boss.Update();
@@ -122,6 +127,7 @@ var scenes;
             });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(function (bullet) {
+                managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
                 _this._enemies.forEach(function (enemy) {
                     managers.Collision.Check(bullet, enemy);
