@@ -19,6 +19,7 @@
         { id: "planet", src: imagePath + "planet.png" },
         { id: "bomb", src: imagePath + "bomb.png" },
         { id: "meteorite", src: imagePath + "meteorite.png" },
+        { id: "life", src: imagePath + "life.png" },
         { id: "enemies", src: imagePath + "enemies.png" },
         { id: "enemyLvl03_01", src: imagePath + "enemy_lvl_03_01.png" },
         { id: "enemyLvl03_02", src: imagePath + "enemy_lvl_03_02.png" },

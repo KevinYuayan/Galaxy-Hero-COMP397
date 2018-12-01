@@ -31,7 +31,7 @@ var scenes;
                 this.addChild(this._backgrounds[count]);
             }
             // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            this.addChild(this._life);
             // adds player to the stage
             this.addChild(this._player);
             this.addChild(this._shockwave.shockwaveShape);
@@ -76,7 +76,7 @@ var scenes;
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
-            this._meteorite = new objects.Meteorite();
+            this._life = new objects.ExtraLife();
             this._player = new objects.Player();
             managers.Game.player = this._player;
             this._shockwave = new objects.Shockwave();
@@ -112,8 +112,8 @@ var scenes;
             var _this = this;
             this._player.Update();
             this._shockwave.Update();
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._life.Update();
+            managers.Collision.Check(this._player, this._life);
             if (this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1) {
                 this._bossInstance++;
                 this._boss = new objects.Boss();
