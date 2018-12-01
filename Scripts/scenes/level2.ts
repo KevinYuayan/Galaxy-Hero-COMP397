@@ -3,6 +3,7 @@ module scenes {
         // private instance variables
         private _bulletManager: managers.Bullet;
         private _powerUpManager: managers.PowerUps;
+        private _gamepadManager: managers.GamePad;
 
         // public properties
 
@@ -114,10 +115,15 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
         }
 
         public Update(): void {
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 

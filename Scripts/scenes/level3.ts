@@ -7,6 +7,7 @@ module scenes {
         private _enemy_03_02: objects.EnemyLvl03_02[];
         private _enemiesNum_03_01: number;
         private _enemiesNum_03_02: number;
+        private _gamepadManager: managers.GamePad;
 
         // public properties
 
@@ -120,10 +121,16 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
         }
 
         public Update(): void {
+
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 

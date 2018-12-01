@@ -99,10 +99,15 @@ var scenes;
             this.Main();
         };
         Level2.prototype.SetupInput = function () {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
         };
         Level2.prototype.Update = function () {
             var _this = this;
+            managers.Input.gamepad1.Update();
+            if ((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
             this._player.Update();
             this._meteorite.Update();
             managers.Collision.Check(this._player, this._meteorite);
