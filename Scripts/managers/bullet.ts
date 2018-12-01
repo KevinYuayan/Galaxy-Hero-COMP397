@@ -32,7 +32,7 @@ module managers{
         }
 
         // constructor
-        constructor(bulletNum:number = 1) {
+        constructor(bulletNum:number = 100) {
 
             this.BulletNum = bulletNum;
 
