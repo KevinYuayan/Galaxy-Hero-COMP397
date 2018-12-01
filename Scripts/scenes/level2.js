@@ -100,8 +100,6 @@ var scenes;
         };
         Level2.prototype.SetupInput = function () {
             this.on("mousedown", managers.Input.OnLeftMouseDown);
-            document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         };
         Level2.prototype.Update = function () {
             var _this = this;
@@ -145,7 +143,6 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
-            document.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Level2;
     }(objects.Level));
