@@ -14,6 +14,7 @@
     var audioPath = "./Assets/audio/";
     var assetManifest = [
         { id: "startButton", src: imagePath + "startButton.png" },
+        { id: "instructionsButton", src: imagePath + "instructionsButton.png" },
         { id: "restartButton", src: imagePath + "restartButton.png" },
         { id: "player", src: imagePath + "player.png" },
         { id: "planet", src: imagePath + "planet.png" },
@@ -23,9 +24,12 @@
         { id: "enemyLvl03_01", src: imagePath + "enemy_lvl_03_01.png" },
         { id: "enemyLvl03_02", src: imagePath + "enemy_lvl_03_02.png" },
         { id: "boss", src: imagePath + "boss.png" },
+        { id: "shockwave", src: imagePath + "empty.png" },
+        { id: "boss1", src: imagePath + "boss_1.png" },
         { id: "spaceBackground", src: imagePath + "spaceBackground.jpg" },
         { id: "startBackground", src: imagePath + "startBackground.jpg" },
-        { id: "alienBackground", src: imagePath + "alien_bg_test_01.jpg" },
+        { id: "instructionsBackground", src: imagePath + "instructionsBG.jpg" },
+        { id: "alienBackground", src: imagePath + "alien_bg_test_02.jpg" },
         { id: "bullet", src: imagePath + "bullet_01.png" },
         { id: "engineSound", src: audioPath + "engine.ogg" },
         { id: "thunderSound", src: audioPath + "thunder.ogg" },
@@ -52,6 +56,7 @@
         createjs.Ticker.on("tick", Update);
         scoreBoard = new managers.ScoreBoard();
         managers.Game.scoreBoard = scoreBoard;
+        // TODO Change back to start
         currentState = config.Scene.START;
         managers.Game.currentState = currentState;
         Main();
@@ -76,7 +81,7 @@
                 currentScene = new scenes.Start;
                 break;
             case config.Scene.INSTRUCTIONS:
-                //currentScene = new scenes.Instructions;
+                currentScene = new scenes.Instructions;
                 break;
             case config.Scene.LEVEL1:
                 currentScene = new scenes.Level1;

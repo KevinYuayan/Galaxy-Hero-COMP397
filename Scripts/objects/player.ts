@@ -131,7 +131,7 @@ module objects {
         public Start():void {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this.IsEnemy = false;
+            // this.IsEnemy = false;
             this.y = 435;
             this.x = 320;
             super.Start();

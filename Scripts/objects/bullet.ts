@@ -5,7 +5,7 @@ module objects {
         private _direction:util.Vector2;
         private _isInPlay:boolean;
         private _velocity:util.Vector2;
-        private _isEnemyFired: boolean;
+        // private _isEnemyFired: boolean;
 
         // public properties
         get Direction():util.Vector2 {
@@ -28,13 +28,13 @@ module objects {
             this._velocity =  util.Vector2.Mulitply(this.Direction, this._speed);
         }
 
-        get IsEnemyFired():boolean {
-            return this._isEnemyFired;
-        }
+        // get IsEnemyFired():boolean {
+        //     return this._isEnemyFired;
+        // }
 
-        set IsEnemyFired(newState:boolean) {
-            this._isEnemyFired = newState;
-        }
+        // set IsEnemyFired(newState:boolean) {
+        //     this._isEnemyFired = newState;
+        // }
 
         // Constructors
         
@@ -64,7 +64,7 @@ module objects {
             this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
-            this.IsEnemyFired = false;
+            // this.IsEnemyFired = false;
         } 
 
         public Start(): void {

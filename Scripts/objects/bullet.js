@@ -15,11 +15,18 @@ var objects;
 (function (objects) {
     var Bullet = /** @class */ (function (_super) {
         __extends(Bullet, _super);
+        // get IsEnemyFired():boolean {
+        //     return this._isEnemyFired;
+        // }
+        // set IsEnemyFired(newState:boolean) {
+        //     this._isEnemyFired = newState;
+        // }
         // Constructors
         function Bullet() {
             return _super.call(this, "bullet") || this;
         }
         Object.defineProperty(Bullet.prototype, "Direction", {
+            // private _isEnemyFired: boolean;
             // public properties
             get: function () {
                 return this._direction;
@@ -44,16 +51,6 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(Bullet.prototype, "IsEnemyFired", {
-            get: function () {
-                return this._isEnemyFired;
-            },
-            set: function (newState) {
-                this._isEnemyFired = newState;
-            },
-            enumerable: true,
-            configurable: true
-        });
         // private methods
         Bullet.prototype._move = function () {
             this._updatePosition();
@@ -74,7 +71,7 @@ var objects;
             this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
-            this.IsEnemyFired = false;
+            // this.IsEnemyFired = false;
         };
         Bullet.prototype.Start = function () {
             _super.prototype.Start.call(this);

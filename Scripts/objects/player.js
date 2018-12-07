@@ -118,7 +118,7 @@ var objects;
         Player.prototype.Start = function () {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this.IsEnemy = false;
+            // this.IsEnemy = false;
             this.y = 435;
             this.x = 320;
             _super.prototype.Start.call(this);

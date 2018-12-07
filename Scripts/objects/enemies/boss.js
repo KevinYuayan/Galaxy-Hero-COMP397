@@ -45,8 +45,8 @@ var objects;
         Boss.prototype._fireBullet = function () {
             if (createjs.Ticker.getTicks() % 20 == 0) {
                 // if((Math.random() < 0.17) && (this.y > 0)) {
-                // managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down(),this);
-                managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down(), this);
+                // managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
+                managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 // managers.Game.bulletManager.CircleShot(util.Vector2.Add(this.Position,this._bulletSpawn),util.Vector2.down());
                 // console.log(this.name + " Instantiated" + createjs.Ticker.getTicks());   
             }

@@ -1,9 +1,9 @@
 module scenes {
     export class Level1 extends objects.Level {
         // private instance variables
-        private _bulletManager: managers.Bullet;
-        private _powerUpManager: managers.PowerUps;
         private _gamepadManager: managers.GamePad;
+        private _enemy_01_01: objects.Enemies[];
+        private _water:objects.Water;
 
         // public properties
 
@@ -27,8 +27,8 @@ module scenes {
                 this.addChild(this._backgrounds[count]);
             }
 
-            // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            // adds water to the scene
+            this.addChild(this._water);
 
             // adds player to the stage
             this.addChild(this._player);
@@ -80,8 +80,8 @@ module scenes {
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
-            this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
+            this._water = new objects.Water();
+            // this._boss1 = new objects.Boss1();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
@@ -127,8 +127,9 @@ module scenes {
 
             this._player.Update();
 
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._shockwave.Update();
+            this._water.Update();
+            managers.Collision.Check(this._player, this._water);
 
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
@@ -146,8 +147,9 @@ module scenes {
 
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
-              managers.Collision.Check(this._player, bullet);
-                this._enemies.forEach(enemy => {
+                managers.Collision.Check(this._shockwave, bullet);
+                managers.Collision.Check(this._player, bullet);
+                this._enemy_01_01.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);
                 });
             });

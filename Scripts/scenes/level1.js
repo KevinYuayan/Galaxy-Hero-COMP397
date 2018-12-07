@@ -30,8 +30,8 @@ var scenes;
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
             }
-            // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            // adds water to the scene
+            this.addChild(this._water);
             // adds player to the stage
             this.addChild(this._player);
             // adds bullets to the scene
@@ -72,8 +72,8 @@ var scenes;
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
-            this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
+            this._water = new objects.Water();
+            // this._boss1 = new objects.Boss1();
             this._player = new objects.Player();
             managers.Game.player = this._player;
             // must do this to instantiate the array
@@ -109,8 +109,9 @@ var scenes;
                 managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
             }
             this._player.Update();
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._shockwave.Update();
+            this._water.Update();
+            managers.Collision.Check(this._player, this._water);
             this._boss.Update();
             managers.Collision.Check(this._player, this._boss);
             // updates each planet in array
@@ -125,8 +126,9 @@ var scenes;
             });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(function (bullet) {
+                managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
-                _this._enemies.forEach(function (enemy) {
+                _this._enemy_01_01.forEach(function (enemy) {
                     managers.Collision.Check(bullet, enemy);
                 });
             });

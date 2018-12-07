@@ -46,11 +46,16 @@ module objects {
          * @param {number} [y=0]
          * @param {boolean} [isCentered=false]
          */
-        constructor(labelString:string, fontSize:string, fontFamily:string, fontColour:string, x:number = 0, y:number = 0, isCentered:boolean = false) {
+        constructor(labelString:string, fontSize:string, fontFamily:string, fontColour:string, x:number = 0, y:number = 0, isCentered:boolean = false, lWidth:number = 0) {
             super(labelString, fontSize + " " + fontFamily, fontColour);
          
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
+
+            if (lWidth > 0) {                
+                this.lineWidth = lWidth;
+                this.lineHeight = 20;
+            }
 
             if(isCentered) {
                 this.regX = this.HalfWidth;
