@@ -22,13 +22,15 @@
         {id: "planet", src: imagePath + "planet.png"},
         {id: "bomb", src: imagePath + "bomb.png"},
         {id: "meteorite", src: imagePath + "meteorite.png"},
+        {id: "life", src: imagePath + "life.png"},
         {id: "enemies", src: imagePath + "enemies.png" },
         {id: "enemyLvl03_01", src: imagePath + "enemy_lvl_03_01.png" },
         {id: "enemyLvl03_02", src: imagePath + "enemy_lvl_03_02.png" },
         {id: "boss", src: imagePath + "boss.png" },
+        {id: "shockwave", src: imagePath + "empty.png" },
         {id: "spaceBackground", src: imagePath + "spaceBackground.jpg"},
         {id: "startBackground", src: imagePath + "startBackground.jpg"},
-        {id: "alienBackground", src: imagePath + "alien_bg_test_01.jpg"},
+        {id: "alienBackground", src: imagePath + "alien_bg_test_02.jpg"},
         {id: "bullet", src: imagePath + "bullet_01.png" },
         {id: "engineSound", src: audioPath + "engine.ogg"},
         {id: "thunderSound", src: audioPath + "thunder.ogg"},
@@ -105,6 +107,7 @@
             currentScene = new scenes.Over;
             break;
         }
+        managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

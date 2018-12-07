@@ -88,21 +88,28 @@ module managers {
                             }
                             break;    
                         case "bullet":
+                            if (actor1.name == "shockwave") {
+                                console.log("bullet hit shockwave");
+                                actor2.Reset();
+                            }
+                            else {                                
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
                             actor2.Reset();
+                            }
                             break;
                         case "bomb":
                             let aBomb = <objects.Bomb>actor2;
                             aBomb.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 500) {
+                    if (managers.Game.scoreBoard.Score == 500) {
                         managers.Game.currentState = config.Scene.LEVEL2;
                         console.log("scene changed to level 2");
                     }
-                    if (managers.Game.scoreBoard.Score >= 1000) {
+                    
+                    if (managers.Game.scoreBoard.Score == 1000) {
                         managers.Game.currentState = config.Scene.LEVEL3;
                         console.log("scene changed to level 3");
                     }

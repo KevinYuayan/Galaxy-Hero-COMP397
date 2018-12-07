@@ -1,12 +1,12 @@
 module scenes {
     export class Level3 extends objects.Level {
         // private instance variables
-        private _bulletManager: managers.Bullet;
-        private _powerUpManager: managers.PowerUps;
         private _enemy_03_01: objects.EnemyLvl03_01[];
         private _enemy_03_02: objects.EnemyLvl03_02[];
         private _enemiesNum_03_01: number;
         private _enemiesNum_03_02: number;
+        private _bossInstance: number;
+        private _life: objects.ExtraLife;
 
         // public properties
 
@@ -31,10 +31,12 @@ module scenes {
             }
 
             // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            this.addChild(this._life);
 
             // adds player to the stage
             this.addChild(this._player);
+            
+            this.addChild(this._shockwave.shockwaveShape);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -58,7 +60,6 @@ module scenes {
             for (let count = 0; count < this._enemiesNum_03_02; count++) {
                 this.addChild(this._enemy_03_02[count])
             }
-            this.addChild(this._boss);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -75,6 +76,7 @@ module scenes {
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;
             this._enemiesNum_03_02 = 1;
+            this._bossInstance = 1;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
@@ -85,12 +87,13 @@ module scenes {
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
-            this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
+            this._life = new objects.ExtraLife();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
 
+            this._shockwave = new objects.Shockwave();
+            managers.Game.shockwave = this._shockwave;
 
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
@@ -129,11 +132,19 @@ module scenes {
 
             this._player.Update();
 
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._shockwave.Update();
 
-            this._boss.Update();
-            managers.Collision.Check(this._player, this._boss);
+            this._life.Update();
+            managers.Collision.Check(this._player, this._life);
+            
+            if(this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1){
+                this._bossInstance++;
+                this._boss = new objects.Boss();    
+                this.addChild(this._boss);
+            } else if (this._boss != null && managers.Game.scoreBoard.Score > 1000) {
+                this._boss.Update();
+                managers.Collision.Check(this._player, this._boss);
+            }
 
             // updates each enemy in array
             this._enemy_03_01.forEach(enemy => {
@@ -146,6 +157,7 @@ module scenes {
             });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
+                managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
                 this._enemy_03_01.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);

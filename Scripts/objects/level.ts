@@ -3,6 +3,11 @@ module objects {
         // private instance variables        
         protected _meteorite: objects.Meteorite;
 
+        
+        protected _bulletManager: managers.Bullet;
+        protected _powerUpManager: managers.PowerUps;
+        protected _shockwave:objects.Shockwave;
+
         protected _planetNum: number;
         protected _enemiesNum: number;
         protected _planets: objects.Planet[];

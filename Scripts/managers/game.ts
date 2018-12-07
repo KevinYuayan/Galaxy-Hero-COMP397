@@ -8,5 +8,7 @@ module managers {
         public static bulletManager: managers.Bullet;
         public static powerUpManager: managers.PowerUps;
         public static player: objects.Player;
+        public static currentScene: objects.Scene;
+        public static shockwave:objects.Shockwave;
     }
 }
