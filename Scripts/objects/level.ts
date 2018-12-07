@@ -5,6 +5,7 @@ module objects {
 
         protected _bulletManager: managers.Bullet;
         protected _powerUpManager: managers.PowerUps;
+        private _gamepadManager: managers.GamePad;
         protected _shockwave:objects.Shockwave;
 
         protected _planetNum: number;

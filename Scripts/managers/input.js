@@ -68,6 +68,15 @@ var managers;
                     break;
             }
         };
+        Input.KeyPressed = function (event) {
+            if (event.keyCode == 66) {
+                if (managers.Game.scoreBoard.Bombs > 0) {
+                    managers.Game.scoreBoard.Bombs -= 1;
+                    managers.Game.shockwave.InPlay = true;
+                    setTimeout(function () { managers.Game.shockwave.InPlay = false; }, 600);
+                }
+            }
+        };
         Input.LeftButtonDown = false;
         Input.space = false;
         Input.moveBackward = false;

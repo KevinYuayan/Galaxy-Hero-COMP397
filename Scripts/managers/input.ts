@@ -88,7 +88,15 @@ module managers {
                 case config.Key.SPACEBAR:
                     this.space = false;
                 break;
-
+            }
+        }
+        public static KeyPressed(event) {
+            if(event.keyCode == 66) {
+                if (managers.Game.scoreBoard.Bombs > 0) {
+                    managers.Game.scoreBoard.Bombs -= 1;
+                    managers.Game.shockwave.InPlay = true;
+                    setTimeout(function() {managers.Game.shockwave.InPlay = false}, 600);
+                }
             }
         }
     }

@@ -34,6 +34,7 @@ var scenes;
             this.addChild(this._water);
             // adds player to the stage
             this.addChild(this._player);
+            this.addChild(this._shockwave.shockwaveShape);
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
@@ -76,6 +77,8 @@ var scenes;
             // this._boss1 = new objects.Boss1();
             this._player = new objects.Player();
             managers.Game.player = this._player;
+            this._shockwave = new objects.Shockwave();
+            managers.Game.shockwave = this._shockwave;
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemies = new Array();
