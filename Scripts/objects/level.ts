@@ -3,7 +3,6 @@ module objects {
         // private instance variables        
         protected _meteorite: objects.Meteorite;
 
-        
         protected _bulletManager: managers.Bullet;
         protected _powerUpManager: managers.PowerUps;
         protected _shockwave:objects.Shockwave;
@@ -13,6 +12,7 @@ module objects {
         protected _planets: objects.Planet[];
         protected _enemies: objects.Enemies[];
         protected _boss: objects.Boss;
+        protected _boss1: objects.Boss1;
         protected _backgroundNum: number;  // total background objects
         protected _backgrounds: objects.Background[];
         protected _currentBackgroundNum: number;   // holds the array identifier for the current background object

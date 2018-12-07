@@ -21,6 +21,7 @@ module managers {
                     console.log(actor1.name + " collided with: " + actor2.name);
                     switch (actor2.name) {
                         case "meteorite":
+                        case "water":
                             let yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.1;
                             managers.Game.scoreBoard.Score += 50;
@@ -36,6 +37,7 @@ module managers {
                         case "enemies":
                         case "enemyLvl03_01":
                         case "enemyLvl03_02":
+                        case "enemyLvl01_01":
                             if (actor1.name == "bullet") {
                                 let bullet: objects.Bullet = <objects.Bullet>actor1;
                                 if (bullet.Direction.y < 0) {
