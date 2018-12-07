@@ -26,13 +26,18 @@ var objects;
          * @param {number} [y=0]
          * @param {boolean} [isCentered=false]
          */
-        function Label(labelString, fontSize, fontFamily, fontColour, x, y, isCentered) {
+        function Label(labelString, fontSize, fontFamily, fontColour, x, y, isCentered, lWidth) {
             if (x === void 0) { x = 0; }
             if (y === void 0) { y = 0; }
             if (isCentered === void 0) { isCentered = false; }
+            if (lWidth === void 0) { lWidth = 0; }
             var _this = _super.call(this, labelString, fontSize + " " + fontFamily, fontColour) || this;
             _this.Width = _this.getBounds().width;
             _this.Height = _this.getBounds().height;
+            if (lWidth > 0) {
+                _this.lineWidth = lWidth;
+                _this.lineHeight = 20;
+            }
             if (isCentered) {
                 _this.regX = _this.HalfWidth;
                 _this.regY = _this.HalfHeight;

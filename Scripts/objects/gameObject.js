@@ -70,6 +70,15 @@ var objects;
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
         };
+        // public methods
+        GameObject.prototype.Reset = function () {
+        };
+        GameObject.prototype.Start = function () {
+        };
+        GameObject.prototype.Update = function () {
+        };
+        GameObject.prototype.Destroy = function () {
+        };
         return GameObject;
     }(createjs.Bitmap));
     objects.GameObject = GameObject;

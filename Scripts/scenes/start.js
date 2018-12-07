@@ -29,6 +29,7 @@ var scenes;
             this.addChild(this._background);
             // adds ocean to the stage
             this.addChild(this._startButton);
+            this.addChild(this._instructionsButton);
             // adds player to the stage
             this.addChild(this._welcomeLabel);
             // event listeners
@@ -36,10 +37,14 @@ var scenes;
             this._startButton.on("click", function () {
                 managers.Game.currentState = config.Scene.LEVEL1;
             });
+            this._instructionsButton.on("click", function () {
+                managers.Game.currentState = config.Scene.INSTRUCTIONS;
+            });
         };
         Start.prototype.Start = function () {
             // Instantiates objects
             this._startButton = new objects.Button("startButton", 320, 360, true);
+            this._instructionsButton = new objects.Button("instructionsButton", 320, 430, true);
             this._background = new objects.Background("startBackground");
             this._welcomeLabel = new objects.Label("Galaxy Hero", "60px", "Consolas", "#FFFF00", 320, 240, true);
             this.Main();
