@@ -71,7 +71,7 @@ module scenes {
         }
         public Start(): void {
             // managers.Game.scoreBoard.Reset();
-            managers.Game.scoreBoard.Level += 1;
+            managers.Game.scoreBoard.Level = 3;
 
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;

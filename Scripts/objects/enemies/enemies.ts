@@ -38,6 +38,7 @@ module objects {
             this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
         }
+        
         public Update(): void {
             this._move();
             super.Update();
