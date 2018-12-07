@@ -47,7 +47,7 @@ var objects;
             this._checkBounds();
         };
         Background.prototype.Reset = function () {
-            this.y = -this.Height;
+            this.y = -this.Height + config.Constants.verticalPlaySpeed; //TODO: review this fix
         };
         Background.prototype.Destroy = function () {
         };

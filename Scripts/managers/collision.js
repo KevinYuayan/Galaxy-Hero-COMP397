@@ -20,7 +20,7 @@ var managers;
                         case "meteorite":
                             var yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.1;
-                            managers.Game.scoreBoard.Score += 100;
+                            managers.Game.scoreBoard.Score += 50;
                             managers.Game.scoreBoard.Lives += 1;
                             break;
                         // case "planet":
@@ -101,11 +101,11 @@ var managers;
                             aBomb.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score == 500) {
+                    if (managers.Game.scoreBoard.Score >= 500 && managers.Game.scoreBoard.Score < 1000) {
                         managers.Game.currentState = config.Scene.LEVEL2;
                         console.log("scene changed to level 2");
                     }
-                    if (managers.Game.scoreBoard.Score == 1000) {
+                    if (managers.Game.scoreBoard.Score >= 1000) {
                         managers.Game.currentState = config.Scene.LEVEL3;
                         console.log("scene changed to level 3");
                     }
