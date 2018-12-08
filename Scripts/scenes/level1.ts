@@ -53,8 +53,6 @@ module scenes {
                 this.addChild(this._enemy_01_01[count])
             }
 
-            this.addChild(this._boss1);
-
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
                 this.addChild(bullet);
@@ -83,7 +81,6 @@ module scenes {
             this._backgrounds[1].Reset();
 
             this._water = new objects.Water();
-            this._boss1 = new objects.Boss1();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
@@ -133,9 +130,6 @@ module scenes {
             this._shockwave.Update();
             this._water.Update();
             managers.Collision.Check(this._player, this._water);
-
-            this._boss1.Update();
-            managers.Collision.Check(this._player, this._boss1);
 
             // updates each planet in array
             this._planets.forEach(planet => {

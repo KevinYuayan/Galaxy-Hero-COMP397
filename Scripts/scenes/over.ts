@@ -47,7 +47,7 @@ module scenes{
             managers.Game.scoreBoard.Reset();
             this._restartButton = new objects.Button("restartButton", 780, 360, true);
             this._background = new objects.Background("spaceBackground", 0);
-            this._gameOverLabel = new objects.Label("Game Over", "60px", "Consolas", "#FFFF00", 780, 240, true);
+            this._gameOverLabel = new objects.Label("Game Over", "35px", "Consolas", "#FFFF00", 780, 240, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         }
