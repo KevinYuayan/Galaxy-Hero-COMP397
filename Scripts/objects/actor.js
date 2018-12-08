@@ -59,7 +59,7 @@ var objects;
             this.IsColliding = false;
         };
         return Actor;
-    }(objects.GameObject));
+    }(objects.BitmapGameObject));
     objects.Actor = Actor;
 })(objects || (objects = {}));
 //# sourceMappingURL=actor.js.map

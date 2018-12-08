@@ -17,7 +17,7 @@ var managers;
                     actor2.IsColliding = true;
                     console.log(actor1.name + " collided with: " + actor2.name);
                     switch (actor2.name) {
-                        case "meteorite":
+                        case "meteorite" && "water":
                             var yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.1;
                             managers.Game.scoreBoard.Score += 100;
@@ -29,6 +29,7 @@ var managers;
                             explosionSound.volume = 0.1;
                             console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
                             break;
                         case "enemies":
                             if (actor1.name == "bullet") {
@@ -46,6 +47,7 @@ var managers;
                                 explosionSound = createjs.Sound.play("explosion02");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
+                                Collision.createExplosion(actor1);
                             }
                             break;
                         case "enemyLvl03_01":
@@ -64,6 +66,7 @@ var managers;
                                 explosionSound = createjs.Sound.play("explosion02");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
+                                Collision.createExplosion(actor1);
                             }
                             break;
                         case "enemyLvl03_02":
@@ -82,12 +85,14 @@ var managers;
                                 explosionSound = createjs.Sound.play("explosion02");
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
+                                Collision.createExplosion(actor1);
                             }
                             break;
                         case "bullet":
                             explosionSound = createjs.Sound.play("explosion02");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
                             actor2.Reset();
                             break;
                         case "bomb":
@@ -111,6 +116,16 @@ var managers;
                     }
                 }
             }
+        };
+        Collision.createExplosion = function (actor1) {
+            var newExplosion = new objects.Explosion();
+            newExplosion.x = actor1.x;
+            newExplosion.y = actor1.y;
+            managers.Game.currentScene.addChild(newExplosion);
+            newExplosion.on("animationend", function () {
+                newExplosion.Destroy();
+                newExplosion = null;
+            });
         };
         return Collision;
     }());

@@ -10,6 +10,9 @@
     let currentState:config.Scene;
     
     let scoreBoard:managers.ScoreBoard;
+    
+    let textureMap:createjs.SpriteSheet;
+
     // Game objects
 
     // Utility variables
@@ -43,6 +46,7 @@
         //{id: "water", src: imagePath + "lvl1_score_01.png"},
         {id: "water", src: imagePath + "lvl1_score_02.png"},
         //{id: "water", src: imagePath + "lvl1_score_03.gif"}
+        { id: "textureMap", src: "./Assets/sprites/texturemap.png" }
     ]
 
 
@@ -64,12 +68,62 @@
         createjs.Ticker.framerate = 60; // game will run at 60fps
         createjs.Ticker.on("tick", Update);
 
+        let textureData = {
+            images: [assetManager.getResult("textureMap")],
+        
+            "frames": [
+              [1, 1, 16, 16, 0, 0, 0],
+              [19, 1, 226, 178, 0, 0, 0],
+              [247, 1, 44, 40, 0, 0, 0],
+              [293, 1, 44, 40, 0, 0, 0],
+              [339, 1, 44, 40, 0, 0, 0],
+              [385, 1, 44, 40, 0, 0, 0],
+              [431, 1, 44, 40, 0, 0, 0],
+              [1, 181, 44, 40, 0, 0, 0],
+              [47, 181, 44, 40, 0, 0, 0],
+              [93, 181, 44, 40, 0, 0, 0],
+              [139, 181, 44, 40, 0, 0, 0],
+              [185, 181, 44, 40, 0, 0, 0],
+              [231, 181, 93, 74, 0, 0, 0],
+              [326, 181, 93, 74, 0, 0, 0],
+              [1, 257, 93, 74, 0, 0, 0],
+              [96, 257, 65, 65, 0, 0, 0],
+              [163, 257, 65, 65, 0, 0, 0],
+              [230, 257, 65, 65, 0, 0, 0],
+              [297, 257, 65, 65, 0, 0, 0],
+              [364, 257, 65, 65, 0, 0, 0],
+              [431, 257, 65, 65, 0, 0, 0],
+              [1, 333, 65, 65, 0, 0, 0],
+              [68, 333, 62, 63, 0, 0, 0],
+              [132, 333, 65, 65, 0, 0, 0],
+              [199, 333, 65, 65, 0, 0, 0],
+              [266, 333, 65, 65, 0, 0, 0],
+              [333, 333, 145, 47, 0, 0, 0],
+              [1, 400, 145, 47, 0, 0, 0]
+          ],
+        
+            animations: {
+              bullet: { frames: [0] },
+              explosion: {
+                frames: [15, 16, 17, 18, 19, 20, 21],
+                speed: 0.1
+              },
+              restartButton: { frames: [26] },
+              startButton: { frames: [27] }
+            }
+          };
+          
+        // setup global spritesheet
+        textureMap = new createjs.SpriteSheet(textureData);
+        managers.Game.textureMap = textureMap;
+        
         scoreBoard = new managers.ScoreBoard();
         managers.Game.scoreBoard = scoreBoard;
 
         currentState = config.Scene.START;
         managers.Game.currentState = currentState;
         Main();
+
     }
 
     // this is the main game loop
@@ -111,6 +165,7 @@
             currentScene = new scenes.Over;
             break;
         }
+        managers.Game.currentScene = currentScene;
         stage.addChild(currentScene);
     }
 

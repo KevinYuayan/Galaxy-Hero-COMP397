@@ -13,16 +13,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var GameObject = /** @class */ (function (_super) {
-        __extends(GameObject, _super);
+    var BitmapGameObject = /** @class */ (function (_super) {
+        __extends(BitmapGameObject, _super);
         // constructors
-        function GameObject(imageString) {
+        function BitmapGameObject(imageString) {
             var _this = _super.call(this, managers.Game.assetManager.getResult(imageString)) || this;
             _this.name = imageString;
             _this._initialize();
             return _this;
         }
-        Object.defineProperty(GameObject.prototype, "Width", {
+        Object.defineProperty(BitmapGameObject.prototype, "Width", {
             // public properties
             get: function () {
                 return this._width;
@@ -34,7 +34,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameObject.prototype, "Height", {
+        Object.defineProperty(BitmapGameObject.prototype, "Height", {
             get: function () {
                 return this._height;
             },
@@ -45,7 +45,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameObject.prototype, "HalfHeight", {
+        Object.defineProperty(BitmapGameObject.prototype, "HalfHeight", {
             get: function () {
                 return this._halfHeight;
             },
@@ -55,7 +55,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(GameObject.prototype, "HalfWidth", {
+        Object.defineProperty(BitmapGameObject.prototype, "HalfWidth", {
             get: function () {
                 return this._halfWidth;
             },
@@ -66,12 +66,12 @@ var objects;
             configurable: true
         });
         // private methods
-        GameObject.prototype._initialize = function () {
+        BitmapGameObject.prototype._initialize = function () {
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
         };
-        return GameObject;
+        return BitmapGameObject;
     }(createjs.Bitmap));
-    objects.GameObject = GameObject;
+    objects.BitmapGameObject = BitmapGameObject;
 })(objects || (objects = {}));
-//# sourceMappingURL=gameObject.js.map
+//# sourceMappingURL=bitmapgameobject.js.map

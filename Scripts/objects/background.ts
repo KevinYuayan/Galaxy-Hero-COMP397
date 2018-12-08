@@ -1,5 +1,5 @@
 module objects{
-    export class Background extends objects.GameObject{
+    export class Background extends objects.BitmapGameObject{
         
         // private instance variables
         private _verticalSpeed:number;
