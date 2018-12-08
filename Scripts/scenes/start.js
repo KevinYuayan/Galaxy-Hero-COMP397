@@ -27,6 +27,7 @@ var scenes;
         Start.prototype.Main = function () {
             // adds ocean to the stage
             this.addChild(this._background);
+            this.addChild(this._panel);
             // adds ocean to the stage
             this.addChild(this._startButton);
             // adds player to the stage
@@ -39,9 +40,10 @@ var scenes;
         };
         Start.prototype.Start = function () {
             // Instantiates objects
-            this._startButton = new objects.Button("startButton", 320, 360, true);
+            this._startButton = new objects.Button("startButton", 780, 360, true);
             this._background = new objects.Background("startBackground");
-            this._welcomeLabel = new objects.Label("Galaxy Hero", "60px", "Consolas", "#FFFF00", 320, 240, true);
+            this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "Consolas", "#FFFF00", 780, 80, true);
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         };
         Start.prototype.Update = function () {

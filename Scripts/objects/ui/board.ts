@@ -16,6 +16,7 @@ module objects{
         constructor(imageString:string, verticalSpeed:number = 0) {
             super(imageString);           
             this._verticalSpeed = verticalSpeed;
+            this.x = 640;
         }
 
         // private methods
@@ -34,10 +35,11 @@ module objects{
 
         public Start(): void {
             this.y = -this.Height + config.Constants.canvasHeight;
+            
         }
         public Update(): void {
-            this._move();      
-            this._checkBounds();
+            //this._move();      
+            //this._checkBounds();
         }
         public Reset(): void {
             this.y = -this.Height + config.Constants.verticalPlaySpeed ; //TODO: review this fix

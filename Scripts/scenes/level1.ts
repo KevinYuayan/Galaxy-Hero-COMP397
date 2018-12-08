@@ -20,8 +20,6 @@ module scenes {
         // public methods
 
         public Main(): void {
-            this.addChild(this._panel);
-
             // adds backgrounds to the stage
             for (let count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
@@ -61,6 +59,8 @@ module scenes {
             this._bulletManager.Bullets.forEach(bullet => {
                 this.addChild(bullet);
             });
+
+            this.addChild(this._panel);
 
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
@@ -171,6 +171,8 @@ module scenes {
             if (this._backgrounds[0].y >= 0 || this._backgrounds[0].y <= config.Constants.canvasHeight - this._backgrounds[0].Height) {
                 this._backgrounds[1].Update();
             }
+
+            this._panel.Update();
         }
         public Reset(): void { }
 

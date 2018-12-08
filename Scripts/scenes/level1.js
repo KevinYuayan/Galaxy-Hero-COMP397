@@ -26,7 +26,6 @@ var scenes;
         // public methods
         Level1.prototype.Main = function () {
             var _this = this;
-            this.addChild(this._panel);
             // adds backgrounds to the stage
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
@@ -57,6 +56,7 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
             });
+            this.addChild(this._panel);
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         };
@@ -146,6 +146,7 @@ var scenes;
             if (this._backgrounds[0].y >= 0 || this._backgrounds[0].y <= config.Constants.canvasHeight - this._backgrounds[0].Height) {
                 this._backgrounds[1].Update();
             }
+            this._panel.Update();
         };
         Level1.prototype.Reset = function () { };
         Level1.prototype.Destroy = function () {

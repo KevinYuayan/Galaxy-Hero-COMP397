@@ -27,6 +27,7 @@ var objects;
             if (verticalSpeed === void 0) { verticalSpeed = 0; }
             var _this = _super.call(this, imageString) || this;
             _this._verticalSpeed = verticalSpeed;
+            _this.x = 640;
             return _this;
         }
         // private methods
@@ -43,8 +44,8 @@ var objects;
             this.y = -this.Height + config.Constants.canvasHeight;
         };
         Board.prototype.Update = function () {
-            this._move();
-            this._checkBounds();
+            //this._move();      
+            //this._checkBounds();
         };
         Board.prototype.Reset = function () {
             this.y = -this.Height + config.Constants.verticalPlaySpeed; //TODO: review this fix
