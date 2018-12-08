@@ -71,7 +71,8 @@ module scenes {
         }
         public Start(): void {
             // managers.Game.scoreBoard.Reset();
-            managers.Game.scoreBoard.Level += 1;
+            //Tells the scoreboard what level it's on
+            managers.Game.scoreBoard.Level = 3;
 
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;
@@ -123,12 +124,17 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
+
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 

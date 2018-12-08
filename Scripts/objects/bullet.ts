@@ -5,6 +5,7 @@ module objects {
         private _direction:util.Vector2;
         private _isInPlay:boolean;
         private _velocity:util.Vector2;
+        // private _isEnemyFired: boolean;
 
         // public properties
         get Direction():util.Vector2 {
@@ -26,6 +27,14 @@ module objects {
             }
             this._velocity =  util.Vector2.Mulitply(this.Direction, this._speed);
         }
+
+        // get IsEnemyFired():boolean {
+        //     return this._isEnemyFired;
+        // }
+
+        // set IsEnemyFired(newState:boolean) {
+        //     this._isEnemyFired = newState;
+        // }
 
         // Constructors
         
@@ -55,19 +64,19 @@ module objects {
             this.y = -1000;
             this._updatePosition();
             this.Direction = util.Vector2.zero();
-
+            // this.IsEnemyFired = false;
         } 
 
         public Start(): void {
             super.Start();
-            this._speed = 15;
+            this._speed = 5;
             this.IsInPlay = false;
         }
 
         public Update(): void {
+            super.Update();          
             if(this.IsInPlay) {
                 this._move();
-                super.Update();
                 this._checkBounds();
             }
         }

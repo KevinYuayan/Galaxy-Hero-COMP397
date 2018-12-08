@@ -18,7 +18,9 @@ var objects;
         // public variables
         // constructors
         function Bomb() {
-            return _super.call(this, "bomb") || this;
+            var _this = _super.call(this, "bomb") || this;
+            _this.Start();
+            return _this;
         }
         // private methods
         Bomb.prototype._move = function () {

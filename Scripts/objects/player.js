@@ -34,22 +34,101 @@ var objects;
         });
         // private methods
         // public methods
-        Player.prototype.Start = function () {
-            this.regX = this.HalfWidth;
-            this.regY = this.HalfHeight;
-            this.y = 435;
-            _super.prototype.Start.call(this);
+        Player.prototype.Move = function () {
+            // this.x = managers.Game.stage.mouseX;
+            var direction = (this.rotation - 90) * -1;
+            var degToRad = Math.PI / 180.0;
+            // standard movement for top scroller - left and right
+            if (managers.Input.moveRight) {
+                this.x += 5;
+            }
+            if (managers.Input.moveLeft) {
+                this.x -= 5;
+            }
+            // standard movement - forward - back
+            if (managers.Input.moveForward) {
+                this.y -= 5;
+            }
+            if (managers.Input.moveBackward) {
+                this.y += 5;
+            }
+            /* move in direction that player is facing */
+            /*
+            if(managers.Input.moveForward) {
+                this.x += 5 * Math.cos(direction * (degToRad));
+                this.y -= 5 * Math.sin(direction * degToRad);
+            }
+
+            if(managers.Input.moveBackward) {
+                this.x -= 5 * Math.cos(direction * (degToRad));
+                this.y += 5 * Math.sin(direction * degToRad);
+            }
+
+            if(managers.Input.moveLeft) {
+                this.rotation -= 5;
+            }
+
+            if(managers.Input.moveRight) {
+                this.rotation += 5;
+            }
+            */
+            /* gamepad controls
+            if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] > 0) {
+                this.x += 10;
+            }
+
+            if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] < 0) {
+                this.x -= 10;
+            }
+
+            if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] > 0) {
+                this.y += 5;
+            }
+
+            if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] < 0) {
+                this.y -= 5;
+            }
+            */
         };
-        Player.prototype.Update = function () {
-            this.x = managers.Game.stage.mouseX;
-            _super.prototype.Update.call(this);
-            this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 2);
+        // public Fire() {
+        //     managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up(),this);
+        // }
+        Player.prototype.Fire = function () {
+            if (managers.Input.space) {
+                if (createjs.Ticker.getTicks() % 5 == 0) {
+                    managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up(), this);
+                }
+            }
+        };
+        Player.prototype.chkBounds = function () {
             if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
                 this.x = config.Constants.canvasWidth - this.HalfWidth;
             }
             if (this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
             }
+            // if(this.y > config.Constants.canvasHeight + this.Height){
+            if (this.y > 435) {
+                this.y = 435;
+            }
+            if (this.y < (config.Constants.canvasHeight / 2)) {
+                this.y = (config.Constants.canvasHeight / 2);
+            }
+        };
+        Player.prototype.Start = function () {
+            this.regX = this.HalfWidth;
+            this.regY = this.HalfHeight;
+            // this.IsEnemy = false;
+            this.y = 435;
+            this.x = 320;
+            _super.prototype.Start.call(this);
+        };
+        Player.prototype.Update = function () {
+            this.Move();
+            this.Fire();
+            _super.prototype.Update.call(this);
+            this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 19);
+            this.chkBounds();
         };
         Player.prototype.Reset = function () {
             _super.prototype.Reset.call(this);

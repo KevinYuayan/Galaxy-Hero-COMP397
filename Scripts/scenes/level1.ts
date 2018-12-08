@@ -1,6 +1,8 @@
 module scenes {
     export class Level1 extends objects.Level {
         // private instance variables
+        private _enemy_01_01: objects.EnemyLvl01_01[];
+        private _water:objects.Water;
 
         // public properties
 
@@ -24,8 +26,8 @@ module scenes {
                 this.addChild(this._backgrounds[count]);
             }
 
-            // adds meteorite to the scene
-            this.addChild(this._meteorite);
+            // adds water to the scene
+            this.addChild(this._water);
 
             // adds player to the stage
             this.addChild(this._player);
@@ -42,17 +44,13 @@ module scenes {
                 this.addChild(powerUp);
             });
 
-            // adds planets to the scene
-            for (let count = 0; count < this._planetNum; count++) {
-                this.addChild(this._planets[count]);
-            }
 
             //adds enemies to the scene
             for (let count = 0; count < this._enemiesNum; count++) {
-                this.addChild(this._enemies[count])
+                this.addChild(this._enemy_01_01[count])
             }
 
-            this.addChild(this._boss);
+            this.addChild(this._boss1);
 
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(bullet => {
@@ -66,7 +64,6 @@ module scenes {
             // managers.Game.scoreBoard.Reset();
             // managers.Game.scoreBoard.Level += 1;
 
-            this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
 
@@ -74,13 +71,13 @@ module scenes {
             this._backgrounds = new Array<objects.Background>();
             // creates 2 backgrounds to have an infinte scroller
             for (let count = 0; count < this._backgroundNum; count++) {
-                this._backgrounds[count] = new objects.Background("spaceBackground", config.Constants.verticalPlaySpeed);
+                this._backgrounds[count] = new objects.Background("earthBackground", config.Constants.verticalPlaySpeed);
             }
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
 
-            this._meteorite = new objects.Meteorite();
-            this._boss = new objects.Boss();
+            this._water = new objects.Water();
+            this._boss1 = new objects.Boss1();
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
@@ -89,14 +86,10 @@ module scenes {
             managers.Game.shockwave = this._shockwave;
 
             // must do this to instantiate the array
-            this._planets = new Array<objects.Planet>();
-            this._enemies = new Array<objects.Enemies>();
-            // adds planets to the array
-            for (let count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
-            }
+            this._enemy_01_01 = new Array<objects.EnemyLvl01_01>();
+            
             for (let count = 0; count < this._enemiesNum; count++) {
-                this._enemies[count] = new objects.Enemies();
+                this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
             this._engineSound = createjs.Sound.play("spaceship");
             this._engineSound.volume = 0.3;
@@ -116,30 +109,28 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 
             this._shockwave.Update();
+            this._water.Update();
+            managers.Collision.Check(this._player, this._water);
 
-            this._meteorite.Update();
-            managers.Collision.Check(this._player, this._meteorite);
+            this._boss1.Update();
+            managers.Collision.Check(this._player, this._boss1);
 
-            this._boss.Update();
-            managers.Collision.Check(this._player, this._boss);
-
-            // updates each planet in array
-            this._planets.forEach(planet => {
-                planet.Update();
-                managers.Collision.Check(this._player, planet);
-            });
             // updates each enemy in array
-            this._enemies.forEach(enemy => {
+            this._enemy_01_01.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
             });
@@ -148,7 +139,7 @@ module scenes {
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
                 managers.Collision.Check(this._player, bullet);
-                this._enemies.forEach(enemy => {
+                this._enemy_01_01.forEach(enemy => {
                     managers.Collision.Check(bullet, enemy);
                 });
             });
@@ -173,7 +164,7 @@ module scenes {
         public Destroy(): void {
             this.removeAllChildren();
             this._engineSound.stop();
-            this.off("mousedown", managers.Input.OnLeftMouseDown);
+            this.off("mousedown",managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
         }
 

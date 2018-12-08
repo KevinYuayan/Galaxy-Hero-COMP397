@@ -5,6 +5,8 @@ module managers{
         private _bulletNum: number;
         private _currentBullet: objects.Bullet;
         private _currentBulletIndex: number;
+        private _divergeLeft: util.Vector2;
+        private _divergeRight: util.Vector2;
 
         //public properties
         get Bullets():objects.Bullet[] {
@@ -32,7 +34,8 @@ module managers{
         }
 
         // constructor
-        constructor(bulletNum:number = 20) {
+
+        constructor(bulletNum:number = 100) {
             this.BulletNum = bulletNum;
             this.Start();
         }
@@ -53,7 +56,8 @@ module managers{
             this._currentBulletIndex = 0;
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
             
-            
+            this._divergeLeft = new util.Vector2(-1,0);
+            this._divergeRight = new util.Vector2(1,0);
         }
 
         public Update():void {
@@ -62,18 +66,32 @@ module managers{
             });
         }
 
-        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2):void {
+        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2, actor?:objects.Actor):void {
             this.CurrentBullet.Position = spawnPoint;
             this.CurrentBullet.x = spawnPoint.x;
             this.CurrentBullet.y = spawnPoint.y;
             this.CurrentBullet.Direction = direction;
             this.CurrentBullet.IsInPlay = true;
-            
+
+            // if(actor.IsEnemy == true)
+            // {
+            //     this.CurrentBullet.IsEnemyFired = true;
+            // }
+            // else {
+            //     this.CurrentBullet.IsEnemyFired = false;
+            // }
+
             this._currentBulletIndex++;
             if(this._currentBulletIndex >= this.Bullets.length) {
                 this._currentBulletIndex = 0;
             }
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
+        }
+
+        public TripleShot(spawnPoint:util.Vector2,direction:util.Vector2):void{
+            this.FireBullet(spawnPoint,direction);
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft));
+            this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight));
         }
     }
 }
