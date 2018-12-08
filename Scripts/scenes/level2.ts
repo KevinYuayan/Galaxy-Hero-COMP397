@@ -71,7 +71,7 @@ module scenes {
 
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum = 3;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();

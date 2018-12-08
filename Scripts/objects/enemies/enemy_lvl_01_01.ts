@@ -13,20 +13,23 @@ module objects {
         }
 
         // private methods
-        private _move() {            
-            if(this.y > (config.Constants.canvasHeight * 0.5)){
-                this.y == 0;
-            } else {
-                this.y += this._verticalSpeed;
-                this.x += this._horizontalSpeed;
-            }
+        private _move() {  
+            this.y += this._verticalSpeed;
+            this.x += this._horizontalSpeed;          
+            // if(this.y > (config.Constants.canvasHeight * 0.5)){
+            //     this.y == 0;
+            // } else {
+            //     this.y += this._verticalSpeed;
+            //     this.x += this._horizontalSpeed;
+            // }
+
         }
 
         private _checkBounds():void {
             if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
-            if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3){
+            if (managers.Game.scoreBoard.Level == 1){
                 if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
                 // if((Math.random() < 0.17) && (this.y > 0)) {
                     console.log(this + "fired a bullet");

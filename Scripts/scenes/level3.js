@@ -67,8 +67,8 @@ var scenes;
             //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 3;
             this._backgroundNum = 2;
-            this._enemiesNum_03_01 = 3;
-            this._enemiesNum_03_02 = 1;
+            this._enemiesNum_03_01 = 1;
+            this._enemiesNum_03_02 = 3;
             this._bossInstance = 1;
             // instantiates background array
             this._backgrounds = new Array();
@@ -122,7 +122,7 @@ var scenes;
             this._shockwave.Update();
             this._life.Update();
             managers.Collision.Check(this._player, this._life);
-            if (this._boss == null && managers.Game.scoreBoard.Score >= 1500 && this._bossInstance == 1) {
+            if (this._boss == null && managers.Game.scoreBoard.Score >= 2500 && this._bossInstance == 1) {
                 this._bossInstance++;
                 this._boss = new objects.Boss();
                 this.addChild(this._boss);

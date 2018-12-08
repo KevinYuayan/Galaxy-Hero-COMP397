@@ -67,7 +67,7 @@ var scenes;
             managers.Game.scoreBoard.Level = 2;
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum = 3;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
