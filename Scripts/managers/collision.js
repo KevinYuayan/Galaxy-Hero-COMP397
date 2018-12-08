@@ -48,6 +48,9 @@ var managers;
                                     actor2.Reset();
                                     actor1.Reset();
                                 }
+                                else {
+                                    actor2.IsColliding = false;
+                                }
                             }
                             // else {
                             //     explosionSound = createjs.Sound.play("explosion02");
@@ -60,6 +63,9 @@ var managers;
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
                                 actor2.Reset();
+                            }
+                            else {
+                                actor2.IsColliding = false;
                             }
                             break;
                         case "bullet":

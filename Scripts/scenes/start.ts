@@ -7,6 +7,7 @@ module scenes{
         private _startButton:objects.Button;
         private _instructionsButton:objects.Button;
 
+        private _panel:objects.Board;
         // public properties
 
         // constructors
@@ -25,6 +26,8 @@ module scenes{
             
             // adds ocean to the stage
             this.addChild(this._background);
+        
+            this.addChild(this._panel);
 
             // adds ocean to the stage
             this.addChild(this._startButton);
@@ -33,7 +36,7 @@ module scenes{
 
             // adds player to the stage
             this.addChild(this._welcomeLabel);
-
+            
             // event listeners
 
             // starts the play scene
@@ -49,9 +52,10 @@ module scenes{
             // Instantiates objects
             this._startButton = new objects.Button("startButton", 320, 360, true);
             this._instructionsButton = new objects.Button("instructionsButton", 320, 430, true);
+            this._startButton = new objects.Button("startButton", 780, 360, true);
             this._background = new objects.Background("startBackground");
-            this._welcomeLabel = new objects.Label("Galaxy Hero", "60px", "Consolas", "#FFFF00", 320, 240, true);
-
+            this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "Consolas", "#FFFF00", 780, 80, true);
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         }
         public Update(): void {

@@ -27,6 +27,7 @@
         { id: "boss", src: imagePath + "boss.png" },
         { id: "shockwave", src: imagePath + "empty.png" },
         { id: "boss1", src: imagePath + "boss_1.png" },
+        { id: "panel", src: imagePath + "panel.png" },
         { id: "spaceBackground", src: imagePath + "spaceBackground.jpg" },
         { id: "startBackground", src: imagePath + "startBackground.jpg" },
         { id: "instructionsBackground", src: imagePath + "instructionsBG.jpg" },

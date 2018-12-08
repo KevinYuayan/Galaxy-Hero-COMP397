@@ -57,6 +57,7 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
             });
+            this.addChild(this._panel);
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         };
@@ -100,6 +101,7 @@ var scenes;
             // instantiates a new powerUp manager
             this._powerUpManager = new managers.PowerUps();
             managers.Game.powerUpManager = this._powerUpManager;
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.SetupInput();
             this.Main();
         };
@@ -150,6 +152,7 @@ var scenes;
             if (this._backgrounds[0].y >= 0 || this._backgrounds[0].y <= config.Constants.canvasHeight - this._backgrounds[0].Height) {
                 this._backgrounds[1].Update();
             }
+            this._panel.Update();
         };
         Level2.prototype.Reset = function () { };
         Level2.prototype.Destroy = function () {
