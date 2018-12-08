@@ -43,7 +43,11 @@ var scenes;
                     // setInterval(this.setToLevel3,5000);
                     break;
             }
+            this.SetupInput();
             this.Main();
+        };
+        Intermission.prototype.SetupInput = function () {
+            document.addEventListener("keydown", managers.Input.EnterPress);
         };
         Intermission.prototype.Update = function () {
             // throw new Error("Method not implemented.");
@@ -53,6 +57,7 @@ var scenes;
         };
         Intermission.prototype.Destroy = function () {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
         };
         Intermission.prototype.Main = function () {
             //adds objects to the stage
@@ -73,8 +78,9 @@ var scenes;
                     this._nextButton.on("click", function () {
                         managers.Game.currentState = config.Scene.LEVEL3;
                     });
-                    // managers.Game.scoreBoard.Level = 3;
-                    // setInterval(this.setToLevel3,5000);
+                    // if(managers.Input.enter){
+                    //     managers.Game.currentState = config.Scene.LEVEL3;
+                    // }
                     break;
             }
         };

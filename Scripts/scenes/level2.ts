@@ -71,7 +71,7 @@ module scenes {
 
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum = 3;
 
             // instantiates background array
             this._backgrounds = new Array<objects.Background>();
@@ -124,6 +124,7 @@ module scenes {
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
+            document.addEventListener("keydown", managers.Input.CheatLife);
         }
 
         public Update(): void {
@@ -186,8 +187,9 @@ module scenes {
             this._engineSound.stop();
             this.off("mousedown",managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
+            document.removeEventListener("keydown", managers.Input.CheatLife);            
+        
         }
-
 
     }
 }

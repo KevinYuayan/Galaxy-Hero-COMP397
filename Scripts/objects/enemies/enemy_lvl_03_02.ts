@@ -22,7 +22,7 @@ module objects {
             if(this.y > config.Constants.canvasHeight + this.Height){
                 this.Reset();
             }
-            if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3){
+            if (managers.Game.scoreBoard.Level == 1 || managers.Game.scoreBoard.Level == 1){
                 if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
                 // if((Math.random() < 0.17) && (this.y > 0)) {
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());

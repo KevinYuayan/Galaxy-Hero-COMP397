@@ -67,7 +67,7 @@ var scenes;
             managers.Game.scoreBoard.Level = 2;
             this._planetNum = 1;
             this._backgroundNum = 2;
-            this._enemiesNum = 2;
+            this._enemiesNum = 3;
             // instantiates background array
             this._backgrounds = new Array();
             // creates 2 backgrounds to have an infinte scroller
@@ -109,6 +109,7 @@ var scenes;
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
+            document.addEventListener("keydown", managers.Input.CheatLife);
         };
         Level2.prototype.Update = function () {
             var _this = this;
@@ -160,6 +161,7 @@ var scenes;
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
+            document.removeEventListener("keydown", managers.Input.CheatLife);
         };
         return Level2;
     }(objects.Level));

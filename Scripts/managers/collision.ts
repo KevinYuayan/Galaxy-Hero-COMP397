@@ -112,13 +112,13 @@ module managers {
                             aBomb.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 500 && managers.Game.scoreBoard.Score < 1000 && (managers.Game.scoreBoard.Level == 1)) {
+                    if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 2000 && (managers.Game.scoreBoard.Level == 1)) {
                         // managers.Game.currentState = config.Scene.LEVEL2;
                             managers.Game.currentState = config.Scene.INTERMISSION;
                             managers.Game.scoreBoard.Level = 2;
                     }
 
-                    if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 6000 && (managers.Game.scoreBoard.Level <= 2)) {
+                    if (managers.Game.scoreBoard.Score >= 2000 && (managers.Game.scoreBoard.Level <= 2)) {
                         // managers.Game.currentState = config.Scene.LEVEL3;
                             managers.Game.currentState = config.Scene.INTERMISSION;
                             managers.Game.scoreBoard.Level = 3;

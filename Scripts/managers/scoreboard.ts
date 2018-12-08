@@ -66,7 +66,7 @@ module managers {
          * Creates an instance of ScoreBoard.
          * @param {boolean} [isGameOver=false]
          */
-        constructor(livesNum:number = 5, scoreNum:number = 0, highScoreNum:number = 0, bombsNum = 1,level:number = 1){
+        constructor(livesNum:number = 20, scoreNum:number = 0, highScoreNum:number = 0, bombsNum = 1,level:number = 1){
 
             this.Start();
 
