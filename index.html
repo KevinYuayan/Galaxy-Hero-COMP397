@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>COMP397 - Lesson 1</title>
+    <!-- CSS Section -->
+    <link rel="stylesheet" href="./Content/game.css">
+</head>
+<body>
+    <canvas id="canvas" width="913" height="480"></canvas>
+
+    <!-- JavaScript Section -->
+
+    <!-- Createjs Libraries -->
+    <script src="./node_modules/easeljs/lib/easeljs.min.js"></script>
+    <script src="./node_modules/tweenjs/lib/tweenjs.min.js"></script>
+    <script src="./node_modules/soundjs/lib/soundjs.min.js"></script>
+    <script src="./node_modules/preloadjs/lib/preloadjs.min.js"></script>
+
+    <!-- Game Scripts -->
+
+    <!-- Util Files -->
+    <script src="./Scripts/util/vector2.js"></script>
+
+    <!-- Config Files -->
+    <script src="./Scripts/config/scene.js"></script>
+    <script src="./Scripts/config/constants.js"></script>
+    <script src="./Scripts/config/key.js"></script>
+    <script src="./Scripts/config/gamepad.js"></script>
+
+    <!-- Managers -->
+    <script src="./Scripts/managers/game.js"></script>
+    <script src="./Scripts/managers/gamepad.js"></script>
+    <script src="./Scripts/managers/input.js"></script>
+
+    
+    <!-- Game Objects -->
+    <script src="./Scripts/objects/bitmapgameobject.js"></script>
+    <script src="./Scripts/objects/spritegameobject.js"></script>
+    <script src="./Scripts/objects/actor.js"></script>
+    <script src="./Scripts/objects/meteorite.js"></script>
+    <script src="./Scripts/objects/explosion.js"></script>
+
+    <!-- Enemies -->    
+    <script src="./Scripts/objects/enemies/enemy.js"></script>
+    <script src="./Scripts/objects//enemies/enemy_lvl_01_01.js"></script>
+    <script src="./Scripts/objects/enemies/enemy_lvl_03_01.js"></script>
+    <script src="./Scripts/objects/enemies/enemy_lvl_03_02.js"></script>
+    <script src="./Scripts/objects/enemies/enemies.js"></script>
+    <script src="./Scripts/objects/enemies/boss.js"></script>
+    <script src="./Scripts/objects/enemies/boss1.js"></script>
+    <script src="./Scripts/objects/enemies/planet.js"></script>
+    <script src="./Scripts/objects/enemies/meteorite.js"></script>
+    <script src="./Scripts/objects/enemies/water.js"></script>
+
+    <!-- Power Ups -->
+    <script src="./Scripts/objects/powerUps/powerUp.js"></script>
+    <script src="./Scripts/objects/powerUps/bomb.js"></script>
+    
+    <!-- Other Objects -->
+    <script src="./Scripts/objects/background.js"></script>
+    <script src="./Scripts/objects/player.js"></script>
+    <script src="./Scripts/objects/scene.js"></script>  
+    <script src="./Scripts/objects/bullet.js"></script>
+    <script src="./Scripts/objects/level.js"></script>
+    <script src="./Scripts/objects/shockwave.js"></script>
+    <script src="./Scripts/objects/enemies/extra_life.js"></script>
+    
+    <!-- UI -->
+    <script src="./Scripts/objects/label.js"></script>
+    <script src="./Scripts/objects/button.js"></script>
+    <script src="./Scripts/objects/ui/board.js"></script>
+    
+    <!--Managers Continued-->
+    <script src="./Scripts/managers/collision.js"></script>
+    <script src="./Scripts/managers/scoreboard.js"></script>
+    <script src="./Scripts/managers/bullet.js"></script>
+    <script src="./Scripts/managers/powerUps.js"></script>
+    <script src="./Scripts/objects/enemies/extra_life.js"></script>  
+  
+    <!-- Scenes -->    
+    <script src="./Scripts/scenes/over.js"></script>
+    <script src="./Scripts/scenes/level1.js"></script>
+    <script src="./Scripts/scenes/level2.js"></script>
+    <script src="./Scripts/scenes/level3.js"></script>
+    <script src="./Scripts/scenes/instructions.js"></script>
+    <script src="./Scripts/scenes/intermission.js"></script>
+    <script src="./Scripts/scenes/start.js"></script>
+
+    <!-- Core Game Scripts -->
+
+    <script src="./Scripts/core/game.js"></script>
+</body>
+</html>
