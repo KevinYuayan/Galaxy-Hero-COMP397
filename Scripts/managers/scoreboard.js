@@ -95,7 +95,7 @@ var managers;
             currentScene.addChild(this._highScoreLabel);
         };
         ScoreBoard.prototype.Reset = function (livesNum, scoreNum, bombsNum, level) {
-            if (livesNum === void 0) { livesNum = 5; }
+            if (livesNum === void 0) { livesNum = 20; }
             if (scoreNum === void 0) { scoreNum = 0; }
             if (bombsNum === void 0) { bombsNum = 1; }
             if (level === void 0) { level = 1; }

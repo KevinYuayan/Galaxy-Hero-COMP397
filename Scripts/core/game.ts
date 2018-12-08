@@ -19,9 +19,9 @@
     let imagePath:string = "./Assets/images/"
     let audioPath:string = "./Assets/audio/"
     let assetManifest = [
-        {id: "startButton", src: imagePath + "startButton.png"},
-        {id: "instructionsButton", src: imagePath + "instructionsButton.png"},
-        {id: "restartButton", src: imagePath + "restartButton.png"},
+        {id: "startButton", src: imagePath + "button_start.png"},
+        {id: "restartButton", src: imagePath + "button_restart.png"},
+        {id: "instructionsButton", src: imagePath + "button_instructions.png"},
         {id: "player", src: imagePath + "player.png"},
         {id: "planet", src: imagePath + "planet.png"},
         {id: "bomb", src: imagePath + "bomb.png"},

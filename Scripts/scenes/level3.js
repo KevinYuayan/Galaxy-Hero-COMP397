@@ -122,7 +122,7 @@ var scenes;
             this._shockwave.Update();
             this._life.Update();
             managers.Collision.Check(this._player, this._life);
-            if (this._boss == null && managers.Game.scoreBoard.Score >= 2500 && this._bossInstance == 1) {
+            if (this._boss == null && managers.Game.scoreBoard.Score >= 3000 && this._bossInstance == 1) {
                 this._bossInstance++;
                 this._boss = new objects.Boss();
                 this.addChild(this._boss);

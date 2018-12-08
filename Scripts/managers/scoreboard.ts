@@ -102,7 +102,7 @@ module managers {
             currentScene.addChild(this._highScoreLabel);
         }
 
-        public Reset(livesNum:number = 5, scoreNum:number = 0, bombsNum = 1,level:number = 1): void {
+        public Reset(livesNum:number = 20, scoreNum:number = 0, bombsNum = 1,level:number = 1): void {
             this.Lives = livesNum;
             this.Score = scoreNum;
             this.Bombs = bombsNum;

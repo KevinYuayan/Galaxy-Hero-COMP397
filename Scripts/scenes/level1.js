@@ -47,7 +47,6 @@ var scenes;
             for (var count = 0; count < this._enemiesNum; count++) {
                 this.addChild(this._enemy_01_01[count]);
             }
-            this.addChild(this._boss1);
             // adds bullets to the scene
             this._bulletManager.Bullets.forEach(function (bullet) {
                 _this.addChild(bullet);
@@ -70,12 +69,12 @@ var scenes;
             // Places the second background in the Reset position instead of the Start position
             this._backgrounds[1].Reset();
             this._water = new objects.Water();
-            this._boss1 = new objects.Boss1();
             this._player = new objects.Player();
             managers.Game.player = this._player;
             this._shockwave = new objects.Shockwave();
             managers.Game.shockwave = this._shockwave;
             // must do this to instantiate the array
+            this._planets = new Array();
             this._enemy_01_01 = new Array();
             for (var count = 0; count < this._enemiesNum; count++) {
                 this._enemy_01_01[count] = new objects.EnemyLvl01_01();
@@ -109,8 +108,11 @@ var scenes;
             this._shockwave.Update();
             this._water.Update();
             managers.Collision.Check(this._player, this._water);
-            this._boss1.Update();
-            managers.Collision.Check(this._player, this._boss1);
+            // updates each planet in array
+            this._planets.forEach(function (planet) {
+                planet.Update();
+                managers.Collision.Check(_this._player, planet);
+            });
             // updates each enemy in array
             this._enemy_01_01.forEach(function (enemy) {
                 enemy.Update();

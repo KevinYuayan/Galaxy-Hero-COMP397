@@ -26,6 +26,7 @@ var scenes;
         //public methods
         Intermission.prototype.Start = function () {
             this._background = new objects.Background("instructionsBackground");
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._nextButton = new objects.Button("startButton", 320, 420, true);
             this._nextLabel = new objects.Label("Enter the next Level when you're ready...", "20px", "Consolas", "#FFFF00", 80, 330, false, 350);
             this._loading = new objects.BitmapGameObject("loading");
@@ -62,6 +63,7 @@ var scenes;
         Intermission.prototype.Main = function () {
             //adds objects to the stage
             this.addChild(this._background);
+            this.addChild(this._panel);
             this.addChild(this._waitLabel);
             this.addChild(this._nextLabel);
             this.addChild(this._nextButton);
