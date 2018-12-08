@@ -43,10 +43,6 @@ module scenes {
                 this.addChild(powerUp);
             });
 
-            // adds planets to the scene
-            for (let count = 0; count < this._planetNum; count++) {
-                this.addChild(this._planets[count]);
-            }
 
             //adds enemies to the scene
             for (let count = 0; count < this._enemiesNum; count++) {
@@ -67,7 +63,6 @@ module scenes {
             // managers.Game.scoreBoard.Reset();
             // managers.Game.scoreBoard.Level += 1;
 
-            this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
 
@@ -91,10 +86,7 @@ module scenes {
             // must do this to instantiate the array
             this._planets = new Array<objects.Planet>();
             this._enemy_01_01 = new Array<objects.EnemyLvl01_01>();
-            // adds planets to the array
-            for (let count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
-            }
+            
             for (let count = 0; count < this._enemiesNum; count++) {
                 this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
@@ -118,12 +110,16 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 
@@ -173,7 +169,7 @@ module scenes {
         public Destroy(): void {
             this.removeAllChildren();
             this._engineSound.stop();
-            this.off("mousedown", managers.Input.OnLeftMouseDown);
+            this.off("mousedown",managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
         }
 

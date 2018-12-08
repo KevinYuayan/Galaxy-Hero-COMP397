@@ -66,6 +66,7 @@ module scenes {
         }
         public Start(): void {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 2;
 
             this._planetNum = 1;
@@ -120,12 +121,16 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 
@@ -179,7 +184,7 @@ module scenes {
         public Destroy(): void {
             this.removeAllChildren();
             this._engineSound.stop();
-            this.off("mousedown", managers.Input.OnLeftMouseDown);
+            this.off("mousedown",managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
         }
 

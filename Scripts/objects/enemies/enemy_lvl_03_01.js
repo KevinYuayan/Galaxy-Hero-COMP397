@@ -34,9 +34,8 @@ var objects;
                 this.Reset();
             }
             if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3) {
-                //if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
-                if ((Math.random() < 0.17) && (this.y > 0)) {
-                    console.log(this + "fired a bullet");
+                if ((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
+                    // if((Math.random() < 0.17) && (this.y > 0)) {
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }
@@ -45,9 +44,9 @@ var objects;
         EnemyLvl03_01.prototype.Start = function () {
             this.regX = this.HalfHeight;
             this.regY = this.HalfWidth;
-            _super.prototype.Start.call(this);
             this._bulletSpawn = new util.Vector2(0, 2 + this.HalfHeight);
             this.Reset();
+            _super.prototype.Start.call(this);
         };
         EnemyLvl03_01.prototype.Update = function () {
             this._move();

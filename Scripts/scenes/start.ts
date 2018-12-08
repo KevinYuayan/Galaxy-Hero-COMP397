@@ -5,6 +5,8 @@ module scenes{
         private _background:objects.Background;
         private _welcomeLabel:objects.Label;
         private _startButton:objects.Button;
+        private _instructionsButton:objects.Button;
+
         private _panel:objects.Board;
         // public properties
 
@@ -18,7 +20,6 @@ module scenes{
 
         // private methods
 
-
         // public methods
 
         public Main(): void {
@@ -30,6 +31,8 @@ module scenes{
 
             // adds ocean to the stage
             this.addChild(this._startButton);
+            
+            this.addChild(this._instructionsButton);
 
             // adds player to the stage
             this.addChild(this._welcomeLabel);
@@ -40,9 +43,15 @@ module scenes{
             this._startButton.on("click", ()=>{
                 managers.Game.currentState = config.Scene.LEVEL1;
             })
+            
+            this._instructionsButton.on("click", ()=>{
+                managers.Game.currentState = config.Scene.INSTRUCTIONS;
+            })
         }        
         public Start(): void {
             // Instantiates objects
+            this._startButton = new objects.Button("startButton", 320, 360, true);
+            this._instructionsButton = new objects.Button("instructionsButton", 320, 430, true);
             this._startButton = new objects.Button("startButton", 780, 360, true);
             this._background = new objects.Background("startBackground");
             this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "Consolas", "#FFFF00", 780, 80, true);

@@ -3,7 +3,7 @@ var managers;
     var Bullet = /** @class */ (function () {
         // constructor
         function Bullet(bulletNum) {
-            if (bulletNum === void 0) { bulletNum = 20; }
+            if (bulletNum === void 0) { bulletNum = 100; }
             this.BulletNum = bulletNum;
             this.Start();
         }
@@ -50,6 +50,8 @@ var managers;
             // set the current bullet to the first bullet object
             this._currentBulletIndex = 0;
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
+            this._divergeLeft = new util.Vector2(-1, 0);
+            this._divergeRight = new util.Vector2(1, 0);
         };
         Bullet.prototype.Update = function () {
             this.Bullets.forEach(function (bullet) {
@@ -62,11 +64,23 @@ var managers;
             this.CurrentBullet.y = spawnPoint.y;
             this.CurrentBullet.Direction = direction;
             this.CurrentBullet.IsInPlay = true;
+            // if(actor.IsEnemy == true)
+            // {
+            //     this.CurrentBullet.IsEnemyFired = true;
+            // }
+            // else {
+            //     this.CurrentBullet.IsEnemyFired = false;
+            // }
             this._currentBulletIndex++;
             if (this._currentBulletIndex >= this.Bullets.length) {
                 this._currentBulletIndex = 0;
             }
             this.CurrentBullet = this.Bullets[this._currentBulletIndex];
+        };
+        Bullet.prototype.TripleShot = function (spawnPoint, direction) {
+            this.FireBullet(spawnPoint, direction);
+            this.FireBullet(spawnPoint, util.Vector2.Add(direction, this._divergeLeft));
+            this.FireBullet(spawnPoint, util.Vector2.Add(direction, this._divergeRight));
         };
         return Bullet;
     }());

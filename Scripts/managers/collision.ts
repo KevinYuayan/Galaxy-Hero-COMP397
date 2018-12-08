@@ -2,6 +2,7 @@ module managers {
     export class Collision {
         // private instance variables
 
+
         // public properties
 
         // constructor
@@ -22,8 +23,9 @@ module managers {
                     switch (actor2.name) {
                         case "meteorite":
                         case "water":
+                        case "life":
                             let yaySound = createjs.Sound.play("yaySound");
-                            yaySound.volume = 0.1;
+                            yaySound.volume = 0.3;
                             managers.Game.scoreBoard.Score += 50;
                             managers.Game.scoreBoard.Lives += 1;
                             break;
@@ -31,8 +33,8 @@ module managers {
                         case "boss":
                             let explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
-                            console.log("explosion01 sound");
                             managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
                             break;
                         case "enemies":
                         case "enemyLvl03_01":
@@ -48,15 +50,31 @@ module managers {
                                     if (Math.random() <= 0.1) {
                                         managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
                                     }
+                                    Collision.createExplosion(actor1);
                                     actor2.Reset();
                                     actor1.Reset();
                                 }
+                                else{
+                                    actor2.IsColliding = false;
+                                }
                             }
-                            else {
-                                explosionSound = createjs.Sound.play("explosion02");
-                                explosionSound.volume = 0.1;
-                                managers.Game.scoreBoard.Lives -= 1;
-                            }
+                            // else {
+                            //     explosionSound = createjs.Sound.play("explosion02");
+                            //     explosionSound.volume = 0.1;
+                            //     managers.Game.scoreBoard.Lives -= 1;
+                            //     // actor2.Reset();
+                            // }
+                            if (actor1.name == "player")
+                                {
+                                    explosionSound = createjs.Sound.play("explosion02");
+                                    explosionSound.volume = 0.1;
+                                    managers.Game.scoreBoard.Lives -= 1;
+                                    Collision.createExplosion(actor1);
+                                    actor2.Reset();
+                                }
+                                else{
+                                    actor2.IsColliding = false;
+                                }
                             break;
                         case "bullet":
                             if (actor1.name == "shockwave") {
@@ -68,21 +86,31 @@ module managers {
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
                                 actor2.Reset();
+                                Collision.createExplosion(actor1);
                             }
+                            break;    
+                        case "bullet":
+                            explosionSound = createjs.Sound.play("explosion02");
+                            explosionSound.volume = 0.1;
+                            managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
+                            actor2.Reset();
                             break;
                         case "bomb":
                             let aBomb = <objects.Bomb>actor2;
                             aBomb.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 500 && managers.Game.scoreBoard.Score < 1000) {
-                        managers.Game.currentState = config.Scene.LEVEL2;
-                        console.log("scene changed to level 2");
+                    if (managers.Game.scoreBoard.Score >= 500 && managers.Game.scoreBoard.Score < 1000 && (managers.Game.scoreBoard.Level == 1)) {
+                        // managers.Game.currentState = config.Scene.LEVEL2;
+                            managers.Game.currentState = config.Scene.INTERMISSION;
+                            managers.Game.scoreBoard.Level = 2;
                     }
 
-                    if (managers.Game.scoreBoard.Score >= 1000) {
-                        managers.Game.currentState = config.Scene.LEVEL3;
-                        console.log("scene changed to level 3");
+                    if (managers.Game.scoreBoard.Score >= 1000 && (managers.Game.scoreBoard.Level <= 2)) {
+                        // managers.Game.currentState = config.Scene.LEVEL3;
+                            managers.Game.currentState = config.Scene.INTERMISSION;
+                            managers.Game.scoreBoard.Level = 3;
                     }
                     if (managers.Game.scoreBoard.Lives <= 0) {
                         managers.Game.currentState = config.Scene.OVER;
@@ -92,6 +120,16 @@ module managers {
                     }
                 }
             }
+        }
+        private static createExplosion(actor1: objects.BitmapGameObject) {
+            let newExplosion = new objects.Explosion();
+            newExplosion.x = actor1.x;
+            newExplosion.y = actor1.y;
+            managers.Game.currentScene.addChild(newExplosion);
+            newExplosion.on("animationend", () => {
+                newExplosion.Destroy();
+                newExplosion = null;
+            });
         }
     }
 }

@@ -15,41 +15,26 @@ var objects;
 (function (objects) {
     var Explosion = /** @class */ (function (_super) {
         __extends(Explosion, _super);
-        function Explosion() {
-            return _super !== null && _super.apply(this, arguments) || this;
-        }
+        // private instance variables
         // public properties
         // constructor
-        /*constructor() {
-            super("coin");
-
-            this.Start();
-        }*/
+        function Explosion() {
+            var _this = _super.call(this, "explosion") || this;
+            _this.Start();
+            return _this;
+        }
         // private methods
-        Explosion.prototype._move = function () {
-            this.y += this._verticalSpeed;
-            this._updatePosition();
-        };
-        Explosion.prototype._checkBounds = function () {
-            if (this.y > 480 + this.Height) {
-                this.Reset();
-            }
-        };
         // public methods
         Explosion.prototype.Reset = function () {
-            this.IsColliding = false;
         };
         Explosion.prototype.Start = function () {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this._verticalSpeed = 5;
-            this.Reset();
         };
         Explosion.prototype.Update = function () {
-            this._move();
-            this._checkBounds();
         };
         Explosion.prototype.Destroy = function () {
+            this.parent.removeChild(this);
         };
         return Explosion;
     }(objects.SpriteGameObject));

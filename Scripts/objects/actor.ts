@@ -1,11 +1,12 @@
 module objects {
-    export abstract class Actor extends GameObject {
+    export abstract class Actor extends BitmapGameObject {
         
         
         // private instance variables
 
         private _isColliding:boolean;
         private _position:util.Vector2;
+        // private _isEnemy:boolean;
         
         // public properties
 
@@ -24,6 +25,16 @@ module objects {
         set IsColliding(newValue:boolean) {
             this._isColliding = newValue;
         }
+
+        // get IsEnemy():boolean {
+        //     return this._isEnemy;
+        // }
+
+        // set IsEnemy(newState:boolean) {
+        //     this._isEnemy = newState;
+        // }
+
+
 
         // constructor
         constructor(imageString:string) {

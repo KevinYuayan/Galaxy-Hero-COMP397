@@ -63,6 +63,7 @@ var scenes;
         };
         Level2.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 2;
             this._planetNum = 1;
             this._backgroundNum = 2;
@@ -105,12 +106,16 @@ var scenes;
             this.Main();
         };
         Level2.prototype.SetupInput = function () {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         };
         Level2.prototype.Update = function () {
             var _this = this;
+            managers.Input.gamepad1.Update();
+            if ((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
             this._player.Update();
             this._shockwave.Update();
             this._meteorite.Update();

@@ -64,6 +64,7 @@ var scenes;
         };
         Level3.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 3;
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;
@@ -106,12 +107,16 @@ var scenes;
             this.Main();
         };
         Level3.prototype.SetupInput = function () {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         };
         Level3.prototype.Update = function () {
             var _this = this;
+            managers.Input.gamepad1.Update();
+            if ((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
             this._player.Update();
             this._shockwave.Update();
             this._life.Update();
@@ -138,11 +143,11 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
-                _this._enemy_03_01.forEach(function (enemy) {
-                    managers.Collision.Check(bullet, enemy);
+                _this._enemy_03_01.forEach(function (enemy1) {
+                    managers.Collision.Check(bullet, enemy1);
                 });
-                _this._enemy_03_02.forEach(function (enemy) {
-                    managers.Collision.Check(bullet, enemy);
+                _this._enemy_03_02.forEach(function (enemy2) {
+                    managers.Collision.Check(bullet, enemy2);
                 });
             });
             this._powerUpManager.Update();

@@ -73,6 +73,7 @@ module scenes {
         }
         public Start(): void {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 3;
 
             this._backgroundNum = 2;
@@ -127,12 +128,17 @@ module scenes {
         }
 
         public SetupInput(): void {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
+
+            managers.Input.gamepad1.Update();
+            if((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
 
             this._player.Update();
 
@@ -163,11 +169,11 @@ module scenes {
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
-                this._enemy_03_01.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_01.forEach(enemy1 => {
+                    managers.Collision.Check(bullet, enemy1);
                 });
-                this._enemy_03_02.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_02.forEach(enemy2 => {
+                    managers.Collision.Check(bullet, enemy2);
                 });
             });
 

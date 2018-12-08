@@ -15,6 +15,12 @@ var objects;
 (function (objects) {
     var Actor = /** @class */ (function (_super) {
         __extends(Actor, _super);
+        // get IsEnemy():boolean {
+        //     return this._isEnemy;
+        // }
+        // set IsEnemy(newState:boolean) {
+        //     this._isEnemy = newState;
+        // }
         // constructor
         function Actor(imageString) {
             var _this = _super.call(this, imageString) || this;
@@ -22,6 +28,7 @@ var objects;
             return _this;
         }
         Object.defineProperty(Actor.prototype, "Position", {
+            // private _isEnemy:boolean;
             // public properties
             get: function () {
                 return this._position;
@@ -59,7 +66,7 @@ var objects;
             this.IsColliding = false;
         };
         return Actor;
-    }(objects.GameObject));
+    }(objects.BitmapGameObject));
     objects.Actor = Actor;
 })(objects || (objects = {}));
 //# sourceMappingURL=actor.js.map

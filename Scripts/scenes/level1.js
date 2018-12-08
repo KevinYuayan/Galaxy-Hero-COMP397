@@ -43,10 +43,6 @@ var scenes;
             this._powerUpManager.PowerUps.forEach(function (powerUp) {
                 _this.addChild(powerUp);
             });
-            // adds planets to the scene
-            for (var count = 0; count < this._planetNum; count++) {
-                this.addChild(this._planets[count]);
-            }
             //adds enemies to the scene
             for (var count = 0; count < this._enemiesNum; count++) {
                 this.addChild(this._enemy_01_01[count]);
@@ -62,7 +58,6 @@ var scenes;
         Level1.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
             // managers.Game.scoreBoard.Level += 1;
-            this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
             // instantiates background array
@@ -81,10 +76,6 @@ var scenes;
             // must do this to instantiate the array
             this._planets = new Array();
             this._enemy_01_01 = new Array();
-            // adds planets to the array
-            for (var count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
-            }
             for (var count = 0; count < this._enemiesNum; count++) {
                 this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
@@ -102,12 +93,16 @@ var scenes;
             this.Main();
         };
         Level1.prototype.SetupInput = function () {
+            managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
-            //this.on("keydown", managers.Input.KeyPressed);
         };
         Level1.prototype.Update = function () {
             var _this = this;
+            managers.Input.gamepad1.Update();
+            if ((managers.Input.gamepad1.Buttons[0]) && (createjs.Ticker.getTicks() % 7 == 0)) {
+                managers.Game.bulletManager.FireBullet(managers.Game.player.BulletSpawn, util.Vector2.up());
+            }
             this._player.Update();
             this._shockwave.Update();
             this._water.Update();

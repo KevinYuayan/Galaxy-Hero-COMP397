@@ -9,6 +9,7 @@ module objects {
 
         constructor() {
             super("planet");
+
         }
 
         // private methods

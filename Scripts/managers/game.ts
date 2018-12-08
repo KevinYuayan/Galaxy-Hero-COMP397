@@ -10,5 +10,6 @@ module managers {
         public static player: objects.Player;
         public static currentScene: objects.Scene;
         public static shockwave:objects.Shockwave;
+        public static textureMap: createjs.SpriteSheet;
     }
 }
