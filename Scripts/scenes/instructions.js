@@ -25,10 +25,8 @@ var scenes;
         // private methods
         // public methods
         Instructions.prototype.Main = function () {
-            // adds ocean to the stage
             this.addChild(this._background);
             this.addChild(this._player);
-            // adds player to the stage
             this.addChild(this._playerlbl);
             this.addChild(this._bullet);
             this.addChild(this._enemy1);

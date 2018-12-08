@@ -37,11 +37,9 @@ module scenes{
 
         public Main(): void {
             
-            // adds ocean to the stage
             this.addChild(this._background);
 
             this.addChild(this._player);
-            // adds player to the stage
             this.addChild(this._playerlbl);
 
             this.addChild(this._bullet);

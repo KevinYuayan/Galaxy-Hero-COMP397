@@ -19,7 +19,6 @@ module scenes{
 
         // private methods
 
-
         // public methods
 
         public Main(): void {

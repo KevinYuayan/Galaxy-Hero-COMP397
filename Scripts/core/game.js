@@ -41,8 +41,12 @@
         { id: "bullet", src: imagePath + "bullet_01.png" },
         { id: "earthBackground", src: imagePath + "earthbackground.png" },
         { id: "enemyLvl01_01", src: imagePath + "enemy_lvl_01_01.png" },
-        //{id: "water", src: imagePath + "lvl1_score_01.png"},
+        // {id: "water", src: imagePath + "lvl1_score_01.png"},
         { id: "water", src: imagePath + "lvl1_score_02.png" },
+        // {id: "water", src: imagePath + "lvl1_score_03.gif"},
+        // {id: "loading", src: imagePath + "loading.gif"}
+        // {id: "loading", src: imagePath + "clMqQGC.gif"}
+        { id: "loading", src: imagePath + "loading-lg.gif" }
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();
@@ -88,6 +92,9 @@
                 break;
             case config.Scene.INSTRUCTIONS:
                 currentScene = new scenes.Instructions;
+                break;
+            case config.Scene.INTERMISSION:
+                currentScene = new scenes.Intermission;
                 break;
             case config.Scene.LEVEL1:
                 currentScene = new scenes.Level1;
