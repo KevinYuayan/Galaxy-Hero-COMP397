@@ -26,6 +26,7 @@ var scenes;
         // public methods
         Level1.prototype.Main = function () {
             var _this = this;
+            this.addChild(this._panel);
             // adds backgrounds to the stage
             for (var count = 0; count < this._backgroundNum; count++) {
                 this.addChild(this._backgrounds[count]);
@@ -98,6 +99,7 @@ var scenes;
             // instantiates a new powerUp manager
             this._powerUpManager = new managers.PowerUps();
             managers.Game.powerUpManager = this._powerUpManager;
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.SetupInput();
             this.Main();
         };

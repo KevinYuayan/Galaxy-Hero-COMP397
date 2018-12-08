@@ -20,6 +20,7 @@ module scenes {
         // public methods
 
         public Main(): void {
+            this.addChild(this._panel);
 
             // adds backgrounds to the stage
             for (let count = 0; count < this._backgroundNum; count++) {
@@ -111,7 +112,9 @@ module scenes {
             // instantiates a new powerUp manager
             this._powerUpManager = new managers.PowerUps();
             managers.Game.powerUpManager = this._powerUpManager;
-
+            
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
+            
             this.SetupInput();
 
             this.Main();

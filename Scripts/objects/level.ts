@@ -6,7 +6,7 @@ module objects {
         protected _bulletManager: managers.Bullet;
         protected _powerUpManager: managers.PowerUps;
         protected _shockwave:objects.Shockwave;
-
+        protected _panel:objects.Board;
         protected _planetNum: number;
         protected _enemiesNum: number;
         protected _planets: objects.Planet[];
