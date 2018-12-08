@@ -18,7 +18,7 @@ module scenes{
         private _enemy3:objects.BitmapGameObject;
         private _meteor1:objects.BitmapGameObject;
         private _meteor2:objects.BitmapGameObject;
-
+        private _panel:objects.Board;
 
         // public properties
 
@@ -38,7 +38,7 @@ module scenes{
         public Main(): void {
             
             this.addChild(this._background);
-
+            this.addChild(this._panel);
             this.addChild(this._player);
             this.addChild(this._playerlbl);
 
@@ -71,7 +71,7 @@ module scenes{
             // TODO Change string when back button added
             this._backButton = new objects.Button("startButton", 320, 440, true);
             this._background = new objects.Background("instructionsBackground");
-
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._player = new objects.BitmapGameObject("player");
             this._player.x = 20;
             this._player.y = 20;

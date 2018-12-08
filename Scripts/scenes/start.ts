@@ -50,11 +50,10 @@ module scenes{
         }        
         public Start(): void {
             // Instantiates objects
-            this._startButton = new objects.Button("startButton", 320, 360, true);
-            this._instructionsButton = new objects.Button("instructionsButton", 320, 430, true);
-            this._startButton = new objects.Button("startButton", 780, 360, true);
+            this._instructionsButton = new objects.Button("instructionsButton", 780, 360, true);
+            this._startButton = new objects.Button("startButton", 780, 180, true);
             this._background = new objects.Background("startBackground");
-            this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "Consolas", "#FFFF00", 780, 80, true);
+            this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "planet", "#FFFF00", 780, 80, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         }
