@@ -2,7 +2,8 @@ module objects {
     export class Player extends objects.Actor {
         
         // private instance variables
-        _bulletSpawn:util.Vector2;
+        private _bulletSpawn:util.Vector2;
+        private _tripleShot:boolean;
 
         // public properties
         get BulletSpawn():util.Vector2{
@@ -10,6 +11,12 @@ module objects {
         }
         set BulletSpawn(newSpawnPoint:util.Vector2){
             this._bulletSpawn = newSpawnPoint;
+        }
+        get TripleShot():boolean{
+            return this.TripleShot;  
+        }
+        set TripleShot(newBool:boolean){
+            this._tripleShot = newBool;
         }
         
         // constructors
@@ -103,7 +110,12 @@ module objects {
             if(managers.Input.space) {
                 if(createjs.Ticker.getTicks() % 5 == 0 )
                 {
-                    managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
+                    if (this._tripleShot) {
+                        managers.Game.bulletManager.TripleShot(this.BulletSpawn, util.Vector2.up());
+                    }
+                    else {
+                        managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
+                    }
                 }
             }
         }

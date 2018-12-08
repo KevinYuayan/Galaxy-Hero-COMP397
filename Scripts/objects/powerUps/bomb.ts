@@ -27,15 +27,6 @@ module objects {
 
         // public methods
 
-        /*public static UseBomb():void {
-            if(managers.Game.scoreBoard.Bombs > 0) {
-                managers.Game.scoreBoard.Bombs -= 1;
-                managers.Game.bulletManager.Bullets.forEach(bullet => {
-                    bullet.Reset();
-                })
-            }
-        }*/
-
         // Adds a bomb to player when picked up. Max 3 bombs
         public Collected(): void {
             if(managers.Game.scoreBoard.Bombs < 3) {

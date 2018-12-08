@@ -34,6 +34,7 @@ var objects;
         // public methods
         // Adds a bomb to player when picked up. Max 3 bombs
         TShot.prototype.Collected = function () {
+            managers.Game.player.TripleShot = true;
             this.IsInPlay = false;
         };
         TShot.prototype.Start = function () {

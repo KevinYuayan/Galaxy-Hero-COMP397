@@ -32,6 +32,16 @@ var objects;
             enumerable: true,
             configurable: true
         });
+        Object.defineProperty(Player.prototype, "TripleShot", {
+            get: function () {
+                return this.TripleShot;
+            },
+            set: function (newBool) {
+                this._tripleShot = newBool;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         // public methods
         Player.prototype.Move = function () {
@@ -96,7 +106,12 @@ var objects;
         Player.prototype.Fire = function () {
             if (managers.Input.space) {
                 if (createjs.Ticker.getTicks() % 5 == 0) {
-                    managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
+                    if (this._tripleShot) {
+                        managers.Game.bulletManager.TripleShot(this.BulletSpawn, util.Vector2.up());
+                    }
+                    else {
+                        managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
+                    }
                 }
             }
         };

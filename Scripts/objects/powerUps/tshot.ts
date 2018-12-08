@@ -30,10 +30,10 @@ module objects {
 
         // Adds a bomb to player when picked up. Max 3 bombs
         public Collected(): void {
+            managers.Game.player.TripleShot = true;
             this.IsInPlay = false;
         }
         
-
         public Start(): void {
             this.Reset();
             super.Start();

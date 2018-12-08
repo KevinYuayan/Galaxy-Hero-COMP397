@@ -15,6 +15,7 @@ module objects {
 
         constructor() {
             super("boss");
+            this._lives = 3;
         }
 
 
@@ -71,7 +72,7 @@ module objects {
         public lostLife() {
             if(this._lives > 0) {
                 this._lives -= 1;
-                console.log("lives = " + this._lives);
+                console.log("Boss lives = " + this._lives);
             }
         }
 
@@ -100,7 +101,6 @@ module objects {
         }
         public Reset(): void {
             super.Reset();
-            this._lives = 3;
             this._verticalSpeed = Math.floor((Math.random()*4)+6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.IsColliding = false;

@@ -17,7 +17,9 @@ var objects;
         __extends(Boss, _super);
         // constructors
         function Boss() {
-            return _super.call(this, "boss") || this;
+            var _this = _super.call(this, "boss") || this;
+            _this._lives = 3;
+            return _this;
         }
         Object.defineProperty(Boss.prototype, "Lives", {
             get: function () {
@@ -71,7 +73,7 @@ var objects;
         Boss.prototype.lostLife = function () {
             if (this._lives > 0) {
                 this._lives -= 1;
-                console.log("lives = " + this._lives);
+                console.log("Boss lives = " + this._lives);
             }
         };
         Boss.prototype.Start = function () {
@@ -96,7 +98,6 @@ var objects;
         };
         Boss.prototype.Reset = function () {
             _super.prototype.Reset.call(this);
-            this._lives = 3;
             this._verticalSpeed = Math.floor((Math.random() * 4) + 6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.IsColliding = false;

@@ -25,6 +25,7 @@
         {id: "player", src: imagePath + "player.png"},
         {id: "planet", src: imagePath + "planet.png"},
         {id: "bomb", src: imagePath + "bomb.png"},
+        {id: "tshot", src: imagePath + "t_icon.PNG"},
         {id: "meteorite", src: imagePath + "meteorite.png"},
         {id: "life", src: imagePath + "life.png"},
         {id: "enemies", src: imagePath + "enemies.png" },

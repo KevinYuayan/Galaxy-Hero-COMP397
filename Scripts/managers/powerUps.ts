@@ -5,6 +5,7 @@ module managers{
         private _powerUpsNum: number;
         private _currentPowerUp: objects.PowerUp;
         private _currentPowerUpIndex: number;
+        private _powerUpString:string;
 
         //public properties
         get PowerUps():objects.PowerUp[] {
@@ -32,9 +33,9 @@ module managers{
         }
 
         // constructor
-        constructor(PowerUpNum:number = 3) {
+        constructor() {
 
-            this.PowerUpNum = PowerUpNum;
+            this.PowerUpNum = 6;
 
             this.Start();
         }
@@ -70,7 +71,7 @@ module managers{
             this.CurrentPowerUp.y = spawnPoint.y;
             this.CurrentPowerUp.IsInPlay = true;
 
-            this._currentPowerUpIndex++;
+            
             if(this._currentPowerUpIndex >= this.PowerUps.length) {
                 this._currentPowerUpIndex = 0;
             }

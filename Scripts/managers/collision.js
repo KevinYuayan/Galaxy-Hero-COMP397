@@ -15,7 +15,7 @@ var managers;
                 // check if object 1 is colliding with object 2
                 if (distance < totalHeight) {
                     actor2.IsColliding = true;
-                    console.log(actor1.name + " collided with: " + actor2.name);
+                    //console.log(actor1.name + " collided with: " + actor2.name);
                     switch (actor2.name) {
                         case "meteorite":
                         case "water":
@@ -30,13 +30,17 @@ var managers;
                             var explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
                             if (actor1.name == "bullet" && managers.Game.scoreBoard.Level == 3) {
-                                //if (actor1.name == "bullet" && managers.Game.currentState == config.Scene.LEVEL3) {
-                                var aBoss = actor2;
-                                aBoss.lostLife();
-                                Collision.createExplosion(aBoss);
-                                if (aBoss.Lives <= 0) {
-                                    managers.Game.scoreBoard.Score += 5000;
-                                    managers.Game.currentState = config.Scene.WIN;
+                                //if (actor1.name == "bullet" && managers.Game.currentState == config.Scene.LEVEL3) {    
+                                var aBullet = actor1;
+                                if (aBullet.Direction.y < 0) {
+                                    var aBoss = actor2;
+                                    aBoss.lostLife();
+                                    Collision.createExplosion(aBoss);
+                                    if (aBoss.Lives <= 0) {
+                                        managers.Game.scoreBoard.Score += 5000;
+                                        managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
+                                        managers.Game.currentState = config.Scene.WIN;
+                                    }
                                 }
                             }
                             else {
@@ -106,6 +110,10 @@ var managers;
                         case "bomb":
                             var aBomb = actor2;
                             aBomb.Collected();
+                            break;
+                        case "tshot":
+                            var tShot = actor2;
+                            tShot.Collected();
                             break;
                     }
                     if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 2000 && (managers.Game.scoreBoard.Level == 1)) {

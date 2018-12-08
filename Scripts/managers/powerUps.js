@@ -2,9 +2,8 @@ var managers;
 (function (managers) {
     var PowerUps = /** @class */ (function () {
         // constructor
-        function PowerUps(PowerUpNum) {
-            if (PowerUpNum === void 0) { PowerUpNum = 3; }
-            this.PowerUpNum = PowerUpNum;
+        function PowerUps() {
+            this.PowerUpNum = 6;
             this.Start();
         }
         Object.defineProperty(PowerUps.prototype, "PowerUps", {
@@ -61,7 +60,6 @@ var managers;
             this.CurrentPowerUp.x = spawnPoint.x;
             this.CurrentPowerUp.y = spawnPoint.y;
             this.CurrentPowerUp.IsInPlay = true;
-            this._currentPowerUpIndex++;
             if (this._currentPowerUpIndex >= this.PowerUps.length) {
                 this._currentPowerUpIndex = 0;
             }
