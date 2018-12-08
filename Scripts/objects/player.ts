@@ -108,7 +108,7 @@ module objects {
         
         public Fire(){
             if(managers.Input.space) {
-                if(createjs.Ticker.getTicks() % 5 == 0 )
+                if(createjs.Ticker.getTicks() % 10 == 0 )
                 {
                     if (this._tripleShot) {
                         managers.Game.bulletManager.TripleShot(this.BulletSpawn, util.Vector2.up());

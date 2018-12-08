@@ -6,6 +6,24 @@ module objects {
         private _horizontalSpeed:number;
         private _bulletSpawn: util.Vector2;
         private _lives:number;
+        private _inPlay:boolean;
+
+        get InPlay():boolean {
+            return this._inPlay
+        }
+
+        set InPlay(newValue: boolean) {
+            if (this._inPlay != newValue) {
+                if(newValue == true) {
+                    this.Start();
+                } 
+                else {
+                    this.Position.y = -10000
+                    this.Position.x = -10000
+                }
+                this._inPlay = newValue;
+            }       
+        }
 
         get Lives():number {
             return this._lives;

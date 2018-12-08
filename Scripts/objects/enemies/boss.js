@@ -21,6 +21,25 @@ var objects;
             _this._lives = 3;
             return _this;
         }
+        Object.defineProperty(Boss.prototype, "InPlay", {
+            get: function () {
+                return this._inPlay;
+            },
+            set: function (newValue) {
+                if (this._inPlay != newValue) {
+                    if (newValue == true) {
+                        this.Start();
+                    }
+                    else {
+                        this.Position.y = -10000;
+                        this.Position.x = -10000;
+                    }
+                    this._inPlay = newValue;
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(Boss.prototype, "Lives", {
             get: function () {
                 return this._lives;

@@ -43,7 +43,9 @@ module managers {
                                     if (aBoss.Lives <= 0) {
                                         managers.Game.scoreBoard.Score += 5000;
                                         managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                        managers.Game.currentState = config.Scene.WIN;
+                                        // managers.Game.currentState = config.Scene.WIN;
+                                        aBoss.InPlay = false;
+                                        setTimeout(function() {aBoss.InPlay = true}, 1500);
                                     }
                                 }
                             } else {
@@ -120,13 +122,13 @@ module managers {
                             tShot.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 2000 && (managers.Game.scoreBoard.Level == 1)) {
+                    if (managers.Game.scoreBoard.Score >= 2000 && managers.Game.scoreBoard.Score < 3000 && (managers.Game.scoreBoard.Level == 1)) {
                         // managers.Game.currentState = config.Scene.LEVEL2;
                             managers.Game.currentState = config.Scene.INTERMISSION;
                             managers.Game.scoreBoard.Level = 2;
                     }
 
-                    if (managers.Game.scoreBoard.Score >= 2000 && (managers.Game.scoreBoard.Level <= 2)) {
+                    if (managers.Game.scoreBoard.Score >= 3000 && (managers.Game.scoreBoard.Level <= 2)) {
                         // managers.Game.currentState = config.Scene.LEVEL3;
                             managers.Game.currentState = config.Scene.INTERMISSION;
                             managers.Game.scoreBoard.Level = 3;

@@ -33,13 +33,15 @@ var managers;
                                 //if (actor1.name == "bullet" && managers.Game.currentState == config.Scene.LEVEL3) {    
                                 var aBullet = actor1;
                                 if (aBullet.Direction.y < 0) {
-                                    var aBoss = actor2;
-                                    aBoss.lostLife();
-                                    Collision.createExplosion(aBoss);
-                                    if (aBoss.Lives <= 0) {
+                                    var aBoss_1 = actor2;
+                                    aBoss_1.lostLife();
+                                    Collision.createExplosion(aBoss_1);
+                                    if (aBoss_1.Lives <= 0) {
                                         managers.Game.scoreBoard.Score += 5000;
                                         managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
-                                        managers.Game.currentState = config.Scene.WIN;
+                                        // managers.Game.currentState = config.Scene.WIN;
+                                        aBoss_1.InPlay = false;
+                                        setTimeout(function () { aBoss_1.InPlay = true; }, 1500);
                                     }
                                 }
                             }
@@ -116,12 +118,12 @@ var managers;
                             tShot.Collected();
                             break;
                     }
-                    if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 2000 && (managers.Game.scoreBoard.Level == 1)) {
+                    if (managers.Game.scoreBoard.Score >= 2000 && managers.Game.scoreBoard.Score < 3000 && (managers.Game.scoreBoard.Level == 1)) {
                         // managers.Game.currentState = config.Scene.LEVEL2;
                         managers.Game.currentState = config.Scene.INTERMISSION;
                         managers.Game.scoreBoard.Level = 2;
                     }
-                    if (managers.Game.scoreBoard.Score >= 2000 && (managers.Game.scoreBoard.Level <= 2)) {
+                    if (managers.Game.scoreBoard.Score >= 3000 && (managers.Game.scoreBoard.Level <= 2)) {
                         // managers.Game.currentState = config.Scene.LEVEL3;
                         managers.Game.currentState = config.Scene.INTERMISSION;
                         managers.Game.scoreBoard.Level = 3;
