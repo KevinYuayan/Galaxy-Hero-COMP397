@@ -144,6 +144,9 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
+                if (_this._boss != null) {
+                    managers.Collision.Check(bullet, _this._boss);
+                }
                 _this._enemy_03_01.forEach(function (enemy1) {
                     managers.Collision.Check(bullet, enemy1);
                 });

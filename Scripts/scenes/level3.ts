@@ -169,7 +169,10 @@ module scenes {
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
-              managers.Collision.Check(this._player, bullet);
+                managers.Collision.Check(this._player, bullet);   
+                if (this._boss != null) {
+                    managers.Collision.Check(bullet, this._boss);
+                }             
                 this._enemy_03_01.forEach(enemy1 => {
                     managers.Collision.Check(bullet, enemy1);
                 });
@@ -177,6 +180,7 @@ module scenes {
                     managers.Collision.Check(bullet, enemy2);
                 });
             });
+
 
             this._powerUpManager.Update();
             this._powerUpManager.PowerUps.forEach(powerUp => {

@@ -17,8 +17,10 @@ var scenes;
         __extends(Over, _super);
         // public properties
         // constructors
-        function Over() {
+        function Over(won) {
+            if (won === void 0) { won = false; }
             var _this = _super.call(this) || this;
+            _this._won = won;
             _this.Start();
             return _this;
         }
@@ -39,11 +41,15 @@ var scenes;
             });
         };
         Over.prototype.Start = function () {
+            var msglbl = "Game Over";
+            if (this._won) {
+                msglbl = "Congratulations!";
+            }
             // Instantiates objects
             managers.Game.scoreBoard.Reset();
             this._restartButton = new objects.Button("restartButton", 780, 360, true);
             this._background = new objects.Background("spaceBackground", 0);
-            this._gameOverLabel = new objects.Label("Game Over", "35px", "planet", "#FFFF00", 780, 140, true);
+            this._gameOverLabel = new objects.Label(msglbl, "60px", "Consolas", "#FFFF00", 780, 240, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         };
