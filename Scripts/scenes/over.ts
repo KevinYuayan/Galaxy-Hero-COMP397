@@ -42,6 +42,8 @@ module scenes{
             this._restartButton.on("click", ()=>{
                 managers.Game.currentState = config.Scene.LEVEL1;
             })
+
+            managers.Game.scoreBoard.AddHighScore(this);
         }        
         public Start(): void {
             let msglbl:string = "Game Over";
@@ -52,7 +54,7 @@ module scenes{
             managers.Game.scoreBoard.Reset();
             this._restartButton = new objects.Button("restartButton", 780, 360, true);
             this._background = new objects.Background("spaceBackground", 0);
-            this._gameOverLabel = new objects.Label(msglbl, "60px", "Consolas", "#FFFF00", 780, 240, true);
+            this._gameOverLabel = new objects.Label(msglbl, "30px", "Consolas", "#FFFF00", 780, 240, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         }
