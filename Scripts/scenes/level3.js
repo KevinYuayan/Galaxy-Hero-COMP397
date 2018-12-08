@@ -121,7 +121,7 @@ var scenes;
             this._shockwave.Update();
             this._life.Update();
             managers.Collision.Check(this._player, this._life);
-            if (this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1) {
+            if (this._boss == null && managers.Game.scoreBoard.Score >= 1500 && this._bossInstance == 1) {
                 this._bossInstance++;
                 this._boss = new objects.Boss();
                 this.addChild(this._boss);
@@ -143,7 +143,9 @@ var scenes;
             this._bulletManager.Bullets.forEach(function (bullet) {
                 managers.Collision.Check(_this._shockwave, bullet);
                 managers.Collision.Check(_this._player, bullet);
-                managers.Collision.Check(bullet, _this._boss);
+                if (_this._boss != null) {
+                    managers.Collision.Check(bullet, _this._boss);
+                }
                 _this._enemy_03_01.forEach(function (enemy1) {
                     managers.Collision.Check(bullet, enemy1);
                 });

@@ -61,6 +61,7 @@ module objects {
         public lostLife() {
             if(this._lives > 0) {
                 this._lives -= 1;
+                console.log("lives = " + this._lives);
             }
         }
 

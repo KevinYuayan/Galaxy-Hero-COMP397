@@ -147,7 +147,7 @@ module scenes {
             this._life.Update();
             managers.Collision.Check(this._player, this._life);
             
-            if(this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1){
+            if(this._boss == null && managers.Game.scoreBoard.Score >= 1500 && this._bossInstance == 1){
                 this._bossInstance++;
                 this._boss = new objects.Boss();    
                 this.addChild(this._boss);
@@ -168,8 +168,10 @@ module scenes {
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
-                managers.Collision.Check(this._player, bullet);                
-                managers.Collision.Check(bullet, this._boss);
+                managers.Collision.Check(this._player, bullet);   
+                if (this._boss != null) {
+                    managers.Collision.Check(bullet, this._boss);
+                }             
                 this._enemy_03_01.forEach(enemy1 => {
                     managers.Collision.Check(bullet, enemy1);
                 });

@@ -62,6 +62,7 @@ var objects;
         Boss.prototype.lostLife = function () {
             if (this._lives > 0) {
                 this._lives -= 1;
+                console.log("lives = " + this._lives);
             }
         };
         Boss.prototype.Start = function () {

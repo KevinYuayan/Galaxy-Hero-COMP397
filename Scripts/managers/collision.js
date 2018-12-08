@@ -30,6 +30,7 @@ var managers;
                             var explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
                             if (actor1.name == "bullet" && managers.Game.scoreBoard.Level == 3) {
+                                //if (actor1.name == "bullet" && managers.Game.currentState == config.Scene.LEVEL3) {
                                 var aBoss = actor2;
                                 aBoss.lostLife();
                                 Collision.createExplosion(aBoss);
