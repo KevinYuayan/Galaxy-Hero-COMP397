@@ -33,11 +33,11 @@ module objects {
             // standard movement for top scroller - left and right
             
             if(managers.Input.moveRight) {
-                this.x += 10;
+                this.x += 5;
             }
 
             if(managers.Input.moveLeft) {
-                this.x -= 10;
+                this.x -= 5;
             }
             
 

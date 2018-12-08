@@ -44,10 +44,6 @@ module scenes {
                 this.addChild(powerUp);
             });
 
-            // adds planets to the scene
-            for (let count = 0; count < this._planetNum; count++) {
-                this.addChild(this._planets[count]);
-            }
 
             //adds enemies to the scene
             for (let count = 0; count < this._enemiesNum; count++) {
@@ -68,7 +64,6 @@ module scenes {
             // managers.Game.scoreBoard.Reset();
             // managers.Game.scoreBoard.Level += 1;
 
-            this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
 
@@ -91,13 +86,8 @@ module scenes {
             managers.Game.shockwave = this._shockwave;
 
             // must do this to instantiate the array
-            this._planets = new Array<objects.Planet>();
             this._enemy_01_01 = new Array<objects.EnemyLvl01_01>();
             
-            // adds planets to the array
-            for (let count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
-            }
             for (let count = 0; count < this._enemiesNum; count++) {
                 this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
@@ -121,6 +111,7 @@ module scenes {
         public SetupInput(): void {
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
+            document.addEventListener("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
@@ -138,11 +129,6 @@ module scenes {
             this._boss1.Update();
             managers.Collision.Check(this._player, this._boss1);
 
-            // updates each planet in array
-            this._planets.forEach(planet => {
-                planet.Update();
-                managers.Collision.Check(this._player, planet);
-            });
             // updates each enemy in array
             this._enemy_01_01.forEach(enemy => {
                 enemy.Update();
@@ -179,6 +165,7 @@ module scenes {
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown",managers.Input.OnLeftMouseDown);
+            document.removeEventListener("keydown", managers.Input.KeyPressed);
         }
 
 

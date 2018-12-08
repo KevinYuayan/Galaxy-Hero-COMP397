@@ -40,10 +40,10 @@ var objects;
             var degToRad = Math.PI / 180.0;
             // standard movement for top scroller - left and right
             if (managers.Input.moveRight) {
-                this.x += 10;
+                this.x += 5;
             }
             if (managers.Input.moveLeft) {
-                this.x -= 10;
+                this.x -= 5;
             }
             // standard movement - forward - back
             if (managers.Input.moveForward) {

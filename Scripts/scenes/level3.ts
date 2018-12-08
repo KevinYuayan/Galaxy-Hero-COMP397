@@ -126,6 +126,7 @@ module scenes {
         public SetupInput(): void {
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
+            document.addEventListener("keydown", managers.Input.KeyPressed);
         }
 
         public Update(): void {
@@ -193,6 +194,7 @@ module scenes {
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown",managers.Input.OnLeftMouseDown);
+            document.removeEventListener("keydown", managers.Input.KeyPressed);
         }
 
 

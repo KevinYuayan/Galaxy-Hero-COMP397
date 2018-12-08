@@ -43,10 +43,6 @@ var scenes;
             this._powerUpManager.PowerUps.forEach(function (powerUp) {
                 _this.addChild(powerUp);
             });
-            // adds planets to the scene
-            for (var count = 0; count < this._planetNum; count++) {
-                this.addChild(this._planets[count]);
-            }
             //adds enemies to the scene
             for (var count = 0; count < this._enemiesNum; count++) {
                 this.addChild(this._enemy_01_01[count]);
@@ -62,7 +58,6 @@ var scenes;
         Level1.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
             // managers.Game.scoreBoard.Level += 1;
-            this._planetNum = 1;
             this._backgroundNum = 2;
             this._enemiesNum = 2;
             // instantiates background array
@@ -80,12 +75,7 @@ var scenes;
             this._shockwave = new objects.Shockwave();
             managers.Game.shockwave = this._shockwave;
             // must do this to instantiate the array
-            this._planets = new Array();
             this._enemy_01_01 = new Array();
-            // adds planets to the array
-            for (var count = 0; count < this._planetNum; count++) {
-                this._planets[count] = new objects.Planet();
-            }
             for (var count = 0; count < this._enemiesNum; count++) {
                 this._enemy_01_01[count] = new objects.EnemyLvl01_01();
             }
@@ -104,6 +94,7 @@ var scenes;
         Level1.prototype.SetupInput = function () {
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
+            document.addEventListener("keydown", managers.Input.KeyPressed);
         };
         Level1.prototype.Update = function () {
             var _this = this;
@@ -117,11 +108,6 @@ var scenes;
             managers.Collision.Check(this._player, this._water);
             this._boss1.Update();
             managers.Collision.Check(this._player, this._boss1);
-            // updates each planet in array
-            this._planets.forEach(function (planet) {
-                planet.Update();
-                managers.Collision.Check(_this._player, planet);
-            });
             // updates each enemy in array
             this._enemy_01_01.forEach(function (enemy) {
                 enemy.Update();
@@ -153,6 +139,7 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
+            document.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Level1;
     }(objects.Level));

@@ -107,6 +107,7 @@ var scenes;
         Level3.prototype.SetupInput = function () {
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
+            document.addEventListener("keydown", managers.Input.KeyPressed);
         };
         Level3.prototype.Update = function () {
             var _this = this;
@@ -165,6 +166,7 @@ var scenes;
             this.removeAllChildren();
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
+            document.removeEventListener("keydown", managers.Input.KeyPressed);
         };
         return Level3;
     }(objects.Level));
