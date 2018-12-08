@@ -18,6 +18,8 @@ var config;
         Key.UP_ARROW = 38;
         Key.W = 87;
         Key.P = 80; // often used for pause
+        Key.ENTER = 13;
+        Key.SEVEN = 55;
         return Key;
     }());
     config.Key = Key;

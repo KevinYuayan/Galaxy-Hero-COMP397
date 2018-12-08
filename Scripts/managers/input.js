@@ -43,6 +43,12 @@ var managers;
                     break;
                 case config.Key.P:
                     this.enabled = (this.enabled) ? false : true;
+                    break;
+                case config.Key.ENTER:
+                    this.enter = true;
+                    break;
+                case config.Key.SEVEN:
+                    this.seven = true;
             }
         };
         Input.onKeyUp = function (event) {
@@ -66,6 +72,12 @@ var managers;
                 case config.Key.SPACEBAR:
                     this.space = false;
                     break;
+                case config.Key.ENTER:
+                    this.enter = false;
+                    break;
+                case config.Key.SEVEN:
+                    this.seven = false;
+                    break;
             }
         };
         Input.KeyPressed = function (event) {
@@ -77,8 +89,25 @@ var managers;
                 }
             }
         };
+        Input.EnterPress = function (event) {
+            if (event.keyCode == 13) {
+                if (managers.Game.scoreBoard.Level == 2) {
+                    managers.Game.currentState = config.Scene.LEVEL2;
+                }
+                if (managers.Game.scoreBoard.Level == 3) {
+                    managers.Game.currentState = config.Scene.LEVEL3;
+                }
+            }
+        };
+        Input.CheatLife = function (event) {
+            if (event.keyCode == 55) {
+                managers.Game.scoreBoard.Lives += 1;
+            }
+        };
         Input.LeftButtonDown = false;
         Input.space = false;
+        Input.enter = false;
+        Input.seven = false;
         Input.moveBackward = false;
         Input.moveForward = false;
         Input.moveLeft = false;

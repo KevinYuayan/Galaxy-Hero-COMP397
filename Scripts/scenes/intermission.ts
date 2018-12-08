@@ -47,9 +47,13 @@ module scenes{
                     break;
 
             }
-
+            this.SetupInput();
             this.Main();
         }
+        public SetupInput(): void {
+            document.addEventListener("keydown", managers.Input.EnterPress);
+        }
+
         public Update(): void {
             // throw new Error("Method not implemented.");
         }
@@ -58,6 +62,7 @@ module scenes{
         }
         public Destroy(): void {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
         }
         public Main(): void {
             //adds objects to the stage
@@ -76,13 +81,15 @@ module scenes{
                     this._nextButton.on("click", ()=>{
                         managers.Game.currentState = config.Scene.LEVEL2;
                     })
+
                     break;
                 case 3:
                     this._nextButton.on("click", ()=>{
                         managers.Game.currentState = config.Scene.LEVEL3;
                     })
-                    // managers.Game.scoreBoard.Level = 3;
-                    // setInterval(this.setToLevel3,5000);
+                    // if(managers.Input.enter){
+                    //     managers.Game.currentState = config.Scene.LEVEL3;
+                    // }
                     break;
 
             }

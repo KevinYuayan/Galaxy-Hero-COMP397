@@ -110,6 +110,7 @@ var scenes;
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
+            document.addEventListener("keydown", managers.Input.CheatLife);
         };
         Level3.prototype.Update = function () {
             var _this = this;
@@ -121,7 +122,7 @@ var scenes;
             this._shockwave.Update();
             this._life.Update();
             managers.Collision.Check(this._player, this._life);
-            if (this._boss == null && managers.Game.scoreBoard.Score == 1500 && this._bossInstance == 1) {
+            if (this._boss == null && managers.Game.scoreBoard.Score >= 1500 && this._bossInstance == 1) {
                 this._bossInstance++;
                 this._boss = new objects.Boss();
                 this.addChild(this._boss);
@@ -170,6 +171,7 @@ var scenes;
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
+            document.removeEventListener("keydown", managers.Input.CheatLife);
         };
         return Level3;
     }(objects.Level));

@@ -2,6 +2,8 @@ module managers {
     export class Input {
         public static LeftButtonDown:boolean = false;
         public static space:boolean =false;
+        public static enter:boolean = false;
+        public static seven:boolean = false;
         public static moveBackward:boolean = false;
         public static moveForward:boolean = false;
         public static moveLeft: boolean = false;
@@ -58,7 +60,12 @@ module managers {
 
                 case config.Key.P:
                     this.enabled = (this.enabled) ? false : true;
-
+                    break;
+                case config.Key.ENTER:
+                    this.enter = true;
+                    break;
+                case config.Key.SEVEN:
+                    this.seven = true;
             }
         }
 
@@ -88,6 +95,12 @@ module managers {
                 case config.Key.SPACEBAR:
                     this.space = false;
                 break;
+                case config.Key.ENTER:
+                    this.enter = false;
+                    break;
+                case config.Key.SEVEN:
+                    this.seven = false;
+                    break;
             }
         }
         public static KeyPressed(event) {
@@ -97,6 +110,22 @@ module managers {
                     managers.Game.shockwave.InPlay = true;
                     setTimeout(function() {managers.Game.shockwave.InPlay = false}, 600);
                 }
+            }
+        }
+
+        public static EnterPress(event) {
+            if(event.keyCode == 13) {
+                if (managers.Game.scoreBoard.Level == 2) {
+                    managers.Game.currentState = config.Scene.LEVEL2;
+                }
+                if (managers.Game.scoreBoard.Level == 3) {
+                    managers.Game.currentState = config.Scene.LEVEL3;
+                }
+            }
+        }
+        public static CheatLife(event) {
+            if(event.keyCode == 55) {
+               managers.Game.scoreBoard.Lives += 1;
             }
         }
     }

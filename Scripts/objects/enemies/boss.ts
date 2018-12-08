@@ -63,7 +63,7 @@ module objects {
         }
         public Update(): void {
             super.Update();
-            // this._move();
+            this._move();
             this._checkBounds();
             if ((managers.Game.scoreBoard.Level == 3) && (this.y > 0))
             {

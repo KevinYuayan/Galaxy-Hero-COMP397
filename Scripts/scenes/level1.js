@@ -97,6 +97,7 @@ var scenes;
             managers.Input.Start();
             this.on("mousedown", managers.Input.OnLeftMouseDown);
             document.addEventListener("keydown", managers.Input.KeyPressed);
+            document.addEventListener("keydown", managers.Input.CheatLife);
         };
         Level1.prototype.Update = function () {
             var _this = this;
@@ -143,6 +144,7 @@ var scenes;
             this._engineSound.stop();
             this.off("mousedown", managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
+            document.removeEventListener("keydown", managers.Input.CheatLife);
         };
         return Level1;
     }(objects.Level));

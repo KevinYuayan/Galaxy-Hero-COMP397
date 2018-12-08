@@ -15,5 +15,7 @@ module config {
         public static UP_ARROW: number = 38;
         public static W: number  = 87;
         public static P: number = 80; // often used for pause
+        public static ENTER: number = 13;
+        public static SEVEN: number = 55;
     }
 }

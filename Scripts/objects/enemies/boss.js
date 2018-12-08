@@ -63,7 +63,7 @@ var objects;
         };
         Boss.prototype.Update = function () {
             _super.prototype.Update.call(this);
-            // this._move();
+            this._move();
             this._checkBounds();
             if ((managers.Game.scoreBoard.Level == 3) && (this.y > 0)) {
                 this._fireBullet();
