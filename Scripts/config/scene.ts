@@ -6,6 +6,7 @@ module config {
         LEVEL1,
         LEVEL2,
         LEVEL3,
+        WIN,
         OVER,
         SCENE_COUNT
     }

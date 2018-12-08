@@ -19,6 +19,13 @@ var objects;
         function Boss() {
             return _super.call(this, "boss") || this;
         }
+        Object.defineProperty(Boss.prototype, "Lives", {
+            get: function () {
+                return this._lives;
+            },
+            enumerable: true,
+            configurable: true
+        });
         // private methods
         Boss.prototype._move = function () {
             this.x += this._horizontalSpeed;
@@ -52,6 +59,11 @@ var objects;
             }
         };
         // public methods
+        Boss.prototype.lostLife = function () {
+            if (this._lives > 0) {
+                this._lives -= 1;
+            }
+        };
         Boss.prototype.Start = function () {
             _super.prototype.Start.call(this);
             this.regX = this.HalfWidth;
@@ -71,6 +83,7 @@ var objects;
         };
         Boss.prototype.Reset = function () {
             _super.prototype.Reset.call(this);
+            this._lives = 3;
             this._verticalSpeed = Math.floor((Math.random() * 4) + 6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random() * 4) - 2); // speed from -2 to 2
             this.IsColliding = false;

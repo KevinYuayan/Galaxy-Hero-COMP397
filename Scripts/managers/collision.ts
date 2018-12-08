@@ -31,10 +31,20 @@ module managers {
                             break;
                         // case "planet":
                         case "boss":
-                            let explosionSound = createjs.Sound.play("explosion01");
-                            explosionSound.volume = 0.1;
-                            managers.Game.scoreBoard.Lives -= 1;
-                            Collision.createExplosion(actor1);
+                        let explosionSound = createjs.Sound.play("explosion01");
+                        explosionSound.volume = 0.1;
+                            if (actor1.name == "bullet" && managers.Game.scoreBoard.Level == 3) {
+                                let aBoss = <objects.Boss>actor2;
+                                aBoss.lostLife();
+                                Collision.createExplosion(aBoss);
+                                if (aBoss.Lives <= 0) {
+                                    managers.Game.scoreBoard.Score += 5000;
+                                    managers.Game.currentState = config.Scene.WIN;
+                                }
+                            } else {
+                                managers.Game.scoreBoard.Lives -= 1;
+                                Collision.createExplosion(actor1);
+                            }
                             break;
                         case "enemies":
                         case "enemyLvl03_01":
@@ -107,7 +117,7 @@ module managers {
                             managers.Game.scoreBoard.Level = 2;
                     }
 
-                    if (managers.Game.scoreBoard.Score >= 1000 && (managers.Game.scoreBoard.Level <= 2)) {
+                    if (managers.Game.scoreBoard.Score >= 1000 && managers.Game.scoreBoard.Score < 6000 && (managers.Game.scoreBoard.Level <= 2)) {
                         // managers.Game.currentState = config.Scene.LEVEL3;
                             managers.Game.currentState = config.Scene.INTERMISSION;
                             managers.Game.scoreBoard.Level = 3;

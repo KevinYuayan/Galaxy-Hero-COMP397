@@ -154,8 +154,11 @@
             case config.Scene.LEVEL3:
                 currentScene = new scenes.Level3;
                 break;
+            case config.Scene.WIN:
+                currentScene = new scenes.Over(true);
+                break;
             case config.Scene.OVER:
-                currentScene = new scenes.Over;
+                currentScene = new scenes.Over();
                 break;
         }
         managers.Game.currentScene = currentScene;

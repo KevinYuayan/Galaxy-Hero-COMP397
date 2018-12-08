@@ -5,13 +5,19 @@ module objects {
         private _verticalSpeed:number;
         private _horizontalSpeed:number;
         private _bulletSpawn: util.Vector2;
+        private _lives:number;
+
+        get Lives():number {
+            return this._lives;
+        }
 
         // constructors
 
         constructor() {
             super("boss");
-
         }
+
+
 
         // private methods
         private _move() {
@@ -52,6 +58,13 @@ module objects {
 
 
         // public methods
+        public lostLife() {
+            if(this._lives > 0) {
+                this._lives -= 1;
+            }
+        }
+
+
         public Start(): void {
             super.Start();
             this.regX = this.HalfWidth;
@@ -72,6 +85,7 @@ module objects {
         }
         public Reset(): void {
             super.Reset();
+            this._lives = 3;
             this._verticalSpeed = Math.floor((Math.random()*4)+6); // speed from 5 to 10
             this._horizontalSpeed = Math.floor((Math.random()*4)-2); // speed from -2 to 2
             this.IsColliding = false;
