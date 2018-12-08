@@ -165,11 +165,11 @@ module scenes {
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
-                this._enemy_03_01.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_01.forEach(enemy1 => {
+                    managers.Collision.Check(bullet, enemy1);
                 });
-                this._enemy_03_02.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_02.forEach(enemy2 => {
+                    managers.Collision.Check(bullet, enemy2);
                 });
             });
 

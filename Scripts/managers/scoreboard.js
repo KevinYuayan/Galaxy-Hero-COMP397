@@ -7,7 +7,7 @@ var managers;
          * @param {boolean} [isGameOver=false]
          */
         function ScoreBoard(livesNum, scoreNum, highScoreNum, bombsNum, level) {
-            if (livesNum === void 0) { livesNum = 5; }
+            if (livesNum === void 0) { livesNum = 5000; }
             if (scoreNum === void 0) { scoreNum = 0; }
             if (highScoreNum === void 0) { highScoreNum = 0; }
             if (bombsNum === void 0) { bombsNum = 1; }

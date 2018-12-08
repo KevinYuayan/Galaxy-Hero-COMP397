@@ -23,6 +23,7 @@ module managers {
                     switch (actor2.name) {
                         case "meteorite":
                         case "water":
+                        case "life":
                             let yaySound = createjs.Sound.play("yaySound");
                             yaySound.volume = 0.3;
                             managers.Game.scoreBoard.Score += 50;
@@ -52,12 +53,19 @@ module managers {
                                     actor1.Reset();
                                 }
                             }
-                            else {
-                                explosionSound = createjs.Sound.play("explosion02");
-                                explosionSound.volume = 0.1;
-                                managers.Game.scoreBoard.Lives -= 1;
-                                actor2.Reset();
-                            }
+                            // else {
+                            //     explosionSound = createjs.Sound.play("explosion02");
+                            //     explosionSound.volume = 0.1;
+                            //     managers.Game.scoreBoard.Lives -= 1;
+                            //     // actor2.Reset();
+                            // }
+                            if (actor1.name == "player")
+                                {
+                                    explosionSound = createjs.Sound.play("explosion02");
+                                    explosionSound.volume = 0.1;
+                                    managers.Game.scoreBoard.Lives -= 1;
+                                    actor2.Reset();
+                                }
                             break;
                         case "bullet":
                             if (actor1.name == "shockwave") {

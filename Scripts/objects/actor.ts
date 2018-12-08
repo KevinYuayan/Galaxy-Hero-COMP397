@@ -6,7 +6,7 @@ module objects {
 
         private _isColliding:boolean;
         private _position:util.Vector2;
-        private _isEnemy:boolean;
+        // private _isEnemy:boolean;
         
         // public properties
 
@@ -26,13 +26,13 @@ module objects {
             this._isColliding = newValue;
         }
 
-        get IsEnemy():boolean {
-            return this._isEnemy;
-        }
+        // get IsEnemy():boolean {
+        //     return this._isEnemy;
+        // }
 
-        set IsEnemy(newState:boolean) {
-            this._isEnemy = newState;
-        }
+        // set IsEnemy(newState:boolean) {
+        //     this._isEnemy = newState;
+        // }
 
 
 
