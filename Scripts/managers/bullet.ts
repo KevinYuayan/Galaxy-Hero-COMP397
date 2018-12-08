@@ -66,7 +66,7 @@ module managers{
             });
         }
 
-        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2, actor?:objects.Actor):void {
+        public FireBullet(spawnPoint:util.Vector2, direction:util.Vector2):void {
             this.CurrentBullet.Position = spawnPoint;
             this.CurrentBullet.x = spawnPoint.x;
             this.CurrentBullet.y = spawnPoint.y;

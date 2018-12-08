@@ -15,6 +15,12 @@ var objects;
 (function (objects) {
     var Actor = /** @class */ (function (_super) {
         __extends(Actor, _super);
+        // get IsEnemy():boolean {
+        //     return this._isEnemy;
+        // }
+        // set IsEnemy(newState:boolean) {
+        //     this._isEnemy = newState;
+        // }
         // constructor
         function Actor(imageString) {
             var _this = _super.call(this, imageString) || this;
@@ -22,6 +28,7 @@ var objects;
             return _this;
         }
         Object.defineProperty(Actor.prototype, "Position", {
+            // private _isEnemy:boolean;
             // public properties
             get: function () {
                 return this._position;
@@ -38,16 +45,6 @@ var objects;
             },
             set: function (newValue) {
                 this._isColliding = newValue;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(Actor.prototype, "IsEnemy", {
-            get: function () {
-                return this._isEnemy;
-            },
-            set: function (newState) {
-                this._isEnemy = newState;
             },
             enumerable: true,
             configurable: true

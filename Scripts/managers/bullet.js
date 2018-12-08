@@ -58,7 +58,7 @@ var managers;
                 bullet.Update();
             });
         };
-        Bullet.prototype.FireBullet = function (spawnPoint, direction, actor) {
+        Bullet.prototype.FireBullet = function (spawnPoint, direction) {
             this.CurrentBullet.Position = spawnPoint;
             this.CurrentBullet.x = spawnPoint.x;
             this.CurrentBullet.y = spawnPoint.y;

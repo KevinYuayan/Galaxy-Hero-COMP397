@@ -7,7 +7,7 @@ module objects {
         protected _powerUpManager: managers.PowerUps;
         private _gamepadManager: managers.GamePad;
         protected _shockwave:objects.Shockwave;
-
+        protected _panel:objects.Board;
         protected _planetNum: number;
         protected _enemiesNum: number;
         protected _planets: objects.Planet[];

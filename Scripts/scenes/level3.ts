@@ -66,6 +66,8 @@ module scenes {
                 this.addChild(bullet);
             });
 
+            this.addChild(this._panel);
+
             // this._scoreBoard = new managers.ScoreBoard();
             managers.Game.scoreBoard.AddGameUI(this);
         }
@@ -118,6 +120,8 @@ module scenes {
             this._powerUpManager = new managers.PowerUps();
             managers.Game.powerUpManager = this._powerUpManager;
 
+            this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
+
             this.SetupInput();
 
             this.Main();
@@ -165,11 +169,11 @@ module scenes {
             this._bulletManager.Bullets.forEach(bullet => {
                 managers.Collision.Check(this._shockwave, bullet);
               managers.Collision.Check(this._player, bullet);
-                this._enemy_03_01.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_01.forEach(enemy1 => {
+                    managers.Collision.Check(bullet, enemy1);
                 });
-                this._enemy_03_02.forEach(enemy => {
-                    managers.Collision.Check(bullet, enemy);
+                this._enemy_03_02.forEach(enemy2 => {
+                    managers.Collision.Check(bullet, enemy2);
                 });
             });
 
@@ -187,6 +191,8 @@ module scenes {
             if (this._backgrounds[0].y >= 0 || this._backgrounds[0].y <= config.Constants.canvasHeight - this._backgrounds[0].Height) {
                 this._backgrounds[1].Update();
             }
+
+            this._panel.Update();
         }
         public Reset(): void {}
 

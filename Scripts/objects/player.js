@@ -91,12 +91,12 @@ var objects;
             */
         };
         // public Fire() {
-        //     managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up(),this);
+        //     managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
         // }
         Player.prototype.Fire = function () {
             if (managers.Input.space) {
                 if (createjs.Ticker.getTicks() % 5 == 0) {
-                    managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up(), this);
+                    managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());
                 }
             }
         };
