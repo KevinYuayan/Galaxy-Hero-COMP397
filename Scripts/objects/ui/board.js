@@ -53,7 +53,7 @@ var objects;
         Board.prototype.Destroy = function () {
         };
         return Board;
-    }(objects.GameObject));
+    }(objects.BitmapGameObject));
     objects.Board = Board;
 })(objects || (objects = {}));
 //# sourceMappingURL=board.js.map

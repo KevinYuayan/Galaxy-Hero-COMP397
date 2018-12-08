@@ -3,8 +3,8 @@ module scenes{
         //private instance variables
         private _background:objects.Background;
 
-        private _player:objects.GameObject;
-        private _loading: objects.GameObject;
+        private _player:objects.BitmapGameObject;
+        private _loading: objects.BitmapGameObject;
 
         private _waitLabel: objects.Label;
         private _nextLabel: objects.Label;
@@ -28,7 +28,7 @@ module scenes{
             this._background = new objects.Background("instructionsBackground");
             this._nextButton = new objects.Button("startButton", 320, 420, true);
             this._nextLabel = new objects.Label("Enter the next Level when you're ready...","20px","Consolas","#FFFF00",80,330,false,350);
-            this._loading = new objects.GameObject("loading");
+            this._loading = new objects.BitmapGameObject("loading");
             this._loading.x = 305;
             this._loading.y = 210;
 

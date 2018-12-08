@@ -15,8 +15,12 @@ var objects;
 (function (objects) {
     var SpriteGameObject = /** @class */ (function (_super) {
         __extends(SpriteGameObject, _super);
-        function SpriteGameObject() {
-            return _super !== null && _super.apply(this, arguments) || this;
+        // constructors
+        function SpriteGameObject(imageString) {
+            var _this = _super.call(this, managers.Game.textureMap, imageString) || this;
+            _this.name = imageString;
+            _this._initialize();
+            return _this;
         }
         Object.defineProperty(SpriteGameObject.prototype, "Width", {
             // public properties
@@ -81,13 +85,6 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        // constructors
-        /*constructor(imageString:string) {
-            super(managers.Game.textureMap, imageString);
-
-            this.name = imageString;
-            this._initialize();
-        }*/
         // private methods
         SpriteGameObject.prototype._initialize = function () {
             this.Width = this.getBounds().width;

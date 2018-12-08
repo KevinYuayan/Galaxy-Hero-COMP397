@@ -1,5 +1,5 @@
 module objects{
-    export class Button extends GameObject {
+    export class Button extends objects.BitmapGameObject {
         
         // private instance variables
 

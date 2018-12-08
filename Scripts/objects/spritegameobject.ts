@@ -42,31 +42,30 @@ module objects {
          set HalfWidth(newValue:number) {
              this._halfWidth = newValue;
          }
-
+         
          get Position():util.Vector2 {
-             return this._position;
-         }
+            return this._position;
+        }
 
-         set Position(newPosition:util.Vector2) {
-             this._position = newPosition;
-         }
+        set Position(newPosition:util.Vector2) {
+            this._position = newPosition;
+        }
 
-         get IsColliding():boolean {
-             return this._isColliding;
-         }
+        get IsColliding():boolean {
+            return this._isColliding;
+        }
 
-         set IsColliding(newValue:boolean) {
-             this._isColliding = newValue;
-         }
- 
+        set IsColliding(newValue:boolean) {
+            this._isColliding = newValue;
+        }
 
          // constructors
-         /*constructor(imageString:string) {
+         constructor(imageString:string) {
              super(managers.Game.textureMap, imageString);
 
              this.name = imageString;
              this._initialize();
-         }*/
+         }
  
          // private methods
          private _initialize():void {

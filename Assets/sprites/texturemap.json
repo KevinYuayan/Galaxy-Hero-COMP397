@@ -1,0 +1,75 @@
+{
+
+"images": [
+    "texturemap.png"
+],
+
+"framerate": 20,
+"frames": [
+    [1, 1, 16, 16, 0, 0, 0],
+    [19, 1, 226, 178, 0, 0, 0],
+    [247, 1, 44, 40, 0, 0, 0],
+    [293, 1, 44, 40, 0, 0, 0],
+    [339, 1, 44, 40, 0, 0, 0],
+    [385, 1, 44, 40, 0, 0, 0],
+    [431, 1, 44, 40, 0, 0, 0],
+    [1, 181, 44, 40, 0, 0, 0],
+    [47, 181, 44, 40, 0, 0, 0],
+    [93, 181, 44, 40, 0, 0, 0],
+    [139, 181, 44, 40, 0, 0, 0],
+    [185, 181, 44, 40, 0, 0, 0],
+    [231, 181, 93, 74, 0, 0, 0],
+    [326, 181, 93, 74, 0, 0, 0],
+    [1, 257, 93, 74, 0, 0, 0],
+    [96, 257, 65, 65, 0, 0, 0],
+    [163, 257, 65, 65, 0, 0, 0],
+    [230, 257, 65, 65, 0, 0, 0],
+    [297, 257, 65, 65, 0, 0, 0],
+    [364, 257, 65, 65, 0, 0, 0],
+    [431, 257, 65, 65, 0, 0, 0],
+    [1, 333, 65, 65, 0, 0, 0],
+    [68, 333, 62, 63, 0, 0, 0],
+    [132, 333, 65, 65, 0, 0, 0],
+    [199, 333, 65, 65, 0, 0, 0],
+    [266, 333, 65, 65, 0, 0, 0],
+    [333, 333, 145, 47, 0, 0, 0],
+    [1, 400, 145, 47, 0, 0, 0]
+],
+
+"animations": {
+    "bullet": { "frames": [0] },
+    "cloud": { "frames": [1] },
+    "coin01": { "frames": [2] },
+    "coin02": { "frames": [3] },
+    "coin03": { "frames": [4] },
+    "coin04": { "frames": [5] },
+    "coin05": { "frames": [6] },
+    "coin06": { "frames": [7] },
+    "coin07": { "frames": [8] },
+    "coin08": { "frames": [9] },
+    "coin09": { "frames": [10] },
+    "coin10": { "frames": [11] },
+    "enemy1": { "frames": [12] },
+    "enemy2": { "frames": [13] },
+    "enemy3": { "frames": [14] },
+    "explosion1": { "frames": [15] },
+    "explosion2": { "frames": [16] },
+    "explosion3": { "frames": [17] },
+    "explosion4": { "frames": [18] },
+    "explosion5": { "frames": [19] },
+    "explosion6": { "frames": [20] },
+    "explosion7": { "frames": [21] },
+    "island": { "frames": [22] },
+    "plane1": { "frames": [23] },
+    "plane2": { "frames": [24] },
+    "plane3": { "frames": [25] },
+    "restartButton": { "frames": [26] },
+    "startButton": { "frames": [27] }
+},
+
+"texturepacker": [
+        "SmartUpdateHash: $TexturePacker:SmartUpdate:a76a0ca20e59f5fe0efa4ce239cc0c00:d9d79e299e003d1fdbc631529ba7d961:719597a5782fde2a9214edc9c419f958$",
+        "Created with TexturePacker (https://www.codeandweb.com/texturepacker) for EaselJS"
+]
+
+}
