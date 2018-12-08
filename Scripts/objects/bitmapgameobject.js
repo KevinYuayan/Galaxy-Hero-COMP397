@@ -13,16 +13,16 @@ var __extends = (this && this.__extends) || (function () {
 })();
 var objects;
 (function (objects) {
-    var SpriteGameObject = /** @class */ (function (_super) {
-        __extends(SpriteGameObject, _super);
+    var BitmapGameObject = /** @class */ (function (_super) {
+        __extends(BitmapGameObject, _super);
         // constructors
-        function SpriteGameObject(imageString) {
-            var _this = _super.call(this, managers.Game.textureMap, imageString) || this;
+        function BitmapGameObject(imageString) {
+            var _this = _super.call(this, managers.Game.assetManager.getResult(imageString)) || this;
             _this.name = imageString;
             _this._initialize();
             return _this;
         }
-        Object.defineProperty(SpriteGameObject.prototype, "Width", {
+        Object.defineProperty(BitmapGameObject.prototype, "Width", {
             // public properties
             get: function () {
                 return this._width;
@@ -34,7 +34,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SpriteGameObject.prototype, "Height", {
+        Object.defineProperty(BitmapGameObject.prototype, "Height", {
             get: function () {
                 return this._height;
             },
@@ -45,7 +45,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SpriteGameObject.prototype, "HalfHeight", {
+        Object.defineProperty(BitmapGameObject.prototype, "HalfHeight", {
             get: function () {
                 return this._halfHeight;
             },
@@ -55,7 +55,7 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SpriteGameObject.prototype, "HalfWidth", {
+        Object.defineProperty(BitmapGameObject.prototype, "HalfWidth", {
             get: function () {
                 return this._halfWidth;
             },
@@ -65,39 +65,22 @@ var objects;
             enumerable: true,
             configurable: true
         });
-        Object.defineProperty(SpriteGameObject.prototype, "Position", {
-            get: function () {
-                return this._position;
-            },
-            set: function (newPosition) {
-                this._position = newPosition;
-            },
-            enumerable: true,
-            configurable: true
-        });
-        Object.defineProperty(SpriteGameObject.prototype, "IsColliding", {
-            get: function () {
-                return this._isColliding;
-            },
-            set: function (newValue) {
-                this._isColliding = newValue;
-            },
-            enumerable: true,
-            configurable: true
-        });
         // private methods
-        SpriteGameObject.prototype._initialize = function () {
+        BitmapGameObject.prototype._initialize = function () {
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
-            this.Position = new util.Vector2(this.x, this.y);
-            this.IsColliding = false;
         };
-        SpriteGameObject.prototype._updatePosition = function () {
-            this.Position.x = this.x;
-            this.Position.y = this.y;
+        // public methods
+        BitmapGameObject.prototype.Reset = function () {
         };
-        return SpriteGameObject;
-    }(createjs.Sprite));
-    objects.SpriteGameObject = SpriteGameObject;
+        BitmapGameObject.prototype.Start = function () {
+        };
+        BitmapGameObject.prototype.Update = function () {
+        };
+        BitmapGameObject.prototype.Destroy = function () {
+        };
+        return BitmapGameObject;
+    }(createjs.Bitmap));
+    objects.BitmapGameObject = BitmapGameObject;
 })(objects || (objects = {}));
-//# sourceMappingURL=spritegameobject.js.map
+//# sourceMappingURL=bitmapgameobject.js.map

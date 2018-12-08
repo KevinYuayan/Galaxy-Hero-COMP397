@@ -1,12 +1,10 @@
 module objects {
-    export abstract class SpriteGameObject extends createjs.Sprite {
+    export class BitmapGameObject extends createjs.Bitmap {
          // private instance variables
          private _width:number;
          private _height:number;
          private _halfWidth:number;
          private _halfHeight:number;
-         private _position:util.Vector2;
-         private _isColliding:boolean;
  
          // public properties
          get Width():number {
@@ -41,27 +39,11 @@ module objects {
  
          set HalfWidth(newValue:number) {
              this._halfWidth = newValue;
-         }
-         
-         get Position():util.Vector2 {
-            return this._position;
-        }
-
-        set Position(newPosition:util.Vector2) {
-            this._position = newPosition;
-        }
-
-        get IsColliding():boolean {
-            return this._isColliding;
-        }
-
-        set IsColliding(newValue:boolean) {
-            this._isColliding = newValue;
-        }
+         }        
 
          // constructors
          constructor(imageString:string) {
-             super(managers.Game.textureMap, imageString);
+             super(managers.Game.assetManager.getResult(imageString));
 
              this.name = imageString;
              this._initialize();
@@ -71,22 +53,23 @@ module objects {
          private _initialize():void {
             this.Width = this.getBounds().width;
             this.Height = this.getBounds().height;
-            this.Position = new util.Vector2(this.x, this.y);
-            this.IsColliding = false;
          }
-
-         protected _updatePosition():void {
-            this.Position.x = this.x;
-            this.Position.y = this.y;
-        }
          
          // public methods
-         public abstract Reset():void;
+         public Reset():void {
+             
+         }
 
-         public abstract  Start():void;
+         public Start():void {
+
+         }
  
-         public abstract  Update():void;
+         public Update():void {
 
-         public abstract  Destroy():void;
+         }
+
+         public Destroy():void {
+
+         }
     }
 }

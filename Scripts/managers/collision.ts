@@ -34,6 +34,7 @@ module managers {
                             let explosionSound = createjs.Sound.play("explosion01");
                             explosionSound.volume = 0.1;
                             managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
                             break;
                         case "enemies":
                         case "enemyLvl03_01":
@@ -49,6 +50,7 @@ module managers {
                                     if (Math.random() <= 0.1) {
                                         managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
                                     }
+                                    Collision.createExplosion(actor1);
                                     actor2.Reset();
                                     actor1.Reset();
                                 }
@@ -67,6 +69,7 @@ module managers {
                                     explosionSound = createjs.Sound.play("explosion02");
                                     explosionSound.volume = 0.1;
                                     managers.Game.scoreBoard.Lives -= 1;
+                                    Collision.createExplosion(actor1);
                                     actor2.Reset();
                                 }
                                 else{
@@ -83,7 +86,15 @@ module managers {
                                 explosionSound.volume = 0.1;
                                 managers.Game.scoreBoard.Lives -= 1;
                                 actor2.Reset();
+                                Collision.createExplosion(actor1);
                             }
+                            break;    
+                        case "bullet":
+                            explosionSound = createjs.Sound.play("explosion02");
+                            explosionSound.volume = 0.1;
+                            managers.Game.scoreBoard.Lives -= 1;
+                            Collision.createExplosion(actor1);
+                            actor2.Reset();
                             break;
                         case "bomb":
                             let aBomb = <objects.Bomb>actor2;
@@ -109,6 +120,16 @@ module managers {
                     }
                 }
             }
+        }
+        private static createExplosion(actor1: objects.BitmapGameObject) {
+            let newExplosion = new objects.Explosion();
+            newExplosion.x = actor1.x;
+            newExplosion.y = actor1.y;
+            managers.Game.currentScene.addChild(newExplosion);
+            newExplosion.on("animationend", () => {
+                newExplosion.Destroy();
+                newExplosion = null;
+            });
         }
     }
 }

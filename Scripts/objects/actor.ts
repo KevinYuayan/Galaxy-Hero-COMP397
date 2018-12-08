@@ -1,5 +1,5 @@
 module objects {
-    export abstract class Actor extends GameObject {
+    export abstract class Actor extends BitmapGameObject {
         
         
         // private instance variables
