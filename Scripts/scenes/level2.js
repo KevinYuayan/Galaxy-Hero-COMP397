@@ -62,6 +62,7 @@ var scenes;
         };
         Level2.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 2;
             this._planetNum = 1;
             this._backgroundNum = 2;

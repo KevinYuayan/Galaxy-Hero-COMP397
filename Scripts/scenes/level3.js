@@ -63,6 +63,7 @@ var scenes;
         };
         Level3.prototype.Start = function () {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 3;
             this._backgroundNum = 2;
             this._enemiesNum_03_01 = 3;

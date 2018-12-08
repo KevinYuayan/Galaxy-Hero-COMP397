@@ -71,6 +71,7 @@ module scenes {
         }
         public Start(): void {
             // managers.Game.scoreBoard.Reset();
+            //Tells the scoreboard what level it's on
             managers.Game.scoreBoard.Level = 3;
 
             this._backgroundNum = 2;

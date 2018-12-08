@@ -41,6 +41,12 @@
         {id: "explosion02", src: audioPath + "explosion19.m4a"},
         {id: "spaceship", src: audioPath + "spaceship.m4a"},
         {id: "yaySound", src: audioPath + "yay.ogg"},
+        {id: "bullet", src: imagePath + "bullet_01.png"},
+        {id: "earthBackground", src: imagePath + "earthbackground.png"},
+        {id: "enemyLvl01_01", src: imagePath + "enemy_lvl_01_01.png" },
+        //{id: "water", src: imagePath + "lvl1_score_01.png"},
+        {id: "water", src: imagePath + "lvl1_score_02.png"},
+        //{id: "water", src: imagePath + "lvl1_score_03.gif"}
     ]
 
 
