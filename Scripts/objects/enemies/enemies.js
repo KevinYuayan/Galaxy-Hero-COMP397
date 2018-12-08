@@ -28,6 +28,15 @@ var objects;
             if (this.y > config.Constants.canvasHeight + this.Height) {
                 this.Reset();
             }
+            if (this.x > config.Constants.canvasWidth - this.HalfWidth) {
+                this.x = config.Constants.canvasWidth - this.HalfWidth;
+                this.Reset();
+            }
+            //checks for left boundary
+            if (this.x < this.HalfWidth) {
+                this.x = this.HalfWidth;
+                this.Reset();
+            }
             if (managers.Game.scoreBoard.Level == 1 || managers.Game.scoreBoard.Level == 3) {
                 if ((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
                     //if((Math.random() < 0.17) && (this.y > 0)) {
