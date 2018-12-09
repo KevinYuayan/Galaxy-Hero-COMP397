@@ -24,6 +24,7 @@ module scenes{
 
         //public methods
         public Start(): void {
+            let _startSound = createjs.Sound.play("lg_powerup");
             
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);

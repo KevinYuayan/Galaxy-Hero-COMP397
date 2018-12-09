@@ -76,11 +76,17 @@ module managers {
                             //     // actor2.Reset();
                             // }
                             if (actor1.name == "player") {
-                                explosionSound = createjs.Sound.play("explosion02");
-                                explosionSound.volume = 0.1;
-                                managers.Game.scoreBoard.Lives -= 1;
-                                Collision.createExplosion(actor1);
-                                actor2.Reset();
+                                let aPlayer = <objects.Player>actor1;
+                                if(aPlayer.Invulnerable == false)
+                                {
+                                    explosionSound = createjs.Sound.play("explosion02");
+                                    explosionSound.volume = 0.1;
+                                    managers.Game.scoreBoard.Lives -= 1;
+                                    Collision.createExplosion(actor1);
+                                    actor2.Reset();
+                                    aPlayer.Invulnerable = true;
+                                    setTimeout(function () { aPlayer.Invulnerable = false }, 500);
+                                }
                             }
                             else {
                                 actor2.IsColliding = false;
@@ -90,21 +96,28 @@ module managers {
                             if (actor1.name == "shockwave") {
                                 actor2.Reset();
                             }
-                            else {
-                                explosionSound = createjs.Sound.play("explosion02");
-                                explosionSound.volume = 0.1;
-                                managers.Game.scoreBoard.Lives -= 1;
-                                actor2.Reset();
-                                Collision.createExplosion(actor1);
+                            if(actor1.name == "player") {
+                                let aPlayer = <objects.Player>actor1;
+                                if(aPlayer.Invulnerable == false)
+                                {
+                                    explosionSound = createjs.Sound.play("explosion02");
+                                    explosionSound.volume = 0.1;
+                                    managers.Game.scoreBoard.Lives -= 1;
+                                    Collision.createExplosion(actor1);
+                                    actor2.Reset();
+                                    aPlayer.Invulnerable = true;
+                                    setTimeout(function () { aPlayer.Invulnerable = false }, 500);
+
+                                }
                             }
                             break;
-                        case "bullet":
-                            explosionSound = createjs.Sound.play("explosion02");
-                            explosionSound.volume = 0.1;
-                            managers.Game.scoreBoard.Lives -= 1;
-                            Collision.createExplosion(actor1);
-                            actor2.Reset();
-                            break;
+                        // case "bullet":
+                        //     explosionSound = createjs.Sound.play("explosion02");
+                        //     explosionSound.volume = 0.1;
+                        //     managers.Game.scoreBoard.Lives -= 1;
+                        //     Collision.createExplosion(actor1);
+                        //     actor2.Reset();
+                        //     break;
                         case "bomb":
                             let aBomb = <objects.Bomb>actor2;
                             aBomb.Collected();

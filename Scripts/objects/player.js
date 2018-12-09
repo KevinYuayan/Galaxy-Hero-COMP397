@@ -21,6 +21,16 @@ var objects;
             _this.Start();
             return _this;
         }
+        Object.defineProperty(Player.prototype, "Invulnerable", {
+            get: function () {
+                return this._invulnerable;
+            },
+            set: function (newValue) {
+                this._invulnerable = newValue;
+            },
+            enumerable: true,
+            configurable: true
+        });
         Object.defineProperty(Player.prototype, "BulletSpawn", {
             // public properties
             get: function () {
@@ -43,6 +53,14 @@ var objects;
             configurable: true
         });
         // private methods
+        Player.prototype.invulnerableFrames = function () {
+            if (this.Invulnerable == true) {
+                this.alpha = 0.5;
+            }
+            else {
+                this.alpha = 1;
+            }
+        };
         // public methods
         Player.prototype.Move = function () {
             // this.x = managers.Game.stage.mouseX;
@@ -130,6 +148,7 @@ var objects;
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             // this.IsEnemy = false;
+            this.Invulnerable = false;
             this.y = 435;
             this.x = 320;
             _super.prototype.Start.call(this);
@@ -139,6 +158,7 @@ var objects;
             this.Fire();
             _super.prototype.Update.call(this);
             this.BulletSpawn = new util.Vector2(this.x - 12, this.y - this.HalfHeight - 19);
+            this.invulnerableFrames();
             this.chkBounds();
         };
         Player.prototype.Reset = function () {

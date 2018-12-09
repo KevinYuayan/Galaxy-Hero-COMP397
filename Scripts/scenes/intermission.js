@@ -25,6 +25,7 @@ var scenes;
         //private methods
         //public methods
         Intermission.prototype.Start = function () {
+            var _startSound = createjs.Sound.play("lg_powerup");
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._nextButton = new objects.Button("startButton", 320, 420, true);

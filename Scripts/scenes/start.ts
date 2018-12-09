@@ -55,6 +55,9 @@ module scenes{
             this._background = new objects.Background("startBackground");
             this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "planet", "#FFFF00", 780, 80, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
+
+            let _startSound = createjs.Sound.play("lg_powerup");
+            // _startSound.volume = 0.3;
             this.Main();
         }
         public Update(): void {

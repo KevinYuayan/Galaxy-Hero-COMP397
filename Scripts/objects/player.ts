@@ -4,6 +4,16 @@ module objects {
         // private instance variables
         private _bulletSpawn:util.Vector2;
         private _tripleShot:boolean;
+        private _invulnerable:boolean;
+
+        get Invulnerable():boolean {
+            return this._invulnerable;
+        }
+
+        set Invulnerable(newValue: boolean) {
+                this._invulnerable = newValue;
+        }       
+        
 
         // public properties
         get BulletSpawn():util.Vector2{
@@ -28,6 +38,15 @@ module objects {
 
 
         // private methods
+
+        private invulnerableFrames():void{
+            if(this.Invulnerable == true){
+                this.alpha = 0.5;
+            }
+            else{
+                this.alpha = 1;
+            }
+        }
 
         // public methods
         public Move():void {
@@ -144,6 +163,7 @@ module objects {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
             // this.IsEnemy = false;
+            this.Invulnerable = false;
             this.y = 435;
             this.x = 320;
             super.Start();
@@ -154,7 +174,7 @@ module objects {
             this.Fire();
             super.Update();
             this.BulletSpawn = new util.Vector2(this.x -12, this.y - this.HalfHeight - 19);
-
+            this.invulnerableFrames();
             this.chkBounds();
 
         }
