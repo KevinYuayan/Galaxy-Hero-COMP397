@@ -41,16 +41,21 @@ var scenes;
             this.addChild(this._meteorlbl);
             // adds ocean to the stage
             this.addChild(this._backButton);
+            this.addChild(this._startGame);
             // event listeners
             // starts the play scene
             this._backButton.on("click", function () {
                 managers.Game.currentState = config.Scene.START;
             });
+            this._startGame.on("click", function () {
+                managers.Game.currentState = config.Scene.LEVEL1;
+            });
         };
         Instructions.prototype.Start = function () {
             // Instantiates objects
             // TODO Change string when back button added
-            this._backButton = new objects.Button("startButton", 320, 440, true);
+            this._backButton = new objects.Button("menuButton", 780, 380, true);
+            this._startGame = new objects.Button("startButton", 780, 100, true);
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._player = new objects.BitmapGameObject("player");

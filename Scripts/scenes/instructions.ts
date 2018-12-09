@@ -4,7 +4,7 @@ module scenes{
         
         private _background:objects.Background;
         private _backButton:objects.Button;
-
+        private _startGame:objects.Button;
         private _playerlbl:objects.Label;
         private _bomblbl:objects.Label;
         private _enemylbl:objects.Label;
@@ -57,7 +57,7 @@ module scenes{
 
             // adds ocean to the stage
             this.addChild(this._backButton);
-
+            this.addChild(this._startGame);
 
             // event listeners
 
@@ -65,11 +65,15 @@ module scenes{
             this._backButton.on("click", ()=>{
                 managers.Game.currentState = config.Scene.START;
             })
+            this._startGame.on("click", ()=>{
+                managers.Game.currentState = config.Scene.LEVEL1;
+            })
         }        
         public Start(): void {
             // Instantiates objects
             // TODO Change string when back button added
-            this._backButton = new objects.Button("startButton", 320, 440, true);
+            this._backButton = new objects.Button("menuButton", 780, 380, true);
+            this._startGame = new objects.Button("startButton", 780, 100, true);
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._player = new objects.BitmapGameObject("player");

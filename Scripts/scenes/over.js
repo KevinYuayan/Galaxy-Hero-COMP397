@@ -32,12 +32,17 @@ var scenes;
             this.addChild(this._panel);
             // adds restartButton to the stage
             this.addChild(this._restartButton);
+            this.addChild(this._menuButton);
             // adds player to the stage
             this.addChild(this._gameOverLabel);
             // event listeners
             // starts the play scene
             this._restartButton.on("click", function () {
                 managers.Game.currentState = config.Scene.LEVEL1;
+            });
+            // goes to menu
+            this._menuButton.on("click", function () {
+                managers.Game.currentState = config.Scene.START;
             });
             managers.Game.scoreBoard.AddHighScore(this);
         };
@@ -48,7 +53,8 @@ var scenes;
             }
             // Instantiates objects
             managers.Game.scoreBoard.Reset();
-            this._restartButton = new objects.Button("restartButton", 780, 380, true);
+            this._restartButton = new objects.Button("restartButton", 780, 210, true);
+            this._menuButton = new objects.Button("menuButton", 780, 380, true);
             this._background = new objects.Background("spaceBackground", 0);
             this._gameOverLabel = new objects.Label(msglbl, "30px", "planet", "#FFFF00", 780, 100, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
