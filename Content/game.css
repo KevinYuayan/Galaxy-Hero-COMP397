@@ -1,5 +1,13 @@
+body {
+    background-color: lightgrey;
+    margin: 0 0;
+}
+
 #canvas {
     border: 1px black dotted;
+    border-radius: 10px;
+    width: auto;
+    height: 99vh;
 }
 
 @font-face{
@@ -7,4 +15,8 @@
     src: url('planet.TTF') format('ttf');
     font-weight: normal;
     font-style: normal;
+}
+
+#game {
+    margin-left: 18vw;
 }

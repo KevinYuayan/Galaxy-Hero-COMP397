@@ -50,7 +50,7 @@ var scenes;
             managers.Game.scoreBoard.Reset();
             this._restartButton = new objects.Button("restartButton", 780, 380, true);
             this._background = new objects.Background("spaceBackground", 0);
-            this._gameOverLabel = new objects.Label(msglbl, "30px", "Consolas", "#FFFF00", 780, 100, true);
+            this._gameOverLabel = new objects.Label(msglbl, "30px", "planet", "#FFFF00", 780, 100, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this.Main();
         };

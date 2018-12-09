@@ -29,18 +29,18 @@ var scenes;
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             this._nextButton = new objects.Button("startButton", 320, 420, true);
-            this._nextLabel = new objects.Label("Enter the next Level when you're ready...", "20px", "Consolas", "#FFFF00", 80, 330, false, 350);
+            this._nextLabel = new objects.Label("Enter the next Level when you're ready...", "20px", "planet", "#FFFF00", 80, 330, false, 350);
             this._loading = new objects.BitmapGameObject("loading");
             this._loading.x = 305;
             this._loading.y = 210;
             switch (managers.Game.scoreBoard.Level) {
                 case 2:
-                    this._waitLabel = new objects.Label("Time to kick it up a notch !", "20px", "Consolas", "#FFFF00", 170, 130, false, 350);
+                    this._waitLabel = new objects.Label("Time to kick it up a notch !", "20px", "planet", "#FFFF00", 170, 130, false, 350);
                     // managers.Game.scoreBoard.Level = 2;
                     // setInterval(this.setToLevel2,5000);
                     break;
                 case 3:
-                    this._waitLabel = new objects.Label("Welcome to Hell !", "20px", "Consolas", "#FFFF00", 170, 130, false, 350);
+                    this._waitLabel = new objects.Label("Welcome to Hell !", "20px", "planet", "#FFFF00", 170, 130, false, 350);
                     // managers.Game.scoreBoard.Level = 3;
                     // setInterval(this.setToLevel3,5000);
                     break;

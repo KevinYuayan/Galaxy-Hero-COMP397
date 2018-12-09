@@ -75,7 +75,7 @@ module scenes{
             this._player = new objects.BitmapGameObject("player");
             this._player.x = 20;
             this._player.y = 20;
-            this._playerlbl = new objects.Label("Use your arrows or WASD to move your ship and Spacebar or left click to shoot", "20px", "Consolas", "#FFFF00", 80, 40, false, 350);
+            this._playerlbl = new objects.Label("Use your arrows or WASD to move your ship and Spacebar or left click to shoot", "20px", "planet", "#FFFF00", 80, 40, false, 350);
 
             this._bullet = new objects.BitmapGameObject("bullet");
             this._bullet.x = 50;
@@ -89,12 +89,12 @@ module scenes{
             this._enemy3 = new objects.BitmapGameObject("enemyLvl03_01");
             this._enemy3.x = 30;
             this._enemy3.y = 110;
-            this._enemylbl = new objects.Label("Colliding with enemies and bullets makes you lose a life", "20px", "Consolas", "#FFFF00", 170, 130, false, 350);
+            this._enemylbl = new objects.Label("Colliding with enemies and bullets makes you lose a life", "20px", "planet", "#FFFF00", 170, 130, false, 350);
 
             this._bomb = new objects.BitmapGameObject("bomb");
             this._bomb.x = 40;
             this._bomb.y = 240;
-            this._bomblbl = new objects.Label("Press B to use your bomb. Use your bomb to destroy enemy bullets.", "20px", "Consolas", "#FFFF00", 80, 230, false, 350);
+            this._bomblbl = new objects.Label("Press B to use your bomb. Use your bomb to destroy enemy bullets.", "20px", "planet", "#FFFF00", 80, 230, false, 350);
             
             this._meteor1 = new objects.BitmapGameObject("meteorite");
             this._meteor1.x = 30;
@@ -102,7 +102,7 @@ module scenes{
             this._meteor2 = new objects.BitmapGameObject("water");
             this._meteor2.x = 130;
             this._meteor2.y = 300;
-            this._meteorlbl = new objects.Label("Collect meteors and water to gain lives and points", "20px", "Consolas", "#FFFF00", 280, 330, false, 350);
+            this._meteorlbl = new objects.Label("Collect meteors and water to gain lives and points", "20px", "planet", "#FFFF00", 280, 330, false, 350);
             
             this.Main();
         }
