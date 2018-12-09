@@ -31,9 +31,12 @@ module objects {
                 this.x = this.HalfWidth;
                 this.Reset();
             }
-            if (managers.Game.scoreBoard.Level == 1 || managers.Game.scoreBoard.Level == 3){
-                if((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
-                //if((Math.random() < 0.17) && (this.y > 0)) {
+        }
+
+        private _firebullet():void {
+            if (managers.Game.scoreBoard.Level == 2 || managers.Game.scoreBoard.Level == 3) {
+                if ((createjs.Ticker.getTicks() % 90 == 0) && (this.y > 0)) {
+                    //if((Math.random() < 0.17) && (this.y > 0)) {
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }
@@ -52,6 +55,7 @@ module objects {
             this._move();
             super.Update();
             this._checkBounds();
+            this._firebullet();
         }
         
         public Reset(): void {
