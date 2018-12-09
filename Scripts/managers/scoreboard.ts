@@ -84,11 +84,11 @@ module managers {
 
         // Initialize Objects
         public Start():void {
-            this._scoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#FFFF00", 710, 300, false);
-            this._livesLabel = new objects.Label("Lives: 99", "30px", "Consolas", "#FFFF00", 710, 70, false);
-            this._highScoreLabel = new objects.Label("High Score: 999999", "60px", "Consolas", "#FFFF00", 320, 140, true);
-            this._bombsLabel = new objects.Label("Bombs: 9", "30px", "Consolas", "#FFFF00", 710, 140, false);
-            this._levelLabel = new objects.Label("Level: 9", "30px", "Consolas", "#FFFF00", 710, 340, false);
+            this._scoreLabel = new objects.Label("Score: 99999", "30px", "Consolas", "#FFFF00", 710, 340, false);
+            this._livesLabel = new objects.Label("Lives: 99", "30px", "Consolas", "#FFFF00", 710, 90, false);
+            this._highScoreLabel = new objects.Label("High Score: 999999", "60px", "Consolas", "#FFFF00", 350, 140, true);
+            this._bombsLabel = new objects.Label("Bombs: 9", "30px", "Consolas", "#FFFF00", 710, 190, false);
+            this._levelLabel = new objects.Label("Level: 9", "30px", "Consolas", "#FFFF00", 710, 390, false);
         }
 
         public AddGameUI(currentScene:objects.Scene):void {
