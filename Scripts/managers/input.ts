@@ -117,6 +117,9 @@ module managers {
 
         public static EnterPress(event) {
             if(event.keyCode == 13) {
+                if (managers.Game.scoreBoard.Level == 1) {
+                    managers.Game.currentState = config.Scene.LEVEL1;
+                }
                 if (managers.Game.scoreBoard.Level == 2) {
                     managers.Game.currentState = config.Scene.LEVEL2;
                 }

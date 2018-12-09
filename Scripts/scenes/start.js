@@ -51,7 +51,11 @@ var scenes;
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
             var _startSound = createjs.Sound.play("lg_powerup");
             // _startSound.volume = 0.3;
+            this.SetupInput();
             this.Main();
+        };
+        Start.prototype.SetupInput = function () {
+            document.addEventListener("keydown", managers.Input.EnterPress);
         };
         Start.prototype.Update = function () {
         };
@@ -59,6 +63,7 @@ var scenes;
         };
         Start.prototype.Destroy = function () {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
         };
         return Start;
     }(objects.Scene));

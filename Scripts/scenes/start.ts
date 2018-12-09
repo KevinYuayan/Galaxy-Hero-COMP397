@@ -58,7 +58,13 @@ module scenes{
 
             let _startSound = createjs.Sound.play("lg_powerup");
             // _startSound.volume = 0.3;
+            this.SetupInput();
+
             this.Main();
+        }
+
+        public SetupInput(): void {
+            document.addEventListener("keydown", managers.Input.EnterPress);
         }
         public Update(): void {
 
@@ -68,6 +74,7 @@ module scenes{
         }
         public Destroy(): void {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
         }
 
 
