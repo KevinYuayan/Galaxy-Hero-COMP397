@@ -45,7 +45,7 @@ module managers {
                                         managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
                                         // managers.Game.currentState = config.Scene.WIN;
                                         aBoss.InPlay = false;
-                                        setTimeout(function() {aBoss.InPlay = true}, 1500);
+                                        setTimeout(function() {aBoss.InPlay = true}, 5000);
                                     }
                                 }
                             } else {
