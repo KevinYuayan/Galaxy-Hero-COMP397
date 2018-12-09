@@ -25,7 +25,7 @@ module objects {
                     this.y = -10000
                     this.x = -10000
                     if (this._fireRate > 20) {
-                        this._fireRate -= this._deaths * 5;
+                        this._fireRate = 60 - (this._deaths * 5);
                     }
                 }
                 this._inPlay = newValue;
