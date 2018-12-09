@@ -19,6 +19,8 @@ var objects;
         function Boss() {
             var _this = _super.call(this, "boss") || this;
             _this._lives = 3;
+            _this._deaths = 0;
+            _this._fireRate = 60;
             return _this;
         }
         Object.defineProperty(Boss.prototype, "InPlay", {
@@ -28,11 +30,16 @@ var objects;
             set: function (newValue) {
                 if (this._inPlay != newValue) {
                     if (newValue == true) {
+                        this._lives = 3 + this._deaths;
                         this.Start();
                     }
                     else {
-                        this.Position.y = -10000;
-                        this.Position.x = -10000;
+                        this._deaths += 1;
+                        this.y = -10000;
+                        this.x = -10000;
+                        if (this._fireRate > 20) {
+                            this._fireRate = 60 - (this._deaths * 5);
+                        }
                     }
                     this._inPlay = newValue;
                 }
@@ -71,7 +78,7 @@ var objects;
             }
         };
         Boss.prototype._fireBullet = function () {
-            if (createjs.Ticker.getTicks() % 60 == 0) {
+            if (createjs.Ticker.getTicks() % this._fireRate == 0) {
                 // if((Math.random() < 0.17) && (this.y > 0)) {
                 managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 // managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position,this._bulletSpawn), util.Vector2.down());               

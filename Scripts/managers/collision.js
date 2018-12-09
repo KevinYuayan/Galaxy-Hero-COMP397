@@ -41,7 +41,7 @@ var managers;
                                         managers.Game.scoreBoard.HighScore = managers.Game.scoreBoard.Score;
                                         // managers.Game.currentState = config.Scene.WIN;
                                         aBoss_1.InPlay = false;
-                                        setTimeout(function () { aBoss_1.InPlay = true; }, 1500);
+                                        setTimeout(function () { aBoss_1.InPlay = true; }, 5000);
                                     }
                                 }
                             }
@@ -54,19 +54,13 @@ var managers;
                         case "enemyLvl03_01":
                         case "enemyLvl03_02":
                         case "enemyLvl01_01":
+                            if (actor1.name == "shockwave") {
+                                this.enemyHit(actor1, actor2, explosionSound);
+                            }
                             if (actor1.name == "bullet") {
                                 var bullet = actor1;
                                 if (bullet.Direction.y < 0) {
-                                    explosionSound = createjs.Sound.play("explosion01");
-                                    explosionSound.volume = 1;
-                                    managers.Game.scoreBoard.Score += 100;
-                                    // 10% chance for Bomb to spawn when enemy dies
-                                    if (Math.random() <= 0.1) {
-                                        managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
-                                    }
-                                    Collision.createExplosion(actor1);
-                                    actor2.Reset();
-                                    actor1.Reset();
+                                    this.enemyHit(actor1, actor2, explosionSound);
                                 }
                                 else {
                                     actor2.IsColliding = false;
@@ -91,7 +85,6 @@ var managers;
                             break;
                         case "bullet":
                             if (actor1.name == "shockwave") {
-                                console.log("bullet hit shockwave");
                                 actor2.Reset();
                             }
                             else {
@@ -146,6 +139,20 @@ var managers;
                 newExplosion.Destroy();
                 newExplosion = null;
             });
+        };
+        Collision.enemyHit = function (actor1, actor2, explosionSound) {
+            explosionSound = createjs.Sound.play("explosion01");
+            explosionSound.volume = 0.1;
+            managers.Game.scoreBoard.Score += 100;
+            // 10% chance for Bomb to spawn when enemy dies
+            if (Math.random() <= 0.1) {
+                managers.Game.powerUpManager.SpawnPowerUp(actor2.Position);
+            }
+            Collision.createExplosion(actor2);
+            actor2.Reset();
+            if (actor1.name != "shockwave") {
+                actor1.Reset();
+            }
         };
         return Collision;
     }());
