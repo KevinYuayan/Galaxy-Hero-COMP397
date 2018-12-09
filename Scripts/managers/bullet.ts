@@ -80,6 +80,7 @@ module managers{
             // else {
             //     this.CurrentBullet.IsEnemyFired = false;
             // }
+            
 
             this._currentBulletIndex++;
             if(this._currentBulletIndex >= this.Bullets.length) {

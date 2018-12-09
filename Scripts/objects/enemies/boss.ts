@@ -15,11 +15,12 @@ module objects {
         set InPlay(newValue: boolean) {
             if (this._inPlay != newValue) {
                 if(newValue == true) {
+                    this._lives = 3;
                     this.Start();
                 } 
                 else {
-                    this.Position.y = -10000
-                    this.Position.x = -10000
+                    this.y = -10000
+                    this.x = -10000
                 }
                 this._inPlay = newValue;
             }       
