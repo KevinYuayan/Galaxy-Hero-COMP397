@@ -79,7 +79,7 @@ module scenes{
             this._player = new objects.BitmapGameObject("player");
             this._player.x = 20;
             this._player.y = 20;
-            this._playerlbl = new objects.Label("Use your arrows or WASD to move your ship and Spacebar or left click to shoot", "20px", "planet", "#FFFF00", 80, 40, false, 350);
+            this._playerlbl = new objects.Label("Use your arrows or W,A,S,D to move your ship, and Spacebar or left click to shoot", "20px", "planet", "#FFFF00", 80, 40, false, 350);
 
             this._bullet = new objects.BitmapGameObject("bullet");
             this._bullet.x = 50;

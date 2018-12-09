@@ -38,12 +38,12 @@ module scenes{
             switch(managers.Game.scoreBoard.Level)
             {
                 case 2:
-                    this._waitLabel = new objects.Label("Time to kick it up a notch !", "20px", "planet", "#FFFF00", 170, 130, false, 350);
+                    this._waitLabel = new objects.Label("Time to kick it up a notch !!!", "20px", "planet", "#FFFF00", 170, 130, false, 350);
                     // managers.Game.scoreBoard.Level = 2;
                     // setInterval(this.setToLevel2,5000);
                     break;
                 case 3:
-                    this._waitLabel = new objects.Label("Welcome to Hell !", "20px", "planet", "#FFFF00", 170, 130, false, 350);
+                    this._waitLabel = new objects.Label("Welcome to Hell !!!", "20px", "planet", "#FFFF00", 170, 130, false, 350);
                     // managers.Game.scoreBoard.Level = 3;
                     // setInterval(this.setToLevel3,5000);
                     break;
