@@ -84,6 +84,8 @@ module scenes {
 
             this._meteorite = new objects.Meteorite();
             this._boss = new objects.Boss();
+            //displaays boss as invulnerable
+            this._boss.alpha = 0.5;
 
             this._player = new objects.Player();
             managers.Game.player = this._player;
