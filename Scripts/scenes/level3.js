@@ -135,10 +135,12 @@ var scenes;
             this._enemy_03_01.forEach(function (enemy) {
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
+                managers.Collision.Check(_this._shockwave, enemy);
             });
             this._enemy_03_02.forEach(function (enemy) {
                 enemy.Update();
                 managers.Collision.Check(_this._player, enemy);
+                managers.Collision.Check(_this._shockwave, enemy);
             });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(function (bullet) {

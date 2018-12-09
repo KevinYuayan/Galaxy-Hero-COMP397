@@ -161,10 +161,12 @@ module scenes {
             this._enemy_03_01.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
+                managers.Collision.Check(this._shockwave, enemy);
             });
             this._enemy_03_02.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
+                managers.Collision.Check(this._shockwave, enemy);
             });
             this._bulletManager.Update();
             this._bulletManager.Bullets.forEach(bullet => {

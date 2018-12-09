@@ -137,6 +137,7 @@ module scenes {
             this._enemy_01_01.forEach(enemy => {
                 enemy.Update();
                 managers.Collision.Check(this._player, enemy);
+                managers.Collision.Check(this._shockwave, enemy);
             });
 
             this._bulletManager.Update();
