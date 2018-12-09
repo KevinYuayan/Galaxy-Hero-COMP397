@@ -21,6 +21,7 @@
     let assetManifest = [
         {id: "startButton", src: imagePath + "button_start.png"},
         {id: "restartButton", src: imagePath + "button_restart.png"},
+        {id: "menuButton", src: imagePath + "button_menu.png"},
         {id: "instructionsButton", src: imagePath + "button_instructions.png"},
         {id: "player", src: imagePath + "player.png"},
         {id: "planet", src: imagePath + "planet.png"},
