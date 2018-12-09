@@ -17,5 +17,6 @@ module config {
         public static P: number = 80; // often used for pause
         public static ENTER: number = 13;
         public static SEVEN: number = 55;
+        public static BACKSPACE: number = 8;
     }
 }

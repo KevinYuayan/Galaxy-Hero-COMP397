@@ -20,6 +20,7 @@ var config;
         Key.P = 80; // often used for pause
         Key.ENTER = 13;
         Key.SEVEN = 55;
+        Key.BACKSPACE = 8;
         return Key;
     }());
     config.Key = Key;

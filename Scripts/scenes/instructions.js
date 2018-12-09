@@ -86,7 +86,12 @@ var scenes;
             this._meteor2.x = 130;
             this._meteor2.y = 300;
             this._meteorlbl = new objects.Label("Collect meteors and water to gain lives and points", "20px", "planet", "#FFFF00", 280, 330, false, 350);
+            this.SetupInput();
             this.Main();
+        };
+        Instructions.prototype.SetupInput = function () {
+            document.addEventListener("keydown", managers.Input.EnterPress);
+            document.addEventListener("keydown", managers.Input.GoBack);
         };
         Instructions.prototype.Update = function () {
         };
@@ -94,6 +99,8 @@ var scenes;
         };
         Instructions.prototype.Destroy = function () {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
+            document.removeEventListener("keydown", managers.Input.GoBack);
         };
         return Instructions;
     }(objects.Scene));

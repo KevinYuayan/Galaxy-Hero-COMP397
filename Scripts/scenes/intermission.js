@@ -28,7 +28,7 @@ var scenes;
             var _startSound = createjs.Sound.play("lg_powerup");
             this._background = new objects.Background("instructionsBackground");
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
-            this._nextButton = new objects.Button("startButton", 320, 420, true);
+            this._nextButton = new objects.Button("startButton", 780, 215, true);
             this._nextLabel = new objects.Label("Enter the next Level when you're ready...", "20px", "planet", "#FFFF00", 80, 330, false, 350);
             this._loading = new objects.BitmapGameObject("loading");
             this._loading.x = 305;

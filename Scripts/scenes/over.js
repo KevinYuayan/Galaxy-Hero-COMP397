@@ -58,7 +58,12 @@ var scenes;
             this._background = new objects.Background("spaceBackground", 0);
             this._gameOverLabel = new objects.Label(msglbl, "30px", "planet", "#FFFF00", 780, 100, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
+            this.SetupInput();
             this.Main();
+        };
+        Over.prototype.SetupInput = function () {
+            document.addEventListener("keydown", managers.Input.EnterPress);
+            document.addEventListener("keydown", managers.Input.GoBack);
         };
         Over.prototype.Update = function () {
             this._background.Update();
@@ -68,6 +73,8 @@ var scenes;
         };
         Over.prototype.Destroy = function () {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
+            document.removeEventListener("keydown", managers.Input.GoBack);
         };
         return Over;
     }(objects.Scene));

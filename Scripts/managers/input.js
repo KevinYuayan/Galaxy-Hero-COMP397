@@ -92,7 +92,7 @@ var managers;
             }
         };
         Input.EnterPress = function (event) {
-            if (event.keyCode == 13) {
+            if (event.keyCode == config.Key.ENTER) {
                 if (managers.Game.scoreBoard.Level == 1) {
                     managers.Game.currentState = config.Scene.LEVEL1;
                 }
@@ -104,8 +104,13 @@ var managers;
                 }
             }
         };
+        Input.GoBack = function (event) {
+            if (event.keyCode == config.Key.BACKSPACE) {
+                managers.Game.currentState = config.Scene.START;
+            }
+        };
         Input.CheatLife = function (event) {
-            if (event.keyCode == 55) {
+            if (event.keyCode == config.Key.SEVEN) {
                 managers.Game.scoreBoard.Lives += 1;
             }
         };

@@ -64,7 +64,13 @@ module scenes{
             this._background = new objects.Background("spaceBackground", 0);
             this._gameOverLabel = new objects.Label(msglbl, "30px", "planet", "#FFFF00", 780, 100, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
+            this.SetupInput();
             this.Main();
+        }
+
+        public SetupInput(): void {
+            document.addEventListener("keydown", managers.Input.EnterPress);
+            document.addEventListener("keydown", managers.Input.GoBack);
         }
         public Update(): void {
 
@@ -75,6 +81,8 @@ module scenes{
         }
         public Destroy(): void {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
+            document.removeEventListener("keydown", managers.Input.GoBack);
         }
 
 

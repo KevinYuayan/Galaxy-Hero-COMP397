@@ -108,8 +108,14 @@ module scenes{
             this._meteor2.y = 300;
             this._meteorlbl = new objects.Label("Collect meteors and water to gain lives and points", "20px", "planet", "#FFFF00", 280, 330, false, 350);
             
+            this.SetupInput();
             this.Main();
         }
+        public SetupInput(): void {
+            document.addEventListener("keydown", managers.Input.EnterPress);
+            document.addEventListener("keydown", managers.Input.GoBack);
+        }
+        
         public Update(): void {
 
         }
@@ -118,6 +124,8 @@ module scenes{
         }
         public Destroy(): void {
             this.removeAllChildren();
+            document.removeEventListener("keydown", managers.Input.EnterPress);
+            document.removeEventListener("keydown", managers.Input.GoBack);
         }
 
 
