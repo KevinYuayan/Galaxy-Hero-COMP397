@@ -5,6 +5,8 @@ module objects {
         private _verticalSpeed:number;
         private _horizontalSpeed:number;
         private _bulletSpawn: util.Vector2;
+        private _fireRate:number;
+        private _deaths:number;
         private _lives:number;
         private _inPlay:boolean;
 
@@ -15,12 +17,16 @@ module objects {
         set InPlay(newValue: boolean) {
             if (this._inPlay != newValue) {
                 if(newValue == true) {
-                    this._lives = 3;
+                    this._lives = 3 + this._deaths;
                     this.Start();
                 } 
                 else {
+                    this._deaths += 1;
                     this.y = -10000
                     this.x = -10000
+                    if (this._fireRate > 20) {
+                        this._fireRate -= this._deaths * 5;
+                    }
                 }
                 this._inPlay = newValue;
             }       
@@ -35,6 +41,8 @@ module objects {
         constructor() {
             super("boss");
             this._lives = 3;
+            this._deaths = 0;
+            this._fireRate = 60;
         }
 
 
@@ -67,7 +75,7 @@ module objects {
         }
 
         private _fireBullet() {
-            if (createjs.Ticker.getTicks() % 60 == 0) {
+            if (createjs.Ticker.getTicks() % this._fireRate == 0) {
                 // if((Math.random() < 0.17) && (this.y > 0)) {
                 managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 // managers.Game.bulletManager.TripleShot(util.Vector2.Add(this.Position,this._bulletSpawn), util.Vector2.down());               
