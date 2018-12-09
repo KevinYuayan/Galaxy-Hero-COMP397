@@ -46,7 +46,6 @@ var objects;
             if (managers.Game.scoreBoard.Level == 1) {
                 if ((createjs.Ticker.getTicks() % 60 == 0) && (this.y > 0)) {
                     // if((Math.random() < 0.17) && (this.y > 0)) {
-                    console.log(this + "fired a bullet");
                     managers.Game.bulletManager.FireBullet(util.Vector2.Add(this.Position, this._bulletSpawn), util.Vector2.down());
                 }
             }

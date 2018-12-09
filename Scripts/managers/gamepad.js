@@ -36,7 +36,7 @@ var managers;
                 // check Buttons
                 for (var index = 0; index < this._gamepad.buttons.length; index++) {
                     if (this._gamepad.buttons[index].pressed) {
-                        //console.log("button " + index + " pressed");
+                        console.log("button " + index + " pressed");
                         this.Buttons[index] = true;
                     }
                     else {

@@ -36,12 +36,11 @@ module managers {
         public Update():void {
             this._gamepad = window.navigator.getGamepads()[this._gamepadIndex];
             if(this._gamepad) { // is the gamepad connected?
-
                 // check Buttons
                 for(let index=0; index < this._gamepad.buttons.length; index++) {
                     
                     if(this._gamepad.buttons[index].pressed) {
-                        //console.log("button " + index + " pressed");
+                        console.log("button " + index + " pressed");
                         this.Buttons[index] = true;
                     }
                     else {

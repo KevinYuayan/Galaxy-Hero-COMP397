@@ -8,6 +8,8 @@ module managers{
         private _divergeLeft: util.Vector2;
         private _divergeRight: util.Vector2;
 
+        private _count: number;
+
         //public properties
         get Bullets():objects.Bullet[] {
             return this._bullets;
@@ -58,6 +60,8 @@ module managers{
             
             this._divergeLeft = new util.Vector2(-1,0);
             this._divergeRight = new util.Vector2(1,0);
+
+            this._count = 0;
         }
 
         public Update():void {
@@ -92,6 +96,80 @@ module managers{
             this.FireBullet(spawnPoint,direction);
             this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeLeft));
             this.FireBullet(spawnPoint,util.Vector2.Add(direction,this._divergeRight));
+        }
+
+        private iterate():void{
+            this._count += 1;
+        }
+
+        public CircleShot(spawnPoint: util.Vector2,direction:util.Vector2):void{
+
+            /*
+            // var perimeterPoint = new util.Vector2(0,0);
+            var perimeterPoint: util.Vector2;
+            var shift: util.Vector2;
+            var newDirection: util.Vector2;
+            var degrees = 45;
+
+            // shift = new util.Vector2();
+
+            // newDirection = util.Vector2.Rotate(newDirection,directionSift);
+            shift= util.Vector2.Rotate(center,degrees);
+            perimeterPoint = util.Vector2.Add(shift,spawnPoint);
+            */
+
+            var stopFiring = false;
+
+            var east = util.Vector2.Add(spawnPoint,new util.Vector2(-115,-72.5));
+            var eastSouthEast = util.Vector2.Add(spawnPoint, new util.Vector2(-115,-54))
+            var southEast = util.Vector2.Add(spawnPoint, new util.Vector2(-115,-36))
+            var southSouthEast = util.Vector2.Add(spawnPoint, new util.Vector2(-115,-18))
+            var west = util.Vector2.Add(spawnPoint,new util.Vector2(115,-72.5));
+            var westSouthWest = util.Vector2.Add(spawnPoint, new util.Vector2(115,-54))
+            var southWest = util.Vector2.Add(spawnPoint, new util.Vector2(115,-36))
+            var southSouthWest = util.Vector2.Add(spawnPoint, new util.Vector2(115,-18))
+
+            if(stopFiring == false){
+                // if(createjs.Ticker.getTime() % 10 == 0){
+                // }
+                    this.iterate();
+                    setInterval(this.CircleShot,10000);
+                    console.log(this._count);
+                    switch(this._count){
+                        case 1:
+                            this.FireBullet(east,direction);
+                            break;
+                        case 2:
+                            this.FireBullet(eastSouthEast,direction);
+                            break;
+                        case 3:
+                            this.FireBullet(southEast,direction);
+                            break;
+                        case 4:
+                            this.FireBullet(southSouthEast,direction);
+                            break;
+                        case 5:
+                            this.FireBullet(spawnPoint,direction);
+                            break;
+                        case 6:
+                            this.FireBullet(southSouthWest,direction);
+                            break;
+                        case 7:
+                            this.FireBullet(southWest,direction);
+                            break;
+                        case 8:
+                            this.FireBullet(westSouthWest,direction);
+                            break;
+                        case 9:
+                            this.FireBullet(west,direction);
+                            break;
+                        case 10:
+                            this._count = 0;
+                            stopFiring = true;
+                        break;
+                    }
+                
+            }
         }
     }
 }

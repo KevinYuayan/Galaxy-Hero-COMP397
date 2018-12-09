@@ -37,10 +37,11 @@
         { id: "bullet", src: imagePath + "bullet_01.png" },
         { id: "engineSound", src: audioPath + "engine.ogg" },
         { id: "thunderSound", src: audioPath + "thunder.ogg" },
-        { id: "explosion01", src: audioPath + "explosion14.m4a" },
-        { id: "explosion02", src: audioPath + "explosion19.m4a" },
+        { id: "explosion01", src: audioPath + "aiwha__explosion.wav" },
+        { id: "explosion02", src: audioPath + "explosion.wav" },
         { id: "spaceship", src: audioPath + "spaceship.m4a" },
-        { id: "yaySound", src: audioPath + "yay.ogg" },
+        //todo rename all occurences of yaySound
+        { id: "yaySound", src: audioPath + "space-power-up.wav" },
         { id: "bullet", src: imagePath + "bullet_01.png" },
         { id: "earthBackground", src: imagePath + "earthbackground.png" },
         { id: "enemyLvl01_01", src: imagePath + "enemy_lvl_01_01.png" },
@@ -51,7 +52,9 @@
         // {id: "loading", src: imagePath + "clMqQGC.gif"}
         { id: "loading", src: imagePath + "loading-lg.gif" },
         //{id: "water", src: imagePath + "lvl1_score_03.gif"}
-        { id: "textureMap", src: "./Assets/sprites/texturemap.png" }
+        { id: "textureMap", src: "./Assets/sprites/texturemap.png" },
+        { id: "explosion00", src: audioPath + "explosion00.wav" },
+        { id: "lg_powerup", src: audioPath + "lg_powerup.wav" }
     ];
     function Init() {
         assetManager = new createjs.LoadQueue();

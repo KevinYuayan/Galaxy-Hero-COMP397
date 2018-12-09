@@ -85,6 +85,8 @@ var managers;
                 if (managers.Game.scoreBoard.Bombs > 0) {
                     managers.Game.scoreBoard.Bombs -= 1;
                     managers.Game.shockwave.InPlay = true;
+                    var bombSound = createjs.Sound.play("explosion00");
+                    bombSound.volume = 1;
                     setTimeout(function () { managers.Game.shockwave.InPlay = false; }, 600);
                 }
             }

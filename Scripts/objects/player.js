@@ -82,23 +82,19 @@ var objects;
                 this.rotation += 5;
             }
             */
-            /* gamepad controls
-            if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] > 0) {
-                this.x += 10;
+            //  gamepad controls 
+            if (managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] > 0) {
+                this.x += 5;
             }
-
-            if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] < 0) {
-                this.x -= 10;
+            if (managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] < 0) {
+                this.x -= 5;
             }
-
-            if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] > 0) {
+            if (managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] > 0) {
                 this.y += 5;
             }
-
-            if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] < 0) {
+            if (managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] < 0) {
                 this.y -= 5;
             }
-            */
         };
         // public Fire() {
         //     managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());

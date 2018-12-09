@@ -84,13 +84,13 @@ module objects {
             */
 
 
-            /* gamepad controls 
+            //  gamepad controls 
             if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] > 0) {
-                this.x += 10;
+                this.x += 5;
             }
 
             if(managers.Input.gamepad1.Axis[config.Gamepad.HORIZONTAL] < 0) {
-                this.x -= 10;
+                this.x -= 5;
             }
 
             if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] > 0) {
@@ -100,7 +100,7 @@ module objects {
             if(managers.Input.gamepad1.Axis[config.Gamepad.VERTICAL] < 0) {
                 this.y -= 5;
             }
-            */
+            
         }
         // public Fire() {
         //     managers.Game.bulletManager.FireBullet(this.BulletSpawn, util.Vector2.up());

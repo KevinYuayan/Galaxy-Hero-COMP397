@@ -61,7 +61,7 @@ module managers {
                                 let bullet: objects.Bullet = <objects.Bullet>actor1;
                                 if (bullet.Direction.y < 0) {
                                     explosionSound = createjs.Sound.play("explosion01");
-                                    explosionSound.volume = 0.1;
+                                    explosionSound.volume = 1;
                                     managers.Game.scoreBoard.Score += 100;
                                     // 10% chance for Bomb to spawn when enemy dies
                                     if (Math.random() <= 0.1) {
