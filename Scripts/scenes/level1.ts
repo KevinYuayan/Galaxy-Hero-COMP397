@@ -173,10 +173,9 @@ module scenes {
             this._engineSound.stop();
             this.off("mousedown",managers.Input.OnLeftMouseDown);
             document.removeEventListener("keydown", managers.Input.KeyPressed);
-            document.removeEventListener("keydown", managers.Input.CheatLife);            
-        
+            document.removeEventListener("keydown",managers.Input.CheatLife);
         }
-
+        
 
     }
 }

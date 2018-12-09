@@ -44,8 +44,8 @@ var scenes;
         };
         Start.prototype.Start = function () {
             // Instantiates objects
-            this._instructionsButton = new objects.Button("instructionsButton", 780, 360, true);
-            this._startButton = new objects.Button("startButton", 780, 180, true);
+            this._instructionsButton = new objects.Button("instructionsButton", 780, 380, true);
+            this._startButton = new objects.Button("startButton", 780, 215, true);
             this._background = new objects.Background("startBackground");
             this._welcomeLabel = new objects.Label("Galaxy Hero", "35px", "planet", "#FFFF00", 780, 80, true);
             this._panel = new objects.Board("panel", config.Constants.verticalPlaySpeed);
